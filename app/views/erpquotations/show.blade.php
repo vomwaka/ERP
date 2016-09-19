@@ -31,10 +31,11 @@ $(document).ready(function(){
             $('#select_all').prop('checked',false);
         }
     });
-
+    
     // Enable or disable links
+    var user_type = "{{Confide::user()->user_type}}";
     var status = $('#status').html();
-    if(status === 'REJECTED' || status === 'APPROVED'){
+    if(status === 'REJECTED' || status === 'APPROVED' || user_type !== 'admin'){
         $('a.action_lnk').addClass('disabled');
     } else{
         if($('a.action_lnk').hasClass('disabled')){
