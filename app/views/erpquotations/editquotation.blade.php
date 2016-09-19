@@ -101,7 +101,7 @@ Session::forget('error');
 			</table>
 			
 			<table border="0" align="right" style="width:400px">
-				<tr style="height:50px"><td>Discount:</td><td colspan="2"> <input type="text" name="discount" id="discount" onkeypress="grandTotal()" onkeyup="grandTotal()" onblur="grandTotal()" value="{{$order->discount_amount}}" class="form-control" onfocus="getTax();"></td></tr>
+				<tr style="height:50px"><td>Discount:</td><td colspan="2"> <input type="text" name="discount" id="discount" onkeypress="grandTotal()" onkeyup="grandTotal()" onblur="grandTotal()" value="{{$order->discount_amount}}" class="form-control"></td></tr>
 				<tr style="height:50px"><td><strong>Payable Amount</strong></td><td colspan="2"> <input type="text" readonly="readonly" name="payable" id="payable" value="{{$total-($order->discount_amount);}}" class="form-control"></td></tr>
 
 				<?php $i = 1; ?>

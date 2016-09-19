@@ -74,7 +74,13 @@ class PaymentsController extends \BaseController {
 		$payment->received_by = Input::get('received_by');
 		$payment->date = date("Y-m-d",strtotime(Input::get('pay_date')));
 		$payment->save();
-       
+
+		if($client->type === 'Customer'){
+			Account::where('id', Input::get('paymentmethod'))->increment('balance', Input::get('amount'));	
+		} else{
+			Account::where('id', Input::get('paymentmethod'))->decrement('balance', Input::get('amount'));
+		}
+		
 
 		return Redirect::route('payments.index')->withFlashMessage('Payment successfully created!');
 	}

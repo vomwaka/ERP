@@ -63,13 +63,13 @@ $(document).ready(function(){
     // Check which link has been clicked (Approve or Reject)
     $('a#approveBtn').click(function(){
         $('#commentModalHeader').html('Reason for Approval');
-        $('#commentForm').attr('action', '/erpquotations/approve');
+        $('#commentForm').attr('action', '{{URL::to('erpquotations/approve')}}');
         $('#submitBTN').html('Approve');
     })
 
     $('a#rejectBtn').click(function(){
         $('#commentModalHeader').html('Reason for Rejection');
-        $('#commentForm').attr('action', '/erpquotations/reject');
+        $('#commentForm').attr('action', '{{URL::to('erpquotations/reject')}}');
         $('#submitBTN').html('Reject');
     })
 
@@ -127,7 +127,7 @@ $(document).ready(function(){
                 <h4 class="modal-title">Mail Quotation To Client</h4>
             </div>
             <div class="modal-body">
-                <form role="form" action="/erpquotations/mail" method="POST">
+                <form role="form" action="{{URL::to('erpquotations/mail')}}" method="POST">
                     <!-- HIDDEN FIELDS -->
                     <input type="hidden" name="order_id" value="{{$order->id}}">
 

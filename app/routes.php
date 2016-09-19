@@ -3264,13 +3264,14 @@ Route::get('api/total', function(){
              $order = DB::table('erporders')
                ->join('erporderitems','erporders.id','=','erporderitems.erporder_id')
                ->join('clients','erporders.client_id','=','clients.id')
-               ->where('clients.id',$id) ->selectRaw('SUM((price * quantity)) as total')
+               ->where('clients.id',$id)->where('erporders.type', '!=', 'quotations') ->selectRaw('SUM((price * quantity)) as total')
                ->pluck('total');
+               //->where('status', '<>', 'cancelled')
 
              $tax = DB::table('erporders')
                ->join('clients','erporders.client_id','=','clients.id')
                ->join('tax_orders','erporders.order_number','=','tax_orders.order_number')
-               ->where('clients.id',$id) ->selectRaw('SUM(COALESCE(amount,0))as total')
+               ->where('clients.id',$id)->where('erporders.type', '!=', 'quotations') ->selectRaw('SUM(COALESCE(amount,0))as total')
                ->pluck('total');
 
              $order = $order + $tax;
@@ -3279,7 +3280,7 @@ Route::get('api/total', function(){
              $order = DB::table('erporders')
                ->join('erporderitems','erporders.id','=','erporderitems.erporder_id')
                ->join('clients','erporders.client_id','=','clients.id')           
-               ->where('clients.id',$id) ->selectRaw('SUM((price * quantity))as total')
+               ->where('clients.id',$id)->where('erporders.status', '!=', 'cancelled') ->selectRaw('SUM((price * quantity))as total')
                ->pluck('total');
           }
 
@@ -3287,9 +3288,7 @@ Route::get('api/total', function(){
            ->join('payments','clients.id','=','payments.client_id')
            ->where('clients.id',$id) ->selectRaw('COALESCE(SUM(amount_paid),0) as due')
            ->pluck('due');
-
     
-
     return number_format($order-$paid, 2);
 });
 
