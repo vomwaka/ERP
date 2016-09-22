@@ -110,7 +110,7 @@ function asMoney($value) {
         
 
         <tr>
-            <td>{{$count}}</td>
+            <td>{{$count+1}}</td>
             <td>{{$orderitem['item']}}</td>
             <td>{{$orderitem['quantity']}}</td>
             <td>{{asMoney($orderitem['price'])}}</td>
