@@ -1,6 +1,29 @@
+<style type="text/css" media="screen">
+  ul.reports{
+    padding-left: 15px;
+  }
+  ul.reports li{
+    list-style: none;
+    width: 45%;
+    min-width: 300px;
+  }
+
+  ul.reports li a{
+    display: block;
+    padding: 5px 7px;
+    transition: all linear 0.3s;
+  }
+
+  ul.reports li a:hover{
+    text-decoration: none;
+    transform: translateX(10px);
+    transition: all linear 0.3s;
+  }
+
+</style>
+
 @extends('layouts.erp_ports')
 @section('content')
-<br/>
 
 <div class="row">
     <div class="col-lg-12">
@@ -13,7 +36,7 @@
 <div class="row">
     <div class="col-lg-12">
 
-    <ul>
+    <ul class="reports">
       <li>
             <a href="{{ URL::to('erpReports/selectSalesPeriod') }}">Sales</a>
        </li>

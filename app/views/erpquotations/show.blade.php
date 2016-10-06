@@ -10,6 +10,13 @@ function asMoney($value) {
 
 {{ HTML::script('media/js/jquery.js') }}
 
+<style type="text/css" media="screen">
+    .lnk{
+        min-width: 130px;
+        margin-bottom: 10px;
+    } 
+</style>
+
 <script type="text/javascript">
 $(document).ready(function(){
     $('#select_all').on('click',function(){
@@ -43,7 +50,7 @@ $(document).ready(function(){
         }
     }
 
-    if(status === 'REJECTED'){
+    if(status !== 'APPROVED'){
         $('a.mail_lnk').addClass('disabled');
     } else{
         if($('a.mail_lnk').hasClass('disabled')){
@@ -53,13 +60,13 @@ $(document).ready(function(){
 
     // Enable or disable edit link
     var edit_lnk = $('a.edit_lnk');
-    if(status === 'APPROVED'){
+    /*if(status === 'APPROVED'){
         edit_lnk.addClass('disabled');
     } else{
         if(edit_lnk.hasClass('disabled')){
             edit_lnk.removeClass('disabled')
         }
-    }
+    }*/
 
     // Check which link has been clicked (Approve or Reject)
     $('a#approveBtn').click(function(){
@@ -80,11 +87,10 @@ $(document).ready(function(){
 
 @section('content')
 
-<br><div class="row">
+<div class="row">
 	<div class="col-lg-12">
     <p hidden id="status">{{$order->status}}</p>
     <h4><font color='green'>Quote Number : {{$order->order_number}} &emsp;| &emsp;Client: {{$order->client->name}}  &emsp; |&emsp; Date: {{$order->date}} &emsp; |&emsp; Status: {{$order->status}} </font> </h4>
-
 <hr>
 </div>	
 </div>
@@ -109,8 +115,8 @@ $(document).ready(function(){
                     </div>
                     <hr>
                     <div class="form-group text-right">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> &emsp; 
-                        <button type="submit" id="submitBTN" class="btn btn-primary"></button>        
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button> &emsp; 
+                        <button type="submit" id="submitBTN" class="btn btn-primary btn-sm"></button>        
                     </div>
                 </form>
             </div>
@@ -134,7 +140,11 @@ $(document).ready(function(){
 
                     <div class="form-group">
                         <label>To:</label>
-                        <input class="form-control" type="email" name="mail_to" value="{{{$order->client->contact_person_email}}}">
+                        @if($order->client->contact_person_email !== "")
+                            <input class="form-control" type="email" name="mail_to" value="{{{$order->client->contact_person_email}}}">
+                        @else
+                            <input class="form-control" type="email" name="mail_to" value="{{{$order->client->email}}}">
+                        @endif
                     </div>
                     <div class="form-group">
                         <label>Subject:</label>
@@ -146,8 +156,8 @@ $(document).ready(function(){
                     </div>
                     <hr>
                     <div class="form-group text-right">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> &emsp; 
-                        <button type="submit" class="btn btn-primary">Send Mail</button>        
+                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button> &emsp; 
+                        <button type="submit" class="btn btn-primary btn-sm">Send Mail</button>        
                     </div>
                 
                 </form>
@@ -186,21 +196,26 @@ $(document).ready(function(){
     <!-- FUNCTION BUTTONS {LINKS} -->
     <div class="col-lg-12">
         <!-- <a href="#" class="btn btn-primary"> Generate Invoice</a> -->
-        <a href="{{URL::to('erpReports/quotation/'.$order->id)}}" class="btn btn-primary" target="_blank"> View Quotation</a>&emsp;
-        <a href="{{URL::to('erpReports/invoice/'.$order->id)}}" class="btn btn-primary" target="_blank"> Generate Invoice</a>&emsp;|&emsp;    
+        <a href="{{URL::to('erpReports/quotation/'.$order->id)}}" class="lnk btn btn-primary btn-sm" target="_blank">
+            <span class="glyphicon glyphicon-file"></span>&nbsp; View Quotation
+        </a>&emsp;
 
-        <a href="#commentModal" role="button" id="approveBtn" class="btn btn-success action_lnk" data-toggle="modal">
+        <a href="{{URL::to('erpReports/invoice/'.$order->id)}}" class="lnk btn btn-primary btn-sm" target="_blank">
+            <span class="glyphicon glyphicon-file"></span>&nbsp; Generate Invoice
+        </a>&emsp;|&emsp;    
+
+        <a href="#commentModal" role="button" id="approveBtn" class="lnk btn btn-success btn-sm action_lnk" data-toggle="modal">
             <span class="glyphicon glyphicon-ok"></span>&nbsp; Approve
         </a>&emsp;
 
-        <a href="#commentModal" id="rejectBtn" role="button" class="btn btn-danger action_lnk" data-toggle="modal">
+        <a href="#commentModal" id="rejectBtn" role="button" class="lnk btn btn-danger btn-sm action_lnk" data-toggle="modal">
             <span class="glyphicon glyphicon-remove"></span>&nbsp; Reject
         </a>&emsp;|&emsp;
 
-        <a href="{{URL::to('erpquotations/edit/'.$order->id)}}" class="btn btn-primary edit_lnk">
+        <a href="{{URL::to('erpquotations/edit/'.$order->id)}}" class="lnk btn btn-primary btn-sm edit_lnk">
             <span class="glyphicon glyphicon-pencil"></span>&nbsp; Edit Quotation
         </a>&emsp;
-        <a href="#myModal" role="button" class="btn btn-primary mail_lnk" data-toggle="modal">
+        <a href="#myModal" role="button" class="lnk btn btn-primary btn-sm mail_lnk" data-toggle="modal">
             <span class="glyphicon glyphicon-envelope"></span>&nbsp; Mail Quotation
         </a>
     </div>
@@ -245,7 +260,7 @@ $(document).ready(function(){
     <table class="table table-condensed table-bordered table-hover" >
 
     <thead>
-        <th><input type="checkbox" id="select_all" value=""></th>
+        <!--<th><input type="checkbox" id="select_all" value=""></th>-->
         <th>Item</th>
         <th>Quantity</th>
         <th>Price</th>
@@ -269,7 +284,7 @@ $(document).ready(function(){
                 $total = $total + $amount;
             ?>
             <tr>
-                <td><input type="checkbox" class="checkbox" name="{{$orderitem->item->id}}" value=""></td>
+                <!--<td><input type="checkbox" class="checkbox" name="{{$orderitem->item->id}}" value=""></td>-->
                 <td>{{$orderitem->item->name}}</td>
                 <td>{{$orderitem['quantity']}}</td>
                 <td>{{asMoney($orderitem['price'])}}</td>

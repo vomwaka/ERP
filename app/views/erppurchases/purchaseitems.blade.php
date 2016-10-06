@@ -28,7 +28,7 @@ $(document).ready(function(){
 
 @section('content')
 
-<br><div class="row">
+<div class="row">
 	<div class="col-lg-12">
   <h4><font color='green'>Purchase Order : {{Session::get('erporder')['order_number']}} &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client: {{Session::get('erporder')['client']['name']}}  &nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp; Date: {{Session::get('erporder')['date']}} </font></h4>
 
@@ -124,7 +124,7 @@ $(document).ready(function(){
         
 
         <tr>
-            <td>{{$count}}</td>
+            <td>{{$count+1}}</td>
             <td>{{$orderitem['item']}}</td>
             <td>{{$orderitem['quantity']}}</td>
             <td>{{asMoney($orderitem['price'])}}</td>
@@ -133,10 +133,10 @@ $(document).ready(function(){
             <td>{{asMoney($amount)}}</td>
             <td>
                 <div class="btn-group">
-                  <a href="{{URL::to('purchaseitems/edit/'.$count)}}" class="btn btn-success"> Edit </a>
-                </div>
+                  <a href="{{URL::to('purchaseitems/edit/'.$count)}}" class="btn btn-success btn-sm"> Edit </a>
+                </div>&emsp;
                 <div class="btn-group">
-                  <a href="{{URL::to('purchaseitems/remove/'.$count)}}" class="btn btn-danger"> Delete </a>
+                  <a href="{{URL::to('purchaseitems/remove/'.$count)}}" class="btn btn-danger btn-sm"> Delete </a>
                 </div>
             </td>
         </tr>

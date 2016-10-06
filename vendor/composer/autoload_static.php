@@ -346,6 +346,7 @@ class ComposerStaticInit565ae4454a3bba9b74acce07c2adc4fb
         'AddForeignKeysToXSharetransactionsTable' => __DIR__ . '/../..' . '/app/database/migrations/2015_11_13_192006_add_foreign_keys_to_x_sharetransactions_table.php',
         'AddForeignKeysToXUserRoleTable' => __DIR__ . '/../..' . '/app/database/migrations/2015_11_13_192006_add_foreign_keys_to_x_user_role_table.php',
         'AddForeignKeysToXUsersTable' => __DIR__ . '/../..' . '/app/database/migrations/2015_11_13_192006_add_foreign_keys_to_x_users_table.php',
+        'AddXRefNoToExpensesTable' => __DIR__ . '/../..' . '/app/database/migrations/2016_10_06_145141_add_x_ref_no_to_expenses_table.php',
         'Adobe_Font_Metrics' => __DIR__ . '/..' . '/phenx/php-font-lib/classes/Adobe_Font_Metrics.php',
         'Allowance' => __DIR__ . '/../..' . '/app/models/Allowance.php',
         'AllowancesController' => __DIR__ . '/../..' . '/app/controllers/AllowancesController.php',

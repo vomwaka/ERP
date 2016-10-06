@@ -1,7 +1,7 @@
 @extends('layouts.erp')
 @section('content')
 
-<br><div class="row">
+<div class="row">
 	<div class="col-lg-12">
   <h4>Sales Order : {{Session::get('erporder')['order_number']}} &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client: {{Session::get('erporder')['client']['name']}}  &nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp; Date: {{Session::get('erporder')['date']}} </h4>
 

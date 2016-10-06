@@ -36,7 +36,7 @@ $(document).ready(function(){
 
 @section('content')
 
-<br><div class="row">
+<div class="row">
 	<div class="col-lg-12">
   <h4><font color='green'>Sales Order : {{$order->order_number}} &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client: {{$order->client->name}}  &nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp; Date: {{$order->date}} &nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp; Status: {{$order->status}} </font> </h4>
 
@@ -68,7 +68,7 @@ $(document).ready(function(){
     <table class="table table-condensed table-bordered table-hover" >
 
     <thead>
-        <th><input type="checkbox" id="select_all" value=""></th>
+        <!--<th><input type="checkbox" id="select_all" value=""></th>-->
         <th>Item</th>
         <th>Quantity</th>
         <th>Price</th>
@@ -91,7 +91,7 @@ $(document).ready(function(){
             $total = $total + $amount;
             ?>
         <tr>
-            <td><input type="checkbox" class="checkbox" name="{{$orderitem->item->id}}" value=""></td>
+            <!--<td><input type="checkbox" class="checkbox" name="{{$orderitem->item->id}}" value=""></td>-->
             <td>{{$orderitem->item->name}}</td>
             <td>{{$orderitem['quantity']}}</td>
             <td>{{asMoney($orderitem['price'])}}</td>

@@ -13,7 +13,7 @@
 </script>
 
 @section('content')
-<br>
+
 <div class="row">
 	<div class="col-lg-12">
     	<p hidden id="status">{{$order->status}}</p>
@@ -30,7 +30,7 @@
 			<input type="hidden" name="order_id" value="{{$order->id}}">
 			<div class="form-group">
 				<label>Item&nbsp;<span style="color:red">*</span> :&emsp;</label>
-	            <select id="itemName" name="item_id" class="form-control" required>
+	            <select id="itemName" name="item_id" class="form-control input-sm" required>
 	            <option value=""> ------- select item ------- </option>
 	                @foreach($items as $item)
 	                    <option value="{{$item->id}}">{{$item->name}}</option>
@@ -39,7 +39,7 @@
 			</div>&emsp;
 			<div class="form-group ">
 	            <label>Quantity&nbsp;<span style="color:red">*</span> :&emsp;</label>
-	            <input type="text" id="qty" name="quantity" class="form-control" required>
+	            <input type="text" id="qty" name="quantity" class="form-control input-sm" required>
 	        </div>&emsp;
 	        <div class="form-group ">
 	            <input type="image" name="submit" src="{{asset('images/Add-icon.png')}}" alt="Submit" width="15%">
@@ -84,14 +84,17 @@ Session::forget('error');
 						<tr>
 							<td>{{$orderitem->item->name}}</td>
 							<td>
-								<input type="number" id="newQty{{$count}}" class="form-control input-sm" name="newQty{{$orderitem->item_id}}" value="{{$orderitem['quantity']}}" onkeyup="calculate({{$count}});" onfocusout="getTotal({{$count}});" onfocusin="removeCount({{$count}})">
+								<input type="number" id="newQty{{$count}}" class="form-control input-sm" name="newQty{{$orderitem->item_id}}" value="{{$orderitem['quantity']}}" onkeyup="calculate({{$count}});" onblur="getTotal({{$count}});" onfocus="removeCount({{$count}})">
 							</td>
-							<td id="{{$count}}">{{asMoney($orderitem['price'])}}</td>
+							<td id="{{$count}}">
+								<input type="number" id="newPrice{{$count}}" class="form-control input-sm" name="newPrice{{$orderitem->item_id}}" value="{{$orderitem['price']}}" onkeyup="calculate({{$count}});" onblur="getTotal({{$count}});" onfocus="removeCount({{$count}})">
+							</td>
+							<!--<td id="{{$count}}">{{asMoney($orderitem['price'])}}</td>-->
 							<td id="amount{{$count}}">{{asMoney($amount)}}</td>	
 							<td>
 								<div class="btn-group">
-			                      	<a href="{{URL::to('erpquotations/delete/'.$order->id.'/'.$orderitem->id)}}" class="btn btn-info btn-sm" onclick="return (confirm('Are you sure you want to remove this item?'))"> Remove </a>
-			                    </div>
+                  	<a href="{{URL::to('erpquotations/delete/'.$order->id.'/'.$orderitem->id)}}" class="btn btn-danger btn-sm" onclick="return (confirm('Are you sure you want to remove this item?'))"> Remove </a>
+                </div>
 							</td>	
 						</tr>
 
@@ -100,25 +103,26 @@ Session::forget('error');
 				</tbody>
 			</table>
 			
-			<table border="0" align="right" style="width:400px">
+			<table border="0" align="right" style="width:400px; box-shadow:none" class="tb-none">
 				<tr style="height:50px"><td>Discount:</td><td colspan="2"> <input type="text" name="discount" id="discount" onkeypress="grandTotal()" onkeyup="grandTotal()" onblur="grandTotal()" value="{{$order->discount_amount}}" class="form-control"></td></tr>
 				<tr style="height:50px"><td><strong>Payable Amount</strong></td><td colspan="2"> <input type="text" readonly="readonly" name="payable" id="payable" value="{{$total-($order->discount_amount);}}" class="form-control"></td></tr>
 
 				<?php $i = 1; ?>
 				@foreach($taxes as $tax)
 					<tr style="height:50px">
-						<td>{{$tax->name}}</td>
-						<td><input type="checkbox" class="checkbox" name="rate[]" id="{{'rate_'.$i}}" value="{{$tax->id}}" checked></td>
-						
-						@if(count($tax_orders) > 0)
-						@foreach($tax_orders as $tax_order)
-							<td><input type="text" readonly="readonly" name="tax[]" id="{{'tax_amount_'.$i}}" value="{{$tax_order->amount}}" class="form-control tax_check"></td>
-						</tr>
-						@endforeach
-						@else
-							<td><input type="text" readonly="readonly" name="tax[]" id="{{'tax_amount_'.$i}}" value="0" class="form-control tax_check"></td>
-						@endif
-					</tr>
+              <td>{{$tax->name}}</td>
+              @if(count(TaxOrder::getAmount($tax->id,$order->order_number)) > 0)
+              		<td><input type="checkbox" class="checkbox" name="rate[]" id="{{'rate_'.$i}}" value="{{$tax->id}}" checked></td>
+              @else
+              		<td><input type="checkbox" class="checkbox" name="rate[]" id="{{'rate_'.$i}}" value="{{$tax->id}}"></td>
+              @endif
+              @if(count(TaxOrder::getAmount($tax->id,$order->order_number)) > 0)
+                  <td><input type="text" readonly="readonly" name="tax[]" id="{{'tax_amount_'.$i}}" value="{{TaxOrder::getAmount($tax->id,$order->order_number)}}" class="form-control tax_check"></td>
+              @else
+                  <td><input type="text" readonly="readonly" name="tax[]" id="{{'tax_amount_'.$i}}" value="0" class="form-control tax_check"></td>
+              @endif
+          </tr>
+
 				
 					<script type="text/javascript">
 						$(document).ready(function(){
@@ -168,9 +172,12 @@ Session::forget('error');
 
 				function calculate(itemNum){
 					var newQty = $("#newQty"+itemNum).val();
-					var itemPrice = $("#"+itemNum).text().replace(/,/g, '');
+					var newPrice = $("#newPrice"+itemNum).val();
+					//var itemPrice = $("#"+itemNum).text().replace(/,/g, '');
+					//var itemPrice = $("newPrice"+itemNum).val().replace(/,/g, '');
 					//var amnt = $("#amount<?php echo $count; ?>").text();
-					var totalAmnt = (newQty * itemPrice);
+					console.log(newQty);
+					var totalAmnt = (newQty * newPrice);
 					$("#amount"+itemNum).text((totalAmnt+".00" + "").replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
 				}
 
@@ -190,7 +197,7 @@ Session::forget('error');
 					total = total - parseFloat(itemTotal);
 					$('#payable').val(total);
 					getTax();
-					//grandTotal();
+					grandTotal();
 
 					/*if($('#newQty'+itemNum).hasClass('changed')){
 						total = total - parseFloat(itemTotal);
@@ -203,20 +210,21 @@ Session::forget('error');
 
 				function getTax(){
 					var i = <?php echo $i-1; ?>;
-			    	for(var count=0; count<=i; count++){
-						if($('#rate_'+count).is(":checked")){
-				    		$('#rate_'+count+':checked').each(function(){
-				    			$.get("{{ url('api/getrate')}}", 
-				    			{ option: $(this).val() }, 
-				    			function(data) {
-				    				console.log(data);
-				    				tax= ($("#payable").val()*data)/100;
-				     				$("#tax_amount_"+(count-1)).val(tax);
-				      				grandTotal();
-				      				//console.log($("#tax_amount_"+count).val());
-				      			});
-				      		});
-				      		console.log($('#rate_'+count).is(":checked"));
+			    	for(var count=1; count<=i; count++){
+							if($('#rate_'+count).is(":checked")){
+					    		$('#rate_'+count+':checked').each(function(){
+					    				var tax = 0;
+					    				var value = $(this).val();
+					    				$.get("{{ url('api/getrate')}}", 
+					    				{ option: $(this).val() }, 
+					    				function(data) {
+						    				//console.log(data);
+						    				tax= ($("#payable").val()*data)/100;
+						     				$("#tax_amount_"+value).val(tax);
+						      				grandTotal();
+						      				//console.log("#tax_amount_"+value);
+						      		});
+					      	});
 				     	}else{
 				        	$("#tax_amount_"+count).val(0);
 				        	grandTotal();
@@ -227,11 +235,11 @@ Session::forget('error');
 			</script>
 			
 			<div class="row">
-			    <div class="col-lg-12">
-			    <hr>
+			    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			    		<hr>
 			        <a class="btn btn-danger btn-sm" href="{{ URL::to('erpquotations/show/'.$order->id)}}">Cancel </a>
-			        <input type="submit" class="btn btn-primary pull-right" value="Process"/>
-			 	</div>
+			        <input type="submit" class="btn btn-primary btn-sm pull-right" value="Process"/>
+			 		</div>
 		 	</div>
 		</form>
 	</div>
@@ -274,6 +282,6 @@ Session::forget('error');
 	}
 </script>
 <?php $i++; ?>
-@endforeach;
+@endforeach
 
 @stop

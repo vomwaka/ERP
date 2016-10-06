@@ -1,7 +1,6 @@
 @extends('layouts.leave')
 @section('content')
 
-<br><br>
 <div class="row">
 											
 											

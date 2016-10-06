@@ -9,7 +9,7 @@ function asMoney($value) {
 
 ?>
 
-<br><div class="row">
+<div class="row">
 	<div class="col-lg-12">
   <h4><font color='green'>Edit Account</font></h4>
 

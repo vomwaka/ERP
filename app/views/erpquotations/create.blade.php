@@ -1,7 +1,7 @@
 @extends('layouts.erp')
 @section('content')
 
-<br><div class="row">
+<div class="row">
 	<div class="col-lg-12">
   <h4><font color='green'>New Quotation</font></h4>
 
@@ -34,12 +34,12 @@
         </div>
 
         <div class="form-group">
-                        <label for="username">Date</label>
-                        <div class="right-inner-addon ">
-                        <i class="glyphicon glyphicon-calendar"></i>
-                        <input class="form-control datepicker"  readonly="readonly" placeholder="" type="text" name="date" id="date" value="{{date('d-M-Y')}}">
-                        </div>
-          </div>
+            <label for="username">Date</label>
+            <div class="right-inner-addon ">
+                <i class="glyphicon glyphicon-calendar"></i>
+                <input class="form-control datepicker"  readonly="readonly" placeholder="" type="text" name="date" id="date" value="{{date('d-M-Y')}}">
+            </div>
+        </div>
 
 
           <div class="form-group">

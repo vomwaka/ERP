@@ -140,7 +140,9 @@ body {
     $order = DB::table('erporders')
            ->join('erporderitems','erporders.id','=','erporderitems.erporder_id')
            ->join('clients','erporders.client_id','=','clients.id')           
-           ->where('clients.id',$client->id) ->selectRaw('SUM((price * quantity))as total')
+           ->where('clients.id',$client->id) 
+           ->where('erporders.type', '!=', 'quotations')
+           ->selectRaw('SUM((price * quantity)-client_discount)as total')
            ->pluck('total');
     
     $tax = DB::table('erporders')
@@ -157,7 +159,7 @@ body {
            ->where('clients.id',$client->id) ->selectRaw('COALESCE(SUM(amount_paid),0) as due')
            ->pluck('due');
 
-           $due= $order-$paid;
+    $due= $order-$paid;
 
 ?>
 

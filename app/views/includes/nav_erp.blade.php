@@ -1,20 +1,10 @@
 
-<style type="text/css">
-#wrap{
-    margin-top: 50px !important;
-    position: fixed;
-    top: 0;
-    border-radius: 0 0 0.5em 0.5em;
-}
-</style>
-
- <nav class="navbar-default navbar-static-side" id="wrap" role="navigation">
+<nav class="navbar-default navbar-static-side" id="wrap" role="navigation">
     
            
 
 
             <div class="sidebar-collapse">
-
                 <ul class="nav" id="side-menu">
 
                  

@@ -4,10 +4,6 @@
 
 <div class="row">
 
-
-
-<br><br>
-
 <div class="col-lg-5 ">
 <h4><font color='green'>Mail Configuration</font></h4>
 <hr/>

@@ -34,7 +34,7 @@
             <div class="alert">{{ Session::get('notice') }}</div>
         @endif
 
-        <div class="form-actions form-group">
+        <div class="form-actions form-group text-right">
           <button type="submit" class="btn btn-primary">{{{ Lang::get('confide::confide.signup.submit') }}}</button>
         </div>
 

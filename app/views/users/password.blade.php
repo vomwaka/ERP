@@ -1,7 +1,6 @@
 @extends('layouts.system')
 @section('content')
 
-<br/>
 
 <div class="row">
 

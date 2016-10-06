@@ -3,8 +3,15 @@
     margin-top: 0 !important;
     position: fixed;
     top: 0;
-    z-index: 100;
-    border-radius: 0 0 0.5em 0.5em;
+    z-index: 110;
+    border: none;
+    outline: none;
+    //box-shadow: 1px 2px 7px rgba(0,0,0,0.4);
+}
+
+.navbar-static-top{
+    background: #208ABE;
+    border: none;
 }
 
 </style>
@@ -18,7 +25,6 @@ onscroll="reset_interval()">
     
 
     <div id="wrapper">
-
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header"  >
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -28,19 +34,13 @@ onscroll="reset_interval()">
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand"  href="{{ URL::to('/')}}" > <font color='blue'><b>{{Organization::getOrganizationName()}}</b></font></a>
+                <a class="navbar-brand"  href="{{ URL::to('/')}}" > <font color='white'><b>{{Organization::getOrganizationName()}}</b></font></a>
             </div>
             <!-- /.navbar-header -->
 
         
 
             <ul class="nav navbar-top-links navbar-right">
-         
-               
-                
-               
-
-                 
 
                 <li>
                     <a  href="{{ URL::to('erpmgmt')}}">
@@ -130,18 +130,13 @@ onscroll="reset_interval()">
                 </li>
 
                 
-
-               
-
-                
-
                <li class="dropdown" >
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-cogs fa-fw"></i>  {{{ Lang::get('messages.nav.administration') }}} <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="{{ URL::to('organizations') }}"><i class="fa fa-home fa-fw"></i>  Organization</a>
-                             <li class="divider"></li>
+                             <!--<li class="divider"></li>-->
                        
                         <li><a href="{{ URL::to('system') }}"><i class="fa fa-sign-out fa-fw"></i> System</a>
                         </li>
@@ -151,24 +146,9 @@ onscroll="reset_interval()">
                 </li>
                 <!-- /.dropdown -->
 
-
-
-
-                
-                
-
-           
-
-                
-
-
-
-                
-
-
                 <!-- /.dropdown -->
                
-                <li class="dropdown" style="background-color:white;">
+                <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>  {{ Confide::user()->username}} <i class="fa fa-caret-down"></i>
                     </a>
@@ -177,14 +157,9 @@ onscroll="reset_interval()">
                         </li>
 
                        
-                        <li class="divider"></li>
+                        <!--<li class="divider"></li>-->
                         <li><a href="{{ URL::to('users/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
-
-
-                       
-
-                        
                         
                     </ul>
                     <!-- /.dropdown-user -->
@@ -193,13 +168,8 @@ onscroll="reset_interval()">
 
 
                 <li>
-                    
 
-                        
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-
-                       
-                        
 
 
                         @if (Session::get('lang') == 'ks')
@@ -221,7 +191,7 @@ onscroll="reset_interval()">
                         </li>
 
                        
-                        <li class="divider"></li>
+                        <!--<li class="divider"></li>-->
 
                          <li>
 
@@ -230,29 +200,15 @@ onscroll="reset_interval()">
                         </li>
 
                        
-                        <li class="divider"></li>
-                        
-
-
-                       
-
-                        
+                        <!--<li class="divider"></li>-->
                         
                     </ul>
 
-                    
-
-                   
-
                 </li>
-
-
-                
-            
             </ul>
             <!-- /.navbar-top-links -->
 
         </nav>
         <!-- /.navbar-static-top -->
-        </div>>
+        </div>
         <br><br>

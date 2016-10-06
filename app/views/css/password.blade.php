@@ -1,7 +1,6 @@
 @extends('layouts.membercss')
 @section('content')
 
-<br/>
 
 <div class="row">
 

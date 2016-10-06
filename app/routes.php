@@ -1418,7 +1418,6 @@ Route::get('erpReports/selectClientsPeriod', 'ErpReportsController@selectClients
 
 
 
-
 Route::post('erpReports/items', 'ErpReportsController@items');
 Route::get('erpReports/selectItemsPeriod', 'ErpReportsController@selectItemsPeriod');
 
@@ -2494,7 +2493,7 @@ Route::post('purchaseitems/create', function(){
 
   $orderitems = Session::get('purchaseitems');
 
-  $items = Item::all();
+  $items = Item::where('type', 'product')->get();
   $locations = Location::all();
   $taxes = Tax::all();
 
@@ -2527,7 +2526,7 @@ Route::post('erppurchases/edit/{count}', function($sesItemID){
   Session::put('purchaseitems', $ses);
 
   $orderitems = Session::get('purchaseitems');
-  $items = Item::all();
+  $items = Item::where('type', 'product')->get();
   $locations = Location::all();
   $taxes = Tax::all();
 
@@ -2548,7 +2547,7 @@ Route::get('purchaseitems/remove/{count}', function($count){
 
 
   $orderitems = Session::get('purchaseitems');
-  $items = Item::all();
+  $items = Item::where('type', 'product')->get();
   $locations = Location::all();
   $taxes = Tax::all();
 
@@ -2668,11 +2667,6 @@ Route::resource('erporders', 'ErporderssController');
 
 Route::resource('mails', 'MailsController');
 Route::get('mailtest', 'MailsController@test');
-
-
-
-
-
 
 
 
@@ -3135,23 +3129,24 @@ Route::post('erpquotations/edit/{id}', function($id){
 
     foreach($order->erporderitems as $orderitem){
         $val = Input::get('newQty'.$orderitem->item_id);
+        $price = Input::get('newPrice'.$orderitem->item_id);
+        
+        $orderitem->price = $price;
         $orderitem->quantity = $val;
         $orderitem->save();
     }  
 
     $discount = Input::get('discount');
     $order->discount_amount = $discount;
-    //$order->save();
 
     $tax = Input::get('tax');
     $rate = Input::get('rate');
 
-    
     for($i=0; $i < count($rate);  $i++){
-        $txOrder = TaxOrder::where('tax_id', $rate[$i])->where('order_number', $order->order_number);
-        if(count($txOrder) > 0){
-            //return $txOrder;
-            $txOrder->update(array('amount'=>$tax[$i]));
+        if(count(TaxOrder::getAmount($rate[$i],$order->order_number)) > 0){
+            $txOrder = TaxOrder::findOrfail($rate[$i]);
+            $txOrder->amount = $tax[$i];
+            $txOrder->update();
         } else{
             $txOrder = new TaxOrder;
             $txOrder->tax_id = $rate[$i];
@@ -3165,8 +3160,6 @@ Route::post('erpquotations/edit/{id}', function($id){
     $order->update();
     return View::make('erpquotations.show', compact('order'));
 });
-
-
 
 
 

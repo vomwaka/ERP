@@ -1,17 +1,4 @@
-
-
-<style type="text/css">
-#wrap{
-    margin-top: 50px !important;
-    position: fixed;
-    top: 0;
-    z-index: 10000;
-    border-radius: 0 0 0.5em 0.5em;
-}
-</style>
-
-
- <nav class="navbar-default navbar-static-side" role="navigation" id="wrap">
+<nav class="navbar-default navbar-static-side" role="navigation" id="wrap">
     
            
 

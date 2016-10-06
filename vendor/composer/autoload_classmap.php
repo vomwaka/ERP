@@ -34,6 +34,7 @@ return array(
     'AddForeignKeysToXSharetransactionsTable' => $baseDir . '/app/database/migrations/2015_11_13_192006_add_foreign_keys_to_x_sharetransactions_table.php',
     'AddForeignKeysToXUserRoleTable' => $baseDir . '/app/database/migrations/2015_11_13_192006_add_foreign_keys_to_x_user_role_table.php',
     'AddForeignKeysToXUsersTable' => $baseDir . '/app/database/migrations/2015_11_13_192006_add_foreign_keys_to_x_users_table.php',
+    'AddXRefNoToExpensesTable' => $baseDir . '/app/database/migrations/2016_10_06_145141_add_x_ref_no_to_expenses_table.php',
     'Adobe_Font_Metrics' => $vendorDir . '/phenx/php-font-lib/classes/Adobe_Font_Metrics.php',
     'Allowance' => $baseDir . '/app/models/Allowance.php',
     'AllowancesController' => $baseDir . '/app/controllers/AllowancesController.php',

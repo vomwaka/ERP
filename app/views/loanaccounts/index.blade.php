@@ -1,6 +1,5 @@
 @extends('layouts.loans')
 @section('content')
-<br/>
 
 <?php
 

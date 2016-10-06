@@ -13,7 +13,7 @@ function asMoney($value) {
 @extends('layouts.erp')
 @section('content')
 
-<br><div class="row">
+<div class="row">
 	<div class="col-lg-12">
   <h4><font color='green'>Receive Payment</font></h4>
 

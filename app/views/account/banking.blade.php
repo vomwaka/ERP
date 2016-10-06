@@ -1,7 +1,7 @@
 @extends('layouts.erp')
 @section('content')
 
-<br><div class="row">
+<div class="row">
 	<div class="col-lg-12 col-md-12 col-sm-12">
   <h4><font color='green'>Money Transfer</font></h4>
 

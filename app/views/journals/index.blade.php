@@ -1,6 +1,5 @@
 @extends('layouts.accounting')
 @section('content')
-<br/>
 
 <?php
 

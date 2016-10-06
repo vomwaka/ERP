@@ -14,7 +14,6 @@ function asMoney($value) {
 
 <div class="col-lg-12 ">
 
-<br/>
 <h3>shop</h3>
 <hr>
 

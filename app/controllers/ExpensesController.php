@@ -39,6 +39,10 @@ class ExpensesController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
+		$zero_filled = sprintf("%07d", (DB::table('expenses')->count())+1);
+		$prefix = 'EXP';
+		$ref_no = $prefix.$zero_filled;
+
 		$expense = new Expense;
 
 		$expense->name = Input::get('name');
@@ -46,6 +50,7 @@ class ExpensesController extends \BaseController {
 		$expense->amount = Input::get('amount');		
 		$expense->date = date("Y-m-d",strtotime(Input::get('date')));
 		$expense->account_id = Input::get('account');
+		$expense->ref_no = $ref_no;
 		$expense->save();
 
         DB::table('accounts')
@@ -99,14 +104,33 @@ class ExpensesController extends \BaseController {
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
-     
-        $expense->name = Input::get('name');
+    
+    $account = DB::table('expenses')->where('id', $id)->select('amount', 'account_id')->first();
+    //return $account;
+
+    $expense->name = Input::get('name');
 		$expense->type = Input::get('type');
 		$expense->amount = Input::get('amount');
 		$expense->date = date("Y-m-d",strtotime(Input::get('date')));
 		$expense->account_id = Input::get('account');
 
 		$expense->update();
+
+		if($account->account_id === Input::get('account')){
+			$bal = Input::get('amount') - $account->amount;
+			DB::table('accounts')
+            ->join('expenses','accounts.id','=','expenses.account_id')
+            ->where('accounts.id', Input::get('account'))
+            ->decrement('accounts.balance', $bal);
+		} else{
+			DB::table('accounts')
+            ->where('accounts.id', $account->account_id)
+            ->increment('accounts.balance', $account->amount);
+      DB::table('accounts')
+            ->join('expenses','accounts.id','=','expenses.account_id')
+            ->where('accounts.id', Input::get('account'))
+            ->decrement('accounts.balance', Input::get('amount'));
+		}
 
 		return Redirect::route('expenses.index')->withFlashMessage('Expense successfully updated!');;
 	}

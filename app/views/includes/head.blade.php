@@ -28,14 +28,15 @@
     <!-- SB Admin CSS - Include with every page -->
    
     {{ HTML::style('css/sb-admin.css') }}
-
-
+    
 
     <!-- datatables css -->
 
     {{ HTML::style('media/css/jquery.dataTables.min.css') }}
 
     {{ HTML::style('datepicker/css/bootstrap-datepicker.css') }}
+
+    {{ HTML::style("https://fonts.googleapis.com/css?family=Roboto:300") }}
 
     <style type="text/css">
 
@@ -68,16 +69,27 @@
 
     {{ HTML::script('datepicker/js/bootstrap-datepicker.js') }}
 
+    {{ HTML::script('js/velocity/velocity.js') }}
+
+    {{ HTML::script('js/velocity/velocity.ui.js') }}
+
     
   <script type="text/javascript">
 
     $(document).ready(function() {
-    $('#users').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'}) ;
-    $('#mobile').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});
-    $('#rejected').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});
-    $('#app').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});
-    $('#disbursed').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});
-    $('#amended').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});
+        /* Animations */
+        $("#side-menu li").velocity("transition.slideDownIn", {stagger: 100}, 2000);
+        $('.panel').velocity("transition.slideDownBigIn", 2000);
+        //$('.row').velocity("transition.slideLeftIn", 2000)
+        $("table").velocity("transition.slideDownIn", 2000);
+        //$("form").velocity("transition.slideDownIn", 2000);
+
+        $('#users').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'}) ;
+        $('#mobile').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});
+        $('#rejected').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});
+        $('#app').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});
+        $('#disbursed').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});
+        $('#amended').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});
 
     } );
 
@@ -136,7 +148,7 @@ $('.datepicker21').datepicker({
 var timer = 0;
 function set_interval() {
   // the interval 'timer' is set as soon as the page loads
-  timer = setInterval("auto_logout()", 300000);
+  timer = setInterval("auto_logout()", 1800000);
   // the figure '10000' above indicates how many milliseconds the timer be set to.
   // Eg: to set it to 5 mins, calculate 5min = 5x60 = 300 sec = 300,000 millisec.
   // So set it to 300000
@@ -151,7 +163,7 @@ function reset_interval() {
     clearInterval(timer);
     timer = 0;
     // second step: implement the timer again
-    timer = setInterval("auto_logout()", 300000);
+    timer = setInterval("auto_logout()", 1800000);
     // completed the reset of the timer
   }
 }

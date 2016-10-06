@@ -14,7 +14,7 @@ function asMoney($value) {
 
 @section('content')
 
-<br><div class="row">
+<div class="row">
 	<div class="col-lg-12">
   <h4><font color='green'>Quote Number : {{Session::get('erporder')['order_number']}} &nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Client: {{Session::get('erporder')['client']['name']}}  &nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp; Date: {{Session::get('erporder')['date']}} </font></h4>
 
@@ -119,10 +119,10 @@ function asMoney($value) {
             <td>{{asMoney($amount)}}</td>
             <td>
                 <div class="btn-group">
-                  <a href="{{URL::to('quotationitems/edit/'.$count)}}" class="btn btn-success"> Edit </a>
-                </div>
+                  <a href="{{URL::to('quotationitems/edit/'.$count)}}" class="btn btn-success btn-sm"> Edit </a>
+                </div>&emsp;
                 <div class="btn-group">
-                  <a href="{{URL::to('quotationitems/remove/'.$count)}}" class="btn btn-danger"> Delete </a>
+                  <a href="{{URL::to('quotationitems/remove/'.$count)}}" class="btn btn-danger btn-sm"> Delete </a>
                 </div>
             </td>
         </tr>
@@ -147,9 +147,9 @@ function asMoney($value) {
 
 <form method="post" action="{{URL::to('erpquotation/commit')}}">
 
-<table border="0" align="right" style="width:400px">
+<table border="0" align="right" style="width:400px; box-shadow:none">
 <tr style="height:50px"><td>Discount:</td><td colspan="2"> <input type="text" name="discount" id="discount" onkeypress="grandTotal()" onkeyup="grandTotal()" onblur="grandTotal()" value="0" class="form-control"></td></tr>
-<tr style="height:50px"><td><strong>Payable Amount</strong></td><td colspan="2"> <input type="text" readonly="readonly" name="payable" id="payable" value="{{$total-Input::get('discount')}}" class="form-control"></td></tr>
+<tr style="height:50px; "><td><strong>Payable Amount</strong></td><td colspan="2"> <input type="text" readonly="readonly" name="payable" id="payable" value="{{$total-Input::get('discount')}}" class="form-control"></td></tr>
  <?php $i = 1; ?>
 @foreach($taxes as $tax)
 <tr style="height:50px"><td>{{$tax->name}}</td><td> <input type="checkbox" class="checkbox" name="rate[]" id="{{'rate_'.$i}}" value="{{$tax->id}}"></td><td><input type="text" readonly="readonly" name="tax[]" id="{{'tax_amount_'.$i}}" value="0" class="form-control tax_check"></td></tr>
@@ -186,7 +186,7 @@ $(document).ready(function(){
 
    <!--  <div class="panel-heading"> -->
           <a class="btn btn-danger btn-sm" href="{{ URL::to('quotationorders/create')}}">Cancel </a>
-        <!-- </div> --><input type="submit" class="btn btn-primary pull-right" value="Process"/>
+        <!-- </div> --><input type="submit" class="btn btn-primary btn-sm pull-right" value="Process"/>
 
  </div>
 
@@ -233,7 +233,7 @@ function grandTotal(){
 }
 </script>
 <?php $i++; ?>
-@endforeach;
+@endforeach
 
 
 @stop

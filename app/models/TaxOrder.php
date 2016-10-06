@@ -16,13 +16,16 @@ class TaxOrder extends \Eloquent {
 
 	protected $fillable = [];
 
-public function tax(){
-
+	public function tax(){
 		return $this->belongsTo('Tax');
 	}
-public function erporders(){
 
+	public function erporders(){
 		return $this->hasMany('Erporder');
 	}
+
+	public static function getAmount($id,$orderno){
+    return TaxOrder::where('tax_id',$id)->where('order_number',$orderno)->pluck('amount');
+  }
 
 }
