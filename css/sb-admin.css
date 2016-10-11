@@ -8,6 +8,11 @@ body {
     font-weight: 300 !important;
 }
 
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 300 !important;
+}
+
 /* Wrappers */
 
 /* ------------------------------- */
@@ -433,6 +438,12 @@ th, tr, td{
 /* SIDE MENU */
 #side-menu li ul li a{
     padding-left: 50px;
+}
+
+#side-menu li ul li a:hover,
+#side-menu li ul li a:focus,
+#side-menu li ul li a:ative{
+    padding-left: 55px;
 }
 
 #side-menu li a i{

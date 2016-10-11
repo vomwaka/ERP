@@ -46,6 +46,7 @@ return array(
     'AutoprocessesTableSeeder' => $baseDir . '/app/database/seeds/AutoprocessesTableSeeder.php',
     'BBranch' => $baseDir . '/app/models/BBranch.php',
     'Bank' => $baseDir . '/app/models/Bank.php',
+    'BankAccountController' => $baseDir . '/app/controllers/BankAccountController.php',
     'BankBranchController' => $baseDir . '/app/controllers/BankBranchController.php',
     'Banking' => $baseDir . '/app/models/Banking.php',
     'BanksController' => $baseDir . '/app/controllers/BanksController.php',

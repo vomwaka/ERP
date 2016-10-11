@@ -22,8 +22,16 @@ class Stock extends \Eloquent {
 
 	public static function getStockAmount($item){
 
-		$qin = DB::table('stocks')->where('item_id', '=', $item->id)->sum('quantity_in');
-		$qout = DB::table('stocks')->where('item_id', '=', $item->id)->sum('quantity_out');
+		$qin = DB::table('stocks')
+							->join('items', 'stocks.item_id', '=', 'items.id')
+							->where('item_id', '=', $item->id)
+							->where('items.type','product')
+							->sum('quantity_in');
+		$qout = DB::table('stocks')
+							->join('items', 'stocks.item_id', '=', 'items.id')
+							->where('item_id', '=', $item->id)
+							->where('items.type','product')
+							->sum('quantity_out');
 
 		$stock = $qin - $qout;
 

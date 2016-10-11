@@ -238,6 +238,14 @@ Route::get('journals/delete/{id}', 'JournalsController@destroy');
 Route::get('journals/edit/{id}', 'JournalsController@edit');
 Route::get('journals/show/{id}', 'JournalsController@show');
 
+
+/**
+ * Bank Account Routes
+ */
+Route::resource('bankAccounts', 'BankAccountController');
+Route::get('bankAccounts/reconcile/{id}', 'BankAccountController@showReconcile');
+
+
 /*
 * Account routes
 */
@@ -2821,11 +2829,11 @@ Route::post('erpquotation/commit', function(){
 
   $erporderitems = Session::get('quotationitems');
   
-   $total = Input::all();
+  $total = Input::all();
 
- // $client = Client: :findorfail(array_get($erporder, 'client'));
+  // $client = Client: :findorfail(array_get($erporder, 'client'));
 
- // print_r($total);
+  // print_r($total);
 
 
   $order = new Erporder;
@@ -2860,19 +2868,10 @@ Route::post('erpquotation/commit', function(){
     $orderitem->quantity = $item['quantity'];
     $orderitem->duration = $item['duration'];
     $orderitem->save();
-
-
-
-
-     }
- 
+  }
 
   $tax = Input::get('tax');
   $rate = Input::get('rate');
-
-
-
-
 
   for($i=0; $i < count($rate);  $i++){
 
@@ -2885,15 +2884,9 @@ Route::post('erpquotation/commit', function(){
     
   }
   
- 
-//Session::flush('orderitems');
-//Session::flush('erporder');  
- 
-    
-
-return Redirect::to('quotationorders');
-
-
+  //Session::flush('orderitems');
+  //Session::flush('erporder');    
+  return Redirect::to('quotationorders');
 
 });
 

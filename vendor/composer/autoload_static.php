@@ -34,6 +34,7 @@ class ComposerStaticInit565ae4454a3bba9b74acce07c2adc4fb
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Patchwork\\' => 10,
         ),
         'M' => 
@@ -87,6 +88,10 @@ class ComposerStaticInit565ae4454a3bba9b74acce07c2adc4fb
         'Riskihajar\\Terbilang\\' => 
         array (
             0 => __DIR__ . '/..' . '/riskihajar/terbilang/src',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Patchwork\\' => 
         array (
@@ -203,10 +208,6 @@ class ComposerStaticInit565ae4454a3bba9b74acce07c2adc4fb
         ),
         'P' => 
         array (
-            'Psr\\Log\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/psr/log',
-            ),
             'Predis' => 
             array (
                 0 => __DIR__ . '/..' . '/predis/predis/lib',
@@ -358,6 +359,7 @@ class ComposerStaticInit565ae4454a3bba9b74acce07c2adc4fb
         'AutoprocessesTableSeeder' => __DIR__ . '/../..' . '/app/database/seeds/AutoprocessesTableSeeder.php',
         'BBranch' => __DIR__ . '/../..' . '/app/models/BBranch.php',
         'Bank' => __DIR__ . '/../..' . '/app/models/Bank.php',
+        'BankAccountController' => __DIR__ . '/../..' . '/app/controllers/BankAccountController.php',
         'BankBranchController' => __DIR__ . '/../..' . '/app/controllers/BankBranchController.php',
         'Banking' => __DIR__ . '/../..' . '/app/models/Banking.php',
         'BanksController' => __DIR__ . '/../..' . '/app/controllers/BanksController.php',

@@ -48,7 +48,11 @@ $(document).ready(function(){
     <div class="col-lg-12">
     <!-- <a href="{{URL::to('erpReports/invoice/'.$order->id)}}" class="btn btn-primary"> Generate Invoice</a> -->
     <!-- <a href="{{ URL::to('payments/create')}}" class="btn btn-primary"> Receive Payment</a> -->
-    <a href="{{URL::to('erpReports/receipt/'.$order->id)}}" class="btn btn-primary" target="_blank"> Generate Receipt</a>
+    @if($order->payment_type === "credit")
+        <a href="{{URL::to('erpReports/receipt/'.$order->id)}}" class="btn btn-primary" target="_blank"> Delivery Note/Invoice</a>
+    @else
+        <a href="{{URL::to('erpReports/receipt/'.$order->id)}}" class="btn btn-primary" target="_blank"> Delivery Note/Receipt</a>
+    @endif
     </div>
 </div>
 

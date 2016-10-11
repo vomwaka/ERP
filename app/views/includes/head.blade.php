@@ -36,7 +36,7 @@
 
     {{ HTML::style('datepicker/css/bootstrap-datepicker.css') }}
 
-    {{ HTML::style("https://fonts.googleapis.com/css?family=Roboto:300") }}
+    {{ HTML::style("https://fonts.googleapis.com/css?family=Roboto:300,400") }}
 
     <style type="text/css">
 

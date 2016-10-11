@@ -19,6 +19,27 @@
                     <li>
                         <a href="{{ URL::to('journals/create') }}"><i class="fa fa-check fa-fw"></i> Add Journal Entry</a>
                     </li>
+                    
+                     <li>
+                        <a href="{{ URL::to('bankAccounts') }}"><i class="fa fa-bank fa-fw"></i> Banking</a>
+                    </li>
+
+                    <!--<li>
+                        <a href="#"  >
+                            <i class="fa fa-bank fa-lg"></i>  Bank Accounts <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="nav ">
+                            <li>
+                                <a href="{{ URL::to('maintenances') }}"><i class="fa fa-th fa-fw"></i>  Maintenance</a>
+                            </li>
+                            
+                            
+                            <li>
+                                <a href="{{ URL::to('tests') }}"><i class="fa fa-list fa-fw"></i> Tests</a>
+                            </li>
+                            
+                        </ul>
+                    </li>-->
 
                     
                 </ul>

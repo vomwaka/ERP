@@ -292,7 +292,7 @@ $(document).ready(function(){
                 <td>{{$orderitem['duration']}}</td> -->
                 <td>{{asMoney($amount) }}</td>
                 <!--<td>
-                    <!--<div class="btn-group">
+                    <div class="btn-group">
                       <a href="{{URL::to('erpquotations/edit/'.$orderitem->id)}}" class="btn btn-success"> Edit </a>
                     </div>
                     <div class="btn-group">
