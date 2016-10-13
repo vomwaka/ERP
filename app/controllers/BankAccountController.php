@@ -87,7 +87,7 @@ class BankAccountController extends \BaseController {
 	 * GET THE RECONCILIATION PAGE
 	 */
 	public function showReconcile($id){
-		return 'True';
+		return View::make('banking.createReconcile');
 	}
 
 

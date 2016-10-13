@@ -28,7 +28,6 @@
 		h4,h6{
 			margin-bottom: 7px;
 			margin-top: 7px;
-			font-weight: normal !important;
 		}
 
 		h6{ color: #777; }
@@ -69,7 +68,8 @@
 						</p>
 					</div>
 					<hr>
-						<div class="form-group form-inline">
+					<div style="background:#E1F5FE; padding: 10px;">
+						<div class="form-inline">
 							<label>Date Format</label> &emsp;
 							<select name="date_format" class="form-control input-sm">
 								<option value="">-- Date Format --</option>
@@ -78,11 +78,12 @@
 							</select>
 						</div>
 						<div class="checkbox">
-						  <label><input type="checkbox" value="">
-								Include first row, only if it's not a heading row.
+						  <label><input type="checkbox">
+								<font color="green">Don't import the first row because they are column heading.</font>
 						  </label>
 						</div>
 						<input type="file" class="btn btn-info" name="csvFileUpload">
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>&emsp;
@@ -94,6 +95,10 @@
 </div><!-- /.modal -->
 <!-- END MODAL -->
 
+
+<!--
+BEGINNING OF PAGE
+-->
 <div class="row">
 	<div class="col-lg-12">
   	<h4><font color='green'>Bank Accounts</font></h4>
@@ -151,7 +156,7 @@
 						<td colspan="1">
 							<h4><font color="#0BAEED">${{ asMoney(0) }}</font></h4>
 							<h6>Bank Statement Balance</h6>
-							<h6><font color="#E74C3C">NO STATEMENT UPLOADED YET</font></h6>
+							<h6><font color="#E74C3C">NO TRANSACTIONS IMPORTED YET</font></h6>
 						</td>
 						<td colspan="2" style="vertical-align: middle; border-left: 1px solid #ddd !important;">
 							<a href="#uploadStatement" class="btn btn-success btn-sm" data-toggle="modal">Upload Bank Statement</a>
