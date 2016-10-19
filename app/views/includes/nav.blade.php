@@ -9,11 +9,6 @@
     //box-shadow: 1px 2px 7px rgba(0,0,0,0.4);
 }
 
-.navbar-static-top{
-    background: #208ABE;
-    border: none;
-}
-
 </style>
 <body onload="set_interval()"
 onmousemove="reset_interval()"

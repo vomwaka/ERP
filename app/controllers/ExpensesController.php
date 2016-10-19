@@ -107,12 +107,16 @@ class ExpensesController extends \BaseController {
     
     $account = DB::table('expenses')->where('id', $id)->select('amount', 'account_id')->first();
     //return $account;
+    /*$zero_filled = sprintf("%07d", $expense->id);
+		$prefix = 'EXP';
+		$ref_no = $prefix.$zero_filled;*/
 
     $expense->name = Input::get('name');
 		$expense->type = Input::get('type');
 		$expense->amount = Input::get('amount');
 		$expense->date = date("Y-m-d",strtotime(Input::get('date')));
 		$expense->account_id = Input::get('account');
+		//$expense->ref_no = $ref_no;
 
 		$expense->update();
 

@@ -123,6 +123,7 @@ return array(
     'CreateAllowancesTable' => $baseDir . '/app/database/migrations/2015_11_30_125654_create_allowances_table.php',
     'CreateAutoprocessesTable' => $baseDir . '/app/database/migrations/2015_11_20_083755_create_autoprocesses_table.php',
     'CreateBankBranchesTable' => $baseDir . '/app/database/migrations/2015_11_30_131641_create_bank_branches_table.php',
+    'CreateBankReconciliationTables' => $baseDir . '/app/database/migrations/2016_10_13_144052_create_bank_reconciliation_tables.php',
     'CreateBankTable' => $baseDir . '/app/database/migrations/2015_11_30_104621_create_bank_table.php',
     'CreateClientsTable' => $baseDir . '/app/database/migrations/2015_12_17_093206_create_clients_table.php',
     'CreateCompanyPropertyTable' => $baseDir . '/app/database/migrations/2015_11_30_135019_create_company_property_table.php',

@@ -240,10 +240,12 @@ Route::get('journals/show/{id}', 'JournalsController@show');
 
 
 /**
- * Bank Account Routes
+ * Bank Account Routes &
+ * Bank Reconciliation Routes
  */
 Route::resource('bankAccounts', 'BankAccountController');
 Route::get('bankAccounts/reconcile/{id}', 'BankAccountController@showReconcile');
+Route::post('bankAccounts/uploadStatement', 'BankAccountController@uploadBankStatement');
 
 
 /*

@@ -21,7 +21,7 @@
                     </li>
                     
                      <li>
-                        <a href="{{ URL::to('bankAccounts') }}"><i class="fa fa-bank fa-fw"></i> Banking</a>
+                        <a href="{{ URL::to('bankAccounts') }}"><i class="fa fa-university fa-fw"></i> Banking</a>
                     </li>
 
                     <!--<li>

@@ -436,6 +436,7 @@ class ComposerStaticInit565ae4454a3bba9b74acce07c2adc4fb
         'CreateAllowancesTable' => __DIR__ . '/../..' . '/app/database/migrations/2015_11_30_125654_create_allowances_table.php',
         'CreateAutoprocessesTable' => __DIR__ . '/../..' . '/app/database/migrations/2015_11_20_083755_create_autoprocesses_table.php',
         'CreateBankBranchesTable' => __DIR__ . '/../..' . '/app/database/migrations/2015_11_30_131641_create_bank_branches_table.php',
+        'CreateBankReconciliationTables' => __DIR__ . '/../..' . '/app/database/migrations/2016_10_13_144052_create_bank_reconciliation_tables.php',
         'CreateBankTable' => __DIR__ . '/../..' . '/app/database/migrations/2015_11_30_104621_create_bank_table.php',
         'CreateClientsTable' => __DIR__ . '/../..' . '/app/database/migrations/2015_12_17_093206_create_clients_table.php',
         'CreateCompanyPropertyTable' => __DIR__ . '/../..' . '/app/database/migrations/2015_11_30_135019_create_company_property_table.php',
