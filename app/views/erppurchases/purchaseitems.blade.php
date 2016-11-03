@@ -78,7 +78,7 @@ $(document).ready(function(){
 
 </div>
 
-
+<form role="form" action="{{URL::to('erppurchase/commit')}}" method="POST">
 <div class="row">
 	<div class="col-lg-12">
 
@@ -177,11 +177,13 @@ $(document).ready(function(){
 
 <div class="row">
     <div class="col-lg-12">
-
-    <hr>
-     <a class="btn btn-danger btn-sm" href="{{ URL::to('purchaseorders/create')}}">Cancel</a>
-    <a href="{{URL::to('erppurchase/commit')}}" class="btn btn-primary pull-right">Place Order</a>
+        <hr>
+        <a class="btn btn-danger btn-sm" href="{{ URL::to('purchaseorders/create')}}">Cancel</a>
+        <button type="submit" class="btn btn-primary pull-right">Place Order</button>
     </div>
 </div>
+<input type="hidden" name="grand" value="{{ $total }}">
+
+</form>
 
 @stop

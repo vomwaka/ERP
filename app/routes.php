@@ -180,10 +180,6 @@ Route::get('payments/delete/{id}', 'PaymentsController@destroy');
 
 
 
-
-
-
-
 Route::resource('currencies', 'CurrenciesController');
 Route::get('currencies/edit/{id}', 'CurrenciesController@edit');
 Route::post('currencies/update/{id}', 'CurrenciesController@update');
@@ -246,6 +242,13 @@ Route::get('journals/show/{id}', 'JournalsController@show');
 Route::resource('bankAccounts', 'BankAccountController');
 Route::get('bankAccounts/reconcile/{id}', 'BankAccountController@showReconcile');
 Route::post('bankAccounts/uploadStatement', 'BankAccountController@uploadBankStatement');
+Route::post('bankAccount/reconcile', 'BankAccountController@reconcileStatement');
+
+Route::get('bankAccount/reconcile/add/{id}/{id2}/{id3}', 'BankAccountController@addStatementTransaction');
+Route::post('bankAccount/reconcile/add', 'BankAccountController@saveStatementTransaction');
+
+Route::get('bankReconciliation/report', 'ErpReportsController@displayRecOptions');
+Route::post('bankReconciliartion/generateReport', 'ErpReportsController@showRecReport');
 
 
 /*
@@ -2196,10 +2199,11 @@ Route::get('salesorders/create', function(){
   $order_number = date("Y/m/d/").str_pad($count+1, 4, "0", STR_PAD_LEFT);
   $items = Item::all();
   $locations = Location::all();
+  $accounts = Account::all();
 
   $clients = Client::all();
 
-  return View::make('erporders.create', compact('items', 'locations', 'order_number', 'clients'));
+  return View::make('erporders.create', compact('items', 'locations', 'order_number', 'clients', 'accounts'));
 });
 
 
@@ -2209,10 +2213,11 @@ Route::get('purchaseorders/create', function(){
   $order_number = date("Y/m/d/").str_pad($count+1, 4, "0", STR_PAD_LEFT);
   $items = Item::all();
   $locations = Location::all();
+  $accounts = Account::all();
 
   $clients = Client::all();
 
-  return View::make('erppurchases.create', compact('items', 'locations', 'order_number', 'clients'));
+  return View::make('erppurchases.create', compact('items', 'locations', 'order_number', 'clients', 'accounts'));
 });
 
 
@@ -2227,13 +2232,6 @@ Route::get('quotationorders/create', function(){
 
   return View::make('erpquotations.create', compact('items', 'locations', 'order_number', 'clients'));
 });
-
-
-
-
-
-
-
 
 
 
@@ -2254,12 +2252,14 @@ Route::post('erporders/create', function(){
   */
 
   Session::put( 'erporder', array(
-    'order_number' => array_get($data, 'order_number'), 
-    'client' => $client,
-    'date' => array_get($data, 'date')
-
+      'order_number' => array_get($data, 'order_number'), 
+      'client' => $client,
+      'date' => array_get($data, 'date'),
+      'credit_ac' => array_get($data, 'credit_ac'),
+      'debit_ac' => array_get($data, 'debit_ac'),
+      'transaction_desc' => array_get($data, 'transaction_desc')
     )
-    );
+  );
   Session::put('orderitems', []);
 
   $orderitems =Session::get('orderitems');
@@ -2302,12 +2302,14 @@ Route::post('erppurchases/create', function(){
   */
 
   Session::put( 'erporder', array(
-    'order_number' => array_get($data, 'order_number'), 
-    'client' => $client,
-    'date' => array_get($data, 'date')
-
+      'order_number' => array_get($data, 'order_number'), 
+      'client' => $client,
+      'date' => array_get($data, 'date'),
+      'credit_ac' => array_get($data, 'credit_ac'),
+      'debit_ac' => array_get($data, 'debit_ac'),
+      'transaction_desc' => array_get($data, 'transaction_desc')
     )
-    );
+  );
   Session::put('purchaseitems', []);
 
   $orderitems =Session::get('purchaseitems');
@@ -2687,13 +2689,25 @@ Route::post('erporder/commit', function(){
 
   $erporderitems = Session::get('orderitems');
   
-   $total = Input::all();
+  $total = Input::all();
 
- // $client = Client: :findorfail(array_get($erporder, 'client'));
+  // $client = Client: :findorfail(array_get($erporder, 'client'));
 
- // print_r($total);
+  // print_r($total);
+  
+  // Create a session to hold journal entry data
+  Session::put('sales_journal', [
+    'credit_account' => $erporder['credit_ac'],
+    'debit_account' => $erporder['debit_ac'],
+    'date' => date('Y-m-d', strtotime(array_get($erporder, 'date'))),
+    'amount' => $total['grand'],
+    'description' => $erporder['transaction_desc'],
+    'initiated_by' => Confide::user()->username
+  ]);
 
+  $data = Session::get('sales_journal');
 
+  // Create a new sales order
   $order = new Erporder;
   $order->order_number = array_get($erporder, 'order_number');
   $order->client()->associate(array_get($erporder, 'client'));
@@ -2702,10 +2716,20 @@ Route::post('erporder/commit', function(){
   $order->discount_amount = array_get($total, 'discount');
   $order->type = 'sales';  
   $order->save();
-  
 
+  // Create a new Journal Entry
+  $jEntry = new Journal;
+  $jEntry->journal_entry($data);
+
+  // Create a new Account Transaction
+  $acTransaction = new AccountTransaction;
+  $acTransaction->createTransaction($data);
+
+  Session::forget('sales_journal');
+
+
+  // Insert data into Erporderitem table
   foreach($erporderitems as $item){
-
 
     $itm = Item::findOrFail($item['itemid']);
 
@@ -2774,7 +2798,7 @@ return Redirect::to('salesorders')->withFlashMessage('Order Successfully Placed!
 
 
 
-Route::get('erppurchase/commit', function(){
+Route::post('erppurchase/commit', function(){
 
   //$orderitems = Session::get('erppurchase');
 
@@ -2782,11 +2806,22 @@ Route::get('erppurchase/commit', function(){
 
   $orderitems = Session::get('purchaseitems');
   
-   $total = Input::all();
+  $total = Input::all();
+  // $client = Client: :findorfail(array_get($erporder, 'client'));
 
- // $client = Client: :findorfail(array_get($erporder, 'client'));
+  // print_r($total);
+  
+  // Create a session to hold journal entry data
+  Session::put('purchase_journal', [
+    'credit_account' => $erporder['credit_ac'],
+    'debit_account' => $erporder['debit_ac'],
+    'date' => date('Y-m-d', strtotime(array_get($erporder, 'date'))),
+    'amount' => $total['grand'],
+    'description' => $erporder['transaction_desc'],
+    'initiated_by' => Confide::user()->username
+  ]);
 
- // print_r($total);
+  $data = Session::get('purchase_journal');
 
 
   $order = new Erporder;
@@ -2797,8 +2832,19 @@ Route::get('erppurchase/commit', function(){
   //$order->discount_amount = array_get($total, 'discount');
   $order->type = 'purchases';
   $order->save();
-  
 
+  // Create a new Journal Entry
+  $jEntry = new Journal;
+  $jEntry->journal_entry($data);
+
+  // Create a new Account Transaction
+  $acTransaction = new AccountTransaction;
+  $acTransaction->createTransaction($data);
+
+  Session::forget('purchase_journal');
+
+
+  // Insert data into Erporderitem table
   foreach($orderitems as $item){
 
 
@@ -2818,7 +2864,7 @@ Route::get('erppurchase/commit', function(){
  
 //Session::flush('orderitems');
 //Session::flush('erporder');
-return Redirect::to('purchaseorders');
+return Redirect::to('purchaseorders')->withFlashMessage('Order Successfully Placed!');;
 
 
 

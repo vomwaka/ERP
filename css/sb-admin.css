@@ -366,7 +366,7 @@ table.dataTable thead .sorting:after {
     //font-weight: bold;
     //color: #3367D6;
     color: #444;
-    padding-left: 20px;
+    //padding-left: 20px;
     cursor: pointer;
     transition: all linear 0.2s;
 }
@@ -404,6 +404,10 @@ table.dataTable thead .sorting:after {
     box-shadow: none;
 }
 
+.panel-heading{
+    //background-color: #E1F5FE !important;
+}
+
 input, select, textarea{
     box-shadow: none !important;
 }
@@ -432,12 +436,6 @@ th, tr, td{
 /* SIDE MENU */
 #side-menu li ul li a{
     padding-left: 50px;
-}
-
-#side-menu li ul li a:hover,
-#side-menu li ul li a:focus,
-#side-menu li ul li a:ative{
-    padding-left: 55px;
 }
 
 #side-menu li a i{

@@ -10,27 +10,26 @@
                  
 
                   <li>
-                    <a href="{{ URL::to('items') }}"><i class="glyphicon glyphicon-barcode fa-fw"></i> Items</a>
+                    <a href="{{ URL::to('items') }}"><i class="fa fa-barcode fa-fw"></i>Items</a>
                   </li>
 
                   <li>
-                    <a href="{{ URL::to('clients') }}"><i class="glyphicon glyphicon-user fa-fw"></i> Clients / Supplier</a>
+                    <a href="{{ URL::to('clients') }}"><i class="fa fa-user fa-fw"></i>Clients / Supplier</a>
                   </li>  
 
                   <li>
-                    <a href="{{ URL::to('expenses') }}"><i class="glyphicon glyphicon-list fa-fw"></i> Expenses</a>
+                    <a href="{{ URL::to('expenses') }}"><i class="fa fa-list fa-fw"></i>Expenses</a>
                   </li> 
-               
-                  <li>
-                    <a href="{{ URL::to('salesorders') }}"><i class="glyphicon glyphicon-list fa-fw"></i> Sales Orders</a>
-                  </li>
-                        
-                  <li>
-                    <a href="{{ URL::to('purchaseorders') }}"><i class="glyphicon glyphicon-list fa-fw"></i>  Purchase Orders</a>
+                  
+                  <li><a href="#"><i class="fa fa-th-large fa-fw"></i>Orders<i class="fa fa-caret-down fa-fw"></i></a>
+                    <ul class="nav">
+                      <li><a href="{{ URL::to('salesorders') }}"><i class="fa fa-list fa-fw"></i>Sales Orders</a></li>
+                      <li><a href="{{ URL::to('purchaseorders') }}"><i class="fa fa-list fa-fw"></i>Purchase Orders</a></li>
+                    </ul>
                   </li>
 
                   <li>
-                    <a href="{{ URL::to('quotationorders') }}"><i class="glyphicon glyphicon-list fa-fw"></i> Quotation</a>
+                    <a href="{{ URL::to('quotationorders') }}"><i class="fa fa-list fa-fw"></i>Quotation</a>
                   </li>
                 
                  <!--  <li>
@@ -38,27 +37,27 @@
                   </li> -->
                   
                   <li>
-                    <a href="{{ URL::to('paymentmethods') }}"><i class="fa fa-tasks fa-fw"></i>  Payment Methods</a>
-                  </li>
-                        
-                  <li>
-                    <a href="{{ URL::to('payments') }}"><i class="glyphicon glyphicon-list fa-fw"></i>  Payments</a>
+                    <a href="#"><i class="fa fa-th-large fa-fw"></i>Payment<i class="fa fa-caret-down fa-fw"></i></a>
+                    <ul class="nav">
+                      <li><a href="{{ URL::to('paymentmethods') }}"><i class="fa fa-tasks fa-fw"></i>Payment Methods</a></li>
+                      <li><a href="{{ URL::to('payments') }}"><i class="fa fa-list fa-fw"></i>Payments</a></li>
+                    </ul>
                   </li>
                 
                   <li>
-                    <a href="{{ URL::to('stocks') }}"><i class="glyphicon glyphicon-random fa-fw"></i>  Stock</a>
+                    <a href="{{ URL::to('stocks') }}"><i class="fa fa-random fa-fw"></i>Stock</a>
                   </li>
 
                   <li>
-                    <a href="{{ URL::to('locations') }}"><i class="glyphicon glyphicon-home fa-fw"></i>  Stores</a>
+                    <a href="{{ URL::to('locations') }}"><i class="fa fa-home fa-fw"></i>Stores</a>
                   </li>   
 
                   <li>
-                    <a href="{{ URL::to('taxes') }}"><i class="glyphicon glyphicon-list fa-fw"></i> Taxes</a>
+                    <a href="{{ URL::to('taxes') }}"><i class="fa fa-list fa-fw"></i>Taxes</a>
                   </li> 
 
                   <li>
-                    <a href="{{ URL::to('erpReports') }}"><i class="glyphicon glyphicon-folder-open fa-fw"></i>  Reports</a>
+                    <a href="{{ URL::to('erpReports') }}"><i class="fa fa-folder-open fa-fw"></i>Reports</a>
                   </li>   
 
 

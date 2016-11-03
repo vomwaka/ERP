@@ -39,8 +39,7 @@ class JournalsController extends \BaseController {
 		{
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
-
-
+		
 		
 		$data = array(
 			'date' => date("Y-m-d",strtotime(Input::get('date'))), 
@@ -50,6 +49,7 @@ class JournalsController extends \BaseController {
 			'amount' => Input::get('amount'),
 			'initiated_by' => Input::get('user')
 			);
+
 		
 		$journal = new Journal;
 

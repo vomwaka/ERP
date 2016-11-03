@@ -7,7 +7,12 @@ class StmtTransaction extends Eloquent{
 	/**
 	 * Link with BankStatement
 	 */
-	public function bank_transaction(){
+	public function bankStatement(){
 		return $this->belongsTo('BankStatement');
 	}
+
+	// Link with AccountTransaction Model
+	/*public function accountTransaction(){
+		return $this->hasOne('AccountTransaction');
+	}*/
 }

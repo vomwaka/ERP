@@ -7,14 +7,14 @@ Class BankStatement extends Eloquent{
 	/**
 	 * Link with BankAcount
 	 */
-	public function bank_account(){
+	public function bankAccount(){
 		return $this->belongsTo('BankAccount');
 	}
 
 	/**
 	 * Link with Bank Statement Transactions
 	 */
-	public function stmt_transaction(){
+	public function stmtTransaction(){
 		return $this->hasMany('StmtTransaction');
 	}
 }

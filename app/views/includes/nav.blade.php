@@ -119,7 +119,7 @@ onscroll="reset_interval()">
 
                  <li  >
                     <a  href="{{ URL::to('accounts')}}">
-                        <i class="fa fa-file fa-fw"></i>  {{{ Lang::get('messages.nav.accounting') }}} 
+                        <i class="fa fa-calculator fa-fw"></i>  {{{ Lang::get('messages.nav.accounting') }}} 
                     </a>
                     
                 </li>

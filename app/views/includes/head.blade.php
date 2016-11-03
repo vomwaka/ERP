@@ -78,13 +78,14 @@
 
     $(document).ready(function() {
         /* Animations */
-        $("#side-menu li").velocity("transition.slideDownIn", {stagger: 100}, 2000);
-        $('.panel').velocity("transition.slideDownBigIn", 2000);
+        //$("#side-menu li").velocity("transition.slideDownIn", {stagger: 100}, 2000);
+        //$('.panel').velocity("transition.slideDownBigIn", 2000);
         //$('.row').velocity("transition.slideLeftIn", 2000)
-        $("table").velocity("transition.slideDownIn", 2000);
+        //$("table").velocity("transition.slideDownIn", 2000);
         //$("form").velocity("transition.slideDownIn", 2000);
 
         $('#users').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'}) ;
+        $('table.users').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'}) ;
         $('#mobile').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});
         $('#rejected').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});
         $('#app').DataTable({"sDom": '<"H"lfrp>t<"F"ip>'});

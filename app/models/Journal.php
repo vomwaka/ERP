@@ -40,7 +40,7 @@ class Journal extends \Eloquent {
 
 		$this->creditAccount($data, $trans_no);
 
-		// function for crediting
+		// function for debiting
 
 		$this->debitAccount($data, $trans_no);
 

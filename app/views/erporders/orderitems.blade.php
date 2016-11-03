@@ -232,7 +232,7 @@ $(document).ready(function(){
     <hr>
 
    <!--  <div class="panel-heading"> -->
-          <a class="btn btn-danger btn-sm" href="{{ URL::to('salesorders/create')}}">Cancel </a>
+          <a class="btn btn-danger" href="{{ URL::to('salesorders/create')}}">Cancel </a>
         <!-- </div> --><input type="submit" class="btn btn-primary pull-right" value="Place Order"/>
 
  </div>

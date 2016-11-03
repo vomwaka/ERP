@@ -132,9 +132,9 @@ class PaymentsController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
-        $payment->erporder_id = Input::get('order');
+      $payment->erporder_id = Input::get('order');
 		$payment->amount_paid = Input::get('amount');
-		$payment->balance = Input::get('balance');
+		//$payment->balance = Input::get('balance');
 		$payment->paymentmethod_id = Input::get('paymentmethod');
 		$payment->received_by = Input::get('received_by');
 		$payment->date = date("Y-m-d",strtotime(Input::get('pay_date')));

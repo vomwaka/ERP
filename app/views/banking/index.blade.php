@@ -42,6 +42,14 @@
 			text-align: center;
 		}
 
+		.bal{
+			width: auto;
+			display: inline-block;
+			margin: 10px 0; 
+			padding: 0 10px;
+			text-align: center;
+		}
+
 </style>
 
 
@@ -63,85 +71,170 @@ BEGINNING OF PAGE
 	</div>
 
 	<div class="col-lg-10">
-		@if(isset($bnkAccount))
+		@if(count($bnkAccount) > 0)
 		@foreach($bnkAccount as $account)
 			
 			<table class="table table-bordered table-responsive">
 				<thead>
 					<tr>
 						<th>
-							<h4><font color="#0BAEED">{{ $account->account_name }}</font></h4>
-							<h6>{{ $account->account_number }}</h6>
+							<div class="bal">
+								<h4><font color="#0BAEED">{{ $account->account_name }}</font></h4>
+								<h6>{{ $account->account_number }}</h6>
+							</div>
+							<div class="bal" style="border-left: 1px solid #ddd !important;">
+								<h4><font color="#0BAEED">{{ $account->bank_name }}</font></h4>
+								<h6>{{ $account->account_name }}</h6>
+							</div>
 						</th>
 						<th>
 
 							<!-- ERROR MESSAGES -->
 							@if (Session::has('error'))
-					    <div class="alert alert-danger">
-					        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					        {{ Session::get('error') }}<br>
-					        {{ Session::forget('error') }}
-					    </div>
-					    @endif
+							<div class="alert alert-danger">
+							  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+							  {{ Session::get('error') }}<br>
+							  {{ Session::forget('error') }}
+							</div>
+					   	@endif
 
 							<!-- SUCCESS MESSAGE -->
-					    @if(Session::has('success'))
+							@if(Session::has('success'))
 							<div class="alert alert-success">
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					        {{ Session::get('success') }}<br>
-					        {{ Session::forget('success') }}
-					    </div>
-					    @endif
+							  {{ Session::get('success') }}<br>
+							  {{ Session::forget('success') }}
+							</div>
+							@endif
 
 						</th>
 						<th style="text-align: right !important">
 							<div class="btn-group dropdown pull-right">
-	              <button class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-	                  Manage Account <span class="caret"></span>
-	              </button>
+			              <button class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			                  Manage Account <span class="caret"></span>
+			              </button>
 
-	              <ul class="dropdown-menu dropdown-menu-left" role="menu">
-	                  <li><a href="#uploadStatement" data-toggle="modal">Import Statement</a></li>
-	                  <li><a href="{{ URL::to('bankAccounts/reconcile/'.$account->id) }}">Reconcile Account</a></li>
-	                  <li><a href="">Reconciliation Report</a></li>
-	              </ul>
-	            </div>
+			              <ul class="dropdown-menu dropdown-menu-left" role="menu">
+			                  <li><a href="#uploadStatement" data-toggle="modal">Import Statement</a></li>
+			                  <li><a href="">Reconcile Account</a></li>
+			                  <li><a href="">Reconciliation Report</a></li>
+			              </ul>
+			            </div>
 						</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						@if($account->bal_bd !== '')
-							<td>
-								<h4><font color="#0BAEED">${{ asMoney($account->bal_bd) }}</font></h4>
-								<h6>Bank Statement Balance</h6>
-								<h6><strong>{{ date('M j, Y', strtotime($account->stmt_date)) }}</strong></h6>
-							</td>
-							<td style="border-left: 1px solid #ddd !important;">
-								<h4><font color="#0BAEED">${{ asMoney(24000) }}</font></h4>
-								<h6>Xara Statement Balance</h6>
-								<h6><strong>{{ date('M j, Y', strtotime($account->stmt_date)) }}</strong></h6>
-							</td>
-							<td style="vertical-align: middle; border-left: 1px solid #ddd !important;">
-								<a href="{{ URL::to('bankAccounts/reconcile/'.$account->id) }}" class="btn btn-success btn-sm">Reconcile Accounts</a>
-							</td>
-						@else
-							<td colspan="1">
-								<h4><font color="#0BAEED">${{ asMoney(0) }}</font></h4>
-								<h6>Bank Statement Balance</h6>
-								<h6><font color="#E74C3C">NO STATEMENT TRANSACTIONS UPLOADED FOR THIS MONTH YET</font></h6>
-							</td>
-							<td colspan="2" style="vertical-align: middle; border-left: 1px solid #ddd !important;">
-								<a href="#uploadStatement" class="btn btn-success btn-sm" data-toggle="modal">Upload Bank Statement</a>
-							</td>
-						@endif
+						<td colspan="1" style="border-bottom: 1px solid #ddd !important;"><font color="green">
+						<h5>Statement Last Reconciled: 
+							@if(count(BankAccount::getLastReconciliation($account->id)) > 0)
+							{{ BankAccount::getLastReconciliation($account->id)->stmt_month }}
+							@else
+							NEVER
+							@endif
+						</h5></font>
+						</td>
+						<td colspan="2" style="vertical-align: middle; border: 1px solid #ddd !important;">
+							<a href="#viewHistory{{$account->id}}" class="btn btn-warning btn-sm" data-toggle="modal">View History</a>
+						</td>
+
+						<!-- VIEW HISTORY MODAL -->
+						<div  id="viewHistory{{$account->id}}" class="modal fade">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+								<form action="{{ URL::to('bankAccounts/reconcile/'.$account->id) }}" method="GET" accept-charset="utf-8">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											<span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title"><font color="green">Select Book Account</font></h4>
+									</div>
+									<div class="modal-body">
+										<div class="form-group">
+											<label>Book Account</label>
+											<select name="book_account_id" class="form-control">
+												<option value="">--- Select Book Account ---</option>
+												<option value="">=====================================</option>
+												@foreach($bkAccounts as $bookAc)
+													<option value="{{ $bookAc->id }}">{{ $bookAc->category }} - {{ $bookAc->name }}</option>
+												@endforeach
+											</select>
+										</div>
+										@if(count(BankAccount::getLastReconciliation($account->id)) > 0)
+										<input type="hidden" name="rec_month" value="{{ BankAccount::getLastReconciliation($account->id)->stmt_month }}">
+										@endif
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>&emsp;
+										<input type="submit" class="btn btn-primary btn-sm" value="View History">
+									</div>
+								</form>
+								</div>
+							</div>
+						</div>
+						<!-- ./END OF VIEW HISTORY MODAL -->
+					</tr>
+					
+					<tr>
+						<?php $acSt = BankAccount::getStatement($account->id); ?>
+						<form role="form" action="{{ URL::to('bankAccounts/reconcile/'.$account->id) }}" method="GET">
+							@if(count($acSt) > 0)
+								@if($acSt->bal_bd !== null && $acSt->is_reconciled === 0)
+									<td>
+										<h4><font color="#0BAEED">Ksh. {{ asMoney($acSt->bal_bd) }}</font></h4>
+										<h6>Bank Statement Balance</h6>
+										<h6><strong>for: {{ $acSt->stmt_month }}</strong></h6>
+									</td>
+									<td style="border-left: 1px solid #ddd !important;">
+										<!-- <h4><font color="#0BAEED">Ksh. {{ asMoney(24000) }}</font></h4>
+										<h6>Xara Statement Balance</h6>
+										<h6><strong>{{ date('M j, Y', strtotime($acSt->stmt_date)) }}</strong></h6> -->
+										<div class="form-group">
+											<label>Reconcile With&hellip;</label>
+											<select name="book_account_id" class="form-control input-sm" required>
+												<option value="">--- Select Account to Reconcile ---</option>
+												<option value="">=====================================</option>
+												@foreach($bkAccounts as $bookAc)
+													<option value="{{ $bookAc->id }}">{{ $bookAc->category }} - {{ $bookAc->name }}</option>
+												@endforeach
+											</select>
+										</div>
+									</td>
+									<td style="vertical-align: middle; border-left: 1px solid #ddd !important;">
+										<input type="submit" class="btn btn-success btn-sm" value="Reconcile Accounts">
+										<input type="hidden" name="rec_month" value="{{ $acSt->stmt_month }}">
+									</td>
+
+								@elseif($acSt->is_reconciled === 1)
+									<td colspan="3">
+										<h4><font color="#0BAEED">Ksh. {{ asMoney($acSt->bal_bd) }}</font></h4>
+										<h6>Bank Statement Balance for <strong>{{ $acSt->stmt_month }}</strong></h6>
+										<h6><font color="green">THE BANK STATEMENT HAS BEEN RECONCILED.</font></h6>
+									</td>
+									<!-- <td style="vertical-align: middle; border-left: 1px solid #ddd !important;">
+										<a href="{{ URL::to('bankAccounts/reconcile/'.$account->id) }}" class="btn btn-success btn-sm">Reconciliation History</a>
+									</td> -->
+							@endif
+
+							@else
+								<td colspan="1">
+									<h4><font color="#0BAEED">Ksh. {{ asMoney(0) }}</font></h4>
+									<h6>Bank Statement Balance</h6>
+									<h6><font color="#E74C3C">NO STATEMENT TRANSACTIONS UPLOADED FOR LAST MONTH YET</font></h6>
+								</td>
+								<td colspan="2" style="vertical-align: middle; border-left: 1px solid #ddd !important;">
+									<a href="#uploadStatement{{$account->id}}" class="btn btn-success btn-sm" data-toggle="modal">Upload Bank Statement</a>
+								</td>
+							@endif
+						</form>
 					</tr>
 				</tbody>
 			</table>
 				<hr>
 
 			<!-- BANK STATEMENT UPLOAD (INFO REQUIRED) MODAL -->
-			<div  id="uploadStatement" class="modal fade">
+			<div  id="uploadStatement{{$account->id}}" class="modal fade">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<!--
@@ -175,19 +268,19 @@ BEGINNING OF PAGE
 								<hr>
 								<div style="background:#E1F5FE; padding: 10px;">
 									<div class="form-group">
-					            <label for="username">Statement Month</label>
-					            <div class="right-inner-addon ">
-					                <i class="glyphicon glyphicon-calendar"></i>
-					                <input class="form-control input-sm datepicker2"  readonly="readonly" type="text" name="stmt_month" id="date" value="{{date('M-Y')}}">
-					            </div>
-					        </div>
+						            <label for="username">Statement Month</label>
+						            <div class="right-inner-addon ">
+					               	<i class="glyphicon glyphicon-calendar"></i>
+					               	<input class="form-control input-sm datepicker2"  readonly="readonly" type="text" name="stmt_month" id="date" value="{{date('M-Y')}}">
+						            </div>
+						         </div>
 									<div class="form-group">
-											<label>Bank Balance b/d</label>
-											<input class="form-control input-sm" type="text" name="bal_bd" placeholder="Bank Balance B/D">
+										<label>Bank Balance b/d</label>
+										<input class="form-control input-sm" type="text" name="bal_bd" placeholder="Bank Balance B/D">
 									</div>
 									<div class="form-group">
-											<label>Upload Statement</label>
-											<input type="file" class="btn btn-info btn-sm" name="bknStatementCSV">
+										<label>Upload Statement</label>
+										<input type="file" class="btn btn-info btn-sm" name="bknStatementCSV">
 									</div>
 								</div>
 							</div>
@@ -206,61 +299,7 @@ BEGINNING OF PAGE
 
 		@else
 			<h4><font color='red'>No Bank Accounts Available!</font></h4>
-		@endif<!-- 
-		
-		<table class="table table-bordered table-responsive">
-			<thead>
-				<tr>
-					<th>
-						<h4><font color="#0BAEED">Bank Account Name</font></h4>
-						<h6>1237485961548</h6>
-					</th>
-					<th></th>
-					<th style="text-align: right !important">
-						<div class="btn-group dropdown pull-right">
-		              <button class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-		                  Manage Account <span class="caret"></span>
-		              </button>
-		
-		              <ul class="dropdown-menu dropdown-menu-left" role="menu">
-		                  <li><a href="#uploadStatement" data-toggle="modal">Import Statement</a></li>
-		                  <li><a href="{{ URL::to('bankAccounts/reconcile/4') }}">Reconcile Account</a></li>
-		                  <li><a href="">Reconciliation Report</a></li>
-		              </ul>
-		            </div>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					@if(true)
-						<td>
-							<h4><font color="#0BAEED">${{ asMoney(25000) }}</font></h4>
-							<h6>Bank Statement Balance</h6>
-							<h6>March 6, 2016</h6>
-						</td>
-						<td style="border-left: 1px solid #ddd !important;">
-							<h4><font color="#0BAEED">${{ asMoney(24000) }}</font></h4>
-							<h6>Xara Statement Balance</h6>
-							<h6>March 1, 2016</h6>
-						</td>
-						<td style="vertical-align: middle; border-left: 1px solid #ddd !important;">
-							<a href="{{ URL::to('bankAccounts/reconcile/4') }}" class="btn btn-success btn-sm">Reconcile Accounts</a>
-						</td>
-					@else
-						<td colspan="1">
-							<h4><font color="#0BAEED">${{ asMoney(0) }}</font></h4>
-							<h6>Bank Statement Balance</h6>
-							<h6><font color="#E74C3C">NO STATEMENT TRANSACTIONS UPLOADED FOR THIS MONTH YET</font></h6>
-						</td>
-						<td colspan="2" style="vertical-align: middle; border-left: 1px solid #ddd !important;">
-							<a href="#uploadStatement" class="btn btn-success btn-sm" data-toggle="modal">Upload Bank Statement</a>
-						</td>
-					@endif
-				</tr>
-			</tbody>
-		</table>
-			<hr> -->
+		@endif
 	</div>
 </div>
 

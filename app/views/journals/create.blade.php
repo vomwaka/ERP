@@ -77,21 +77,9 @@
             </select>
         </div>
         
-
-        
-        
         <input type="hidden" name="user" value="{{ Confide::user()->username }}">
-
-
-
-
-
-
-        
       
-        
         <div class="form-actions form-group">
-        
           <button type="submit" class="btn btn-primary btn-sm">Submit Entry</button>
         </div>
 

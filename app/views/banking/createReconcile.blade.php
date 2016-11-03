@@ -53,9 +53,9 @@
 		table.bord .bnk_stmt{ background: #ECEFF1 }
 		table.bord .gl_stmt{ background: #FBFBFB }
 
-		table.bord tr td{	border: 1px solid #ddd !important; }
+		table.bord tr td{	border: 1px solid #ddd !important;}
 		
-		td.cnter, th.cnter{
+		td.cnter, th.cnter, tr.gl_stmt td{
 			text-align: center;
 			vertical-align: middle !important;
 		}
@@ -93,15 +93,31 @@ BEGINNING OF PAGE
 					<h4><font color="#0BAEED">{{ $bnkAccount->bank_name }}</font></h4>
 					<h6>Bank Name</h6>
 				</div>
+				<div class="bal" style="border-left: 1px solid #ddd !important;">
+					<h4><font color="#0BAEED">Reconciliation</font></h4>
+					<h6>for: <strong>{{ $rec_month }}</strong></h6>
+				</div>
+				<div class="bal" style="border-left: 1px solid #ddd !important;">
+					<h4><font color="#0BAEED">Last Reconciled Month: </font></h4>
+					@if(isset($lastRec))
+						<h6><font color="green"><strong>{{ $lastRec->stmt_month }}</strong></font></h6>
+					@else
+						<h6><font color="red"><strong> NULL </strong></font></h6>
+					@endif
+				</div>
 			</div>
 			<div class="col-lg-12" style="background: #fbfbfb; border-bottom: 1px solid #ddd;">
 				<div class="bal">
-					<h4><font color="#0BAEED">${{ asMoney($bnkAccount->bal_bd) }}</font></h4>
+					<h4><font color="#0BAEED">Ksh. {{ asMoney($bnkAccount->bal_bd) }}</font></h4>
 					<h6>Bank Statement Balance</h6>
 				</div>
 				<div class="bal" style="border-left: 1px solid #ddd !important;">
-					<h4><font color="#0BAEED">${{ asMoney(0) }}</font></h4>
-					<h6>Xara Statement Balance</h6>
+					<h4><font color="red">Ksh. {{ asMoney($bkTotal) }}</font></h4>
+					<h6>Xara Statement Balance(Adjusted)</h6>
+				</div>
+				<div class="bal" style="border-left: 1px solid #ddd !important;">
+					<h4><font color="#44B78B">{{ $count }} Items Reconciled</font></h4>
+					<h6>Total Items Reconciled </h6>
 				</div>
 			</div>
 
@@ -116,7 +132,7 @@ BEGINNING OF PAGE
 		<ul class="nav nav-tabs">
 			<li class="active"><a data-toggle="tab" href="#reconcile">Reconcile</a></li>
 			<li><a data-toggle="tab" href="#bnkStmt">Bank Statements</a></li>
-			<li><a data-toggle="tab" href="#acTransact">Account Transactions</a></li>
+			<li><a data-toggle="tab" href="#acTransact">Statements Transactions</a></li>
 		</ul>
 
 	
@@ -130,64 +146,54 @@ BEGINNING OF PAGE
 						<tr>
 							<th></th>
 							<th><font color="#44B78B">Review Your Bank Statements&hellip;</font></th>
-							<th class="cnter"><a href="" class="btn btn-success btn-sm">Approve All</a></th>
-							<th><font color="#44B78B">&hellip;And match them against your GL(Cash Book)</font></th>
+							<th class="cnter"></th>
+							<th><font color="#44B78B">&hellip;And match them against your Book Balance</font></th>
 						</tr>
 					</thead>
 					<tbody>
 						<!-- Transactions -->
 						<?php $count=1; ?> 
 							<col width="3%" />
-							<col width="44.5%" />
-					    <col width="8%" />
-					    <col width="44.5%" />
+							<col width="42%" />
+							<col width="10%" />
+							<col width="45%" />
 						<tr class="hder">
 							<td></td>
 							<td>
 								<table class="table hdr"> 
-										<col width="20%" />
-								    <col width="40%" />
+									 <col width="22%" />
+								    <col width="38%" />
 								    <col width="20%" />
 								    <col width="20%" />
 									<tr>
 										<td>Date</td>
-										<td>Transaction description</td>
+										<td>Transactionn</td>
 										<td>Debit</td>
 										<td>Credit</td>
 									</tr>
 								</table>
 							</td>
-							<td class="cnter">
-								<a href="" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i></a>&emsp;
-								<a href="" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-remove"></i></a>
-							</td>
+							<td class="cnter"><!-- <a href="" class="btn btn-success btn-sm">Approve All</a> --></td>
 							<td>
 								<table class="table hdr"> 
-										<col width="20%" />
-								    <col width="40%" />
-								    <col width="20%" />
-								    <col width="20%" />
-									<tr>
-										<td>Date</td>
-										<td>Transaction description</td>
-										<td>Debit</td>
-										<td>Credit</td>
-									</tr>
+									<tr></tr>
 								</table>
 							</td>
 						</tr>
 						<!-- /.end of transactions header -->
 
-						@if(count($stmt_transactions))
+						@if(count($stmt_transactions) > 0)
 						@foreach($stmt_transactions as $strans)
 							
 							<!-- Transactions -->
+							<!-- ITEM RECONCILIATION FORM STARTS HERE -->
 							<tr>
+							<form role="form" class="form-inline" action="{{ URL::to('bankAccount/reconcile') }}" method="POST">
 								<td>{{ $count }}</td>
 								<td>
 									<table class="table bord"> 
-											<col width="20%" />
-									    <col width="40%" />
+										 <col width="22%" />
+									    <col width="38%" />
 									    <col width="20%" />
 									    <col width="20%" />
 										<tr class="bnk_stmt">
@@ -204,47 +210,148 @@ BEGINNING OF PAGE
 									</table>
 								</td>
 								<td class="cnter">
-									<a href="" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i></a>&emsp;
-									<a href="" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-remove"></i></a>
+									<!-- <a href="" class="btn btn-success btn-circle"><i class="glyphicon glyphicon-ok"></i></a>&emsp;
+									<a href="" class="btn btn-danger btn-circle"><i class="glyphicon glyphicon-remove"></i></a> -->
+									<strong><font color="green">Reconcile With&hellip;</font></strong>
 								</td>
 								<td>
-									<table class="table bord"> 
-											<col width="20%" />
-									    <col width="40%" />
-									    <col width="20%" />
-									    <col width="20%" />
-										<tr class="gl_stmt">
-											<td>Date</td>
-											<td>Transaction description</td>
-											<td>Debit</td>
-											<td>Credit</td>
-										</tr>
+									<table class="table bord">
+										 <col width="72%" />
+									    <col width="28%" /> 
+ 										<tr class="gl_stmt">
+											<input type="hidden" name="bnk_stmt_id" value="{{ $bnk_stmt_id }}">
+											<input type="hidden" name="bnk_trans_id" value="{{ $strans->id }}">
+											<input type="hidden" name="ac_stmt_id" value="{{ $ac_stmt_id }}">
+											<input type="hidden" name="bk_total" value="{{ $bkTotal }}">
+											<td>
+												<select class="form-control" name="ac_transaction" required>
+													<option>Match an existing transaction OR add if it doesn't exist.</option>
+													<option>============================</option>
+													@foreach($ac_transaction as $atrans)
+														<option value="{{ $atrans->id }}">
+															{{ $atrans->transaction_date }} | {{ $atrans->description }} - {{ '('.asMoney($atrans->transaction_amount).')' }} | 
+															@if($atrans->account_debited == $ac_stmt_id) 
+																{{ "(Debit)" }}
+															@else
+																{{ "(Credit)" }}
+															@endif
+														</option>
+													@endforeach
+												</select>
+											</td>
+											<td>
+												<input type="submit" class="btn btn-success btn-circle" name="btnReconcile" value="Ok">&nbsp;|
+												<input type="submit" class="btn btn-warning btn-circle" name="btnEdit" value="Edit">&nbsp;
+												<a href="{{ URL::to('bankAccount/reconcile/add/'.$strans->id.'/'.$bnk_stmt_id.'/'.$ac_stmt_id) }}" class="btn btn-primary btn-circle">Add</a>
+											</td>
+ 										</tr> 
 									</table>
 								</td>
-							</tr>
-							<!-- /.end of transactions -->
+							</form> <!-- /.end of item recinciliation form -->
+							</tr><!-- /.end of transactions -->
 							<?php $count++ ?>
-
+							
 						@endforeach
+
+						@elseif($bnkAccount->bal_bd === $bkTotal)
+							<tr>
+								<td colspan="4" class="cnter">
+									<h3><font color="green">Accounts Successfully Reconciled</font></h3>
+									<p><font>No Pending Reconciliations</font></p>
+								</td>
+							</tr>
+
+						@elseif(count($stmt_transactions) > 0 && count($ac_transaction) <= 0)
+							<tr>
+								<td colspan="4" class="cnter">
+									<h3><font color="red">No Transaction Items for Reconciliation on This Account </font></h3>
+									<p><font>Please try reconciling with the asset account associated with this bank account</font></p>
+								</td>
+							</tr>
+
+						@elseif(count($stmt_transactions) <= 0)
+							<tr>
+								<td colspan="4" class="cnter">
+									<h3><font color="red">No Transactions Available at the Moment </font></h3>
+									<p><font>Please upload a bank statement</font></p>
+								</td>
+							</tr>
 						@endif
 
 					</tbody>
 				</table>
-			</div>
+			</div> <!-- ./END OF RECONCILIATION TAB -->
 
 			<!--
-				BANK STATEMENTS TAB
+				BANK STATEMENTS TAB (ALL TIME BANK TRANSACTIONS)
 			-->
 			<div id="bnkStmt" class="tab-pane fade">
-				fbvjlbdj
-			</div>
+				<table class="table table-condensed table-bordered table-responsive table-hover users">
+					<thead>
+						<th>#</th>
+						<th>Date Uploaded</th>
+						<th>Statement Month</th>
+						<!-- <th># Transactions</th> -->
+						<th>Balance B/D</th>
+						<th>Statement Status</th>
+					</thead>
+
+					<tbody>
+						<?php $count=1; ?>
+						@foreach($bAcc as $bAcc)
+						<tr>
+							<td>{{ $count }}</td>
+							<td>{{ date('F d, Y', strtotime($bAcc->created_at)) }}</td>
+							<td>{{ $bAcc->stmt_month }}</td>
+							<!-- <td></td> -->
+							<td>{{ asMoney($bAcc->bal_bd) }}</td>
+							@if($bAcc->is_reconciled == 1)
+							<td><font color="green">RECONCILED</font></td>
+							@else
+							<td><font color="red">NOT RECONCILED</font></td>
+							@endif
+						</tr>
+						<?php $count++ ?>
+						@endforeach
+					</tbody>
+				</table>
+			</div> <!-- ./END OF BANK STATEMENTS TAB -->
 
 			<!--
-	 			ACCOUNT TRANSACTIONS
+	 			ACCOUNT TRANSACTIONS (ALL TIME TRANSACTIONS)
 			-->
 			<div id="acTransact" class="tab-pane fade">
-				jdfblvhdb
-			</div>
+				<table class="table table-condensed table-bordered table-responsive table-hover users">
+					<thead>
+						<th>#</th>
+						<th>Transaction Date</th>
+						<th>Description</th>
+						<th>Amount</th>
+						<th>Type</th>
+						<th>Status</th>
+					</thead>
+
+					<tbody>
+						<?php $i=1 ?>
+						@foreach($bAccStmt as $bacStmt)
+						<tr>
+							<td>{{ $i }}</td>
+							<td>{{ $bacStmt->transaction_date }}</td>
+							<td>{{ $bacStmt->description }}</td>
+							@if($bacStmt->transaction_amnt < 0)
+								<td><font color="red">{{ asMoney(ltrim($bacStmt->transaction_amnt, '-')) }}</font></td>
+								<td><font color="red">Debit</font></td>
+							@else
+								<td><font color="green">{{ asMoney($bacStmt->transaction_amnt) }}</font></td>
+								<td><font color="green">Credit</font></td>
+							@endif
+							<td>{{ $bacStmt->status }}</td>
+						</tr>
+						<?php $i++ ?>
+						@endforeach
+					</tbody>
+				</table>
+			</div> <!-- ./END OF ACCOUNTS TRANSACTIONS TAB -->
 		</div>
 		
 	</div>

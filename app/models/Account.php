@@ -14,14 +14,17 @@ class Account extends \Eloquent {
 
 
 	public function journals(){
-
 		return $this->hasMany('Journal');
 	}
 
 
 	public function savingProduct(){
-
 		return $this->belongsTo('Saving');
+	}
+
+
+	public function accountTransaction(){
+		return $this->hasMany('AccountTransaction');
 	}
 
 
