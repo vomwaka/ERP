@@ -48,7 +48,7 @@ class JournalsController extends \BaseController {
 			'description' => Input::get('description'),
 			'amount' => Input::get('amount'),
 			'initiated_by' => Input::get('user')
-			);
+		);
 
 		
 		$journal = new Journal;

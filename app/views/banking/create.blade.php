@@ -27,14 +27,6 @@ BEGINNING OF PAGE
     </div>
     @endif
 		
-		<!-- SUCCESS MESSAGE -->
-    @if(Session::has('success'))
-		<div class="alert alert-success">
-			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        {{ Session::get('success') }}<br>
-        {{ Session::forget('success') }}
-    </div>
-    @endif
 
 		<form action="{{ URL::to('bankAccounts') }}" method="POST">
 			<div class="form-group">

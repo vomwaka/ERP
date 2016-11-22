@@ -40,6 +40,7 @@ h1,h2,h3,h4,h5,h6,a{
 
 .navbar-static-side ul li {
     border-bottom: 1px solid #e7e7e7;
+    //font-size: 96% !important;
 }
 
 /* Navigation */
@@ -64,14 +65,28 @@ h1,h2,h3,h4,h5,h6,a{
 .navbar-top-links li a {
     padding: 10px;
     margin: 5px 0;
+    //margin-bottom: 0 !important;
     min-height: 40px;
     color: #fff !important;
     transition: all linear 0.2s;
+
+    text-transform: uppercase !important;
+    font-family: 'Open Sans' !important;
+    font-weight: bold !important;
+    font-size: 96% !important;
 }
 
-.navbar-top-links li a:hover,
-.navbar-top-links li a:focus,
-.navbar-top-links li a:active{
+.navbar-top-links li a .sub-link{
+    color: #ddd;
+    font-family: Arial !important;
+    font-weight: lighter !important;
+    font-size: 70% !important;
+    margin-bottom: 0;
+}
+
+.navbar-top-links li a:hover, .navbar-top-links li a:hover .sub-link,
+.navbar-top-links li a:focus, .navbar-top-links li a:focus .sub-link,
+.navbar-top-links li a:active, .navbar-top-links li a:active .sub-link{
     //background: #fff;
     color: #3367D6 !important;
     transition: all linear 0.2s;
@@ -355,7 +370,7 @@ table.dataTable thead .sorting:after {
     //background: #34425A;
 }
 
-#wrap ul li a{
+#wrap ul li > a{
     //color: #444;
     transition: all linear 0.2s;
 }
@@ -384,9 +399,9 @@ table.dataTable thead .sorting:after {
 }*/
 
 .btn{
-    border-radius: 1px;
+    border-radius: 1px !important;
     border: none;
-    //box-shadow: 1px 1px 2px rgba(0,0,0,0.2) !important; 
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2) !important; 
 }
 
 .btn-default{
@@ -410,6 +425,10 @@ table.dataTable thead .sorting:after {
 
 input, select, textarea{
     box-shadow: none !important;
+}
+
+table{
+    //font-size: 96% !important;
 }
 
 /* TABLES STYLING */

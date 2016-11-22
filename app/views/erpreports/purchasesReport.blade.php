@@ -98,7 +98,7 @@ function asMoney($value) {
 
 
 <div class="footer">
-     <p class="page">Page <?php $PAGE_NUM ?></p>
+     <p class="page">Page <?php $PAGE_NUM; ?></p>
    </div>
 
 

@@ -60,7 +60,7 @@ class BankAccountController extends \BaseController {
 		$bnkAccount->account_number = Input::get('acNumber');
 		$bnkAccount->save();
 
-		return Redirect::back()->withSuccess('Bank Account successfully added');
+		return Redirect::action('BankAccountController@index')->withSuccess('Bank Account successfully added');
 	}
 
 
@@ -248,8 +248,8 @@ class BankAccountController extends \BaseController {
 									->orWhere('account_credited', $ac_stmt_id);
 								})->where(function($query) use ($rec_month){
 									$query->where('status', '<>', 'RECONCILED')
-									->whereMonth('transaction_date', '=', substr($rec_month, 0, 1))
-									->whereYear('transaction_date', '=', substr($rec_month, 3, 6));
+									->whereMonth('transaction_date', '=', substr($rec_month, 0, 2))
+									->whereYear('transaction_date', '=', substr($rec_month, 3, 4));
 								})
 								->select('*')
 								->get();
@@ -277,10 +277,14 @@ class BankAccountController extends \BaseController {
 
 		// Check if book bal and bank balance matches
 		if($bankBalBD == $bkTotal){
-			$bankStmt = BankStatement::findOrfail($bnk_stmt_id);
-			$bankStmt->adj_bal_bd = $bkTotal;
-			$bankStmt->is_reconciled = 1;
-			$bankStmt->update();
+			if(DB::table('bank_statements')->where('id',$bnk_stmt_id)->count() > 0){
+				$bankStmt = DB::table('bank_statements')->where('id',$bnk_stmt_id)->first();
+				if($bankStmt->is_reconciled !== 1){
+					$bankStmt->adj_bal_bd = $bkTotal;
+					$bankStmt->is_reconciled = 1;
+					$bankStmt->update();
+				}
+			}
 		}
 
 		$lastRec = DB::table('bank_statements')

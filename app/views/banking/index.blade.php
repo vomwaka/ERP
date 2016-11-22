@@ -1,11 +1,11 @@
-@extends('layouts.accounting')
-@section('content')
-
 <?php
 	function asMoney($value) {
 	  return number_format($value, 2);
 	}
 ?>
+
+@extends('layouts.accounting')
+@section('content')
 
 <script type="text/javascript">
 	$("input.date-picker").click(function(){
@@ -64,13 +64,22 @@ BEGINNING OF PAGE
 	</div>	
 </div>
 
+<!-- SUCCESS MESSAGE -->
+@if(Session::has('success'))
+<div class="alert alert-success">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  {{ Session::get('success') }}<br>
+  {{ Session::forget('success') }}
+</div>
+@endif
+
 <div class="row">
 	<div class="col-lg-12">
 		<a href="{{{ URL::to('bankAccounts/create') }}}" class="btn btn-info btn-sm"><i class="fa fa-plus fa-fw"></i>&nbsp; Add Bank Account</a>
 		<hr>
 	</div>
 
-	<div class="col-lg-10">
+	<div class="col-lg-12">
 		@if(count($bnkAccount) > 0)
 		@foreach($bnkAccount as $account)
 			
@@ -115,9 +124,9 @@ BEGINNING OF PAGE
 			              </button>
 
 			              <ul class="dropdown-menu dropdown-menu-left" role="menu">
-			                  <li><a href="#uploadStatement" data-toggle="modal">Import Statement</a></li>
-			                  <li><a href="">Reconcile Account</a></li>
-			                  <li><a href="">Reconciliation Report</a></li>
+			                  <li><a href="#uploadStatement{{$account->id}}" data-toggle="modal">Upload Bank Statement</a></li>
+			                  <!-- <li><a href="">Reconcile Account</a></li>
+			                  <li><a href="">Reconciliation Report</a></li> -->
 			              </ul>
 			            </div>
 						</th>
@@ -135,11 +144,15 @@ BEGINNING OF PAGE
 						</h5></font>
 						</td>
 						<td colspan="2" style="vertical-align: middle; border: 1px solid #ddd !important;">
+							@if(count(BankAccount::getLastReconciliation($account->id)) > 0)
 							<a href="#viewHistory{{$account->id}}" class="btn btn-warning btn-sm" data-toggle="modal">View History</a>
+							@else
+							<a href="#viewHistory{{$account->id}}" class="btn btn-warning btn-sm disabled" data-toggle="modal">View History</a>
+							@endif
 						</td>
 
 						<!-- VIEW HISTORY MODAL -->
-						<div  id="viewHistory{{$account->id}}" class="modal fade">
+						<div id="viewHistory{{$account->id}}" class="modal fade">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 								<form action="{{ URL::to('bankAccounts/reconcile/'.$account->id) }}" method="GET" accept-charset="utf-8">

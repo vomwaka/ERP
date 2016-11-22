@@ -136,7 +136,7 @@ class ExpensesController extends \BaseController {
             ->decrement('accounts.balance', Input::get('amount'));
 		}
 
-		return Redirect::route('expenses.index')->withFlashMessage('Expense successfully updated!');;
+		return Redirect::route('expenses.index')->withFlashMessage('Expense successfully updated!');
 	}
 
 	/**
@@ -149,7 +149,7 @@ class ExpensesController extends \BaseController {
 	{
 		Expense::destroy($id);
 
-		return Redirect::route('expenses.index')->withDeleteMessage('Expense successfully deleted!');;
+		return Redirect::route('expenses.index')->withDeleteMessage('Expense successfully deleted!');
 	}
 
 }

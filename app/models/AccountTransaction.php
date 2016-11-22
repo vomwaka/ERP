@@ -14,6 +14,11 @@ class AccountTransaction extends Eloquent{
 		return $this->belongsTo('Account');
 	}
 
+	// Link with PettycashItem model
+	public function pettycashItem(){
+		return $this->hasMany('PettycashItem');
+	}
+
 	// Link bank account StmtTransaction Model
 	/*public function stmtTransaction(){
 		return $this->belongsTo('StmtTransaction');
@@ -29,5 +34,7 @@ class AccountTransaction extends Eloquent{
 		$acTr->account_credited = $data['credit_account'];
 		$acTr->transaction_amount = $data['amount'];
 		$acTr->save();
+
+		return $acTr->id;
 	}
 }

@@ -1,4 +1,4 @@
-@extends('layouts.erp')
+@extends('layouts.accounting')
 @section('content')
 
 <div class="row">

@@ -1,8 +1,5 @@
-
 <nav class="navbar-default navbar-static-side" id="wrap" role="navigation">
     
-           
-
 
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
@@ -12,14 +9,16 @@
                   <li>
                     <a href="{{ URL::to('items') }}"><i class="fa fa-barcode fa-fw"></i>Items</a>
                   </li>
+                  
+                  <li>
+                      <a href="{{ URL::to('accounts')}}">
+                          <i class="fa fa-calculator fa-fw"></i>  {{{ Lang::get('messages.nav.accounting') }}} 
+                      </a>
+                  </li>
 
                   <li>
                     <a href="{{ URL::to('clients') }}"><i class="fa fa-user fa-fw"></i>Clients / Supplier</a>
                   </li>  
-
-                  <li>
-                    <a href="{{ URL::to('expenses') }}"><i class="fa fa-list fa-fw"></i>Expenses</a>
-                  </li> 
                   
                   <li><a href="#"><i class="fa fa-th-large fa-fw"></i>Orders<i class="fa fa-caret-down fa-fw"></i></a>
                     <ul class="nav">

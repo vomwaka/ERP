@@ -29,6 +29,15 @@
                         
                     </li>
 
+                  <li>
+                    <a href="#"><i class="fa fa-list fa-fw"></i>Expenses<i class="fa fa-caret-down fa-fw"></i></a>
+                    <ul class="nav">
+                      <li><a href="{{ URL::to('expenses') }}"><i class="fa fa-money fa-fw"></i>Expenses</a></li>
+                      <li><a href="{{ URL::to('petty_cash') }}"><i class="fa fa-money fa-fw"></i>Petty Cash</a></li>
+                      <li><a href="{{ URL::to('expense_claims') }}"><i class="fa fa-money fa-fw"></i>Expense Claims</a></li>
+                    </ul>
+                  </li> 
+
                     <!--<li>
                         <a href="#"  >
                             <i class="fa fa-bank fa-lg"></i>  Bank Accounts <i class="fa fa-caret-down"></i>

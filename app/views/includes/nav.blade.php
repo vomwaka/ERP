@@ -39,103 +39,27 @@ onscroll="reset_interval()">
 
                 <li>
                     <a  href="{{ URL::to('erpmgmt')}}">
-                        <i class="fa fa-home fa-fw"></i>  {{{ Lang::get('messages.nav.dashboard') }}}
-                    </a>
-                    
-                </li>
-
-<!--
-                <li  >
-                    <a  href="{{ URL::to('payrollmgmt')}}">
-                        <i class="fa fa-file fa-fw"></i>  {{{ Lang::get('messages.nav.payroll') }}}
-                    </a>
-                    
-                </li>
-
-
-                <li  >
-                    <a  href="{{ URL::to('leavemgmt')}}">
-                        <i class="fa fa-list fa-fw"></i>  {{{ Lang::get('messages.nav.leave') }}}
-                    </a>
-                    
-                </li>
-
-
-
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-file fa-fw"></i>  {{{ Lang::get('messages.nav.payroll_leave') }}} <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-
-                        <li  >
-                    <a  href="{{ URL::to('payrollmgmt')}}">
-                        <i class="fa fa-file fa-fw"></i>  {{{ Lang::get('messages.nav.payroll') }}}
-                    </a>
-                    
-                </li>
-
-                       
-                        <li class="divider"></li>
-                        <li  >
-                    <a  href="{{ URL::to('leavemgmt')}}">
-                        <i class="fa fa-list fa-fw"></i>  {{{ Lang::get('messages.nav.leave') }}}
-                    </a>
-                    
-                </li>
-
-                       
-
-                        
-                        
-                    </ul>
-                    <!-- /.dropdown-user
-                </li>
-                <!-- /.dropdown -->
-
-
-                 
-<!--
-                <li  >
-                    <a  href="{{ URL::to('erpmgmt')}}">
-                        <i class="fa fa-tasks fa-fw"></i>  {{{ Lang::get('messages.nav.erp') }}}
-                    </a>
-                    
-                </li>
-                -->
-
-<!--
-
-                <li  >
-                    <a  href="{{ URL::to('cbsmgmt')}}">
-                        <i class="fa fa-qrcode fa-fw"></i>  {{{ Lang::get('messages.nav.cbs') }}}
-                    </a>
-                    
-                </li>
-
--->
-
-                 
-
-                 <li  >
-                    <a  href="{{ URL::to('accounts')}}">
-                        <i class="fa fa-calculator fa-fw"></i>  {{{ Lang::get('messages.nav.accounting') }}} 
+                        <!-- <i class="fa fa-home fa-fw"></i> -->  {{{ Lang::get('messages.nav.home') }}}<br>
+                        <!-- <span class="sub-link">WELCOME</span> -->
                     </a>
                     
                 </li>
 
                 
-               <li class="dropdown" >
+                <li class="dropdown" >
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-cogs fa-fw"></i>  {{{ Lang::get('messages.nav.administration') }}} <i class="fa fa-caret-down"></i>
+                        <!-- <i class="fa fa-cogs fa-fw"></i> -->  {{{ Lang::get('messages.nav.administration') }}} <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="{{ URL::to('organizations') }}"><i class="fa fa-home fa-fw"></i>  Organization</a>
                              <!--<li class="divider"></li>-->
                        
-                        <li><a href="{{ URL::to('system') }}"><i class="fa fa-sign-out fa-fw"></i> System</a>
+                        <li><a href="{{ URL::to('system') }}"><i class="fa fa-sign-out fa-fw"></i> System</a></li>
+                        <li>
+                            <a href="{{ URL::to('accounts')}}">
+                                <i class="fa fa-calculator fa-fw"></i>  {{{ Lang::get('messages.nav.accounting') }}} 
+                            </a>
                         </li>
-                        
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -145,13 +69,11 @@ onscroll="reset_interval()">
                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  {{ Confide::user()->username}} <i class="fa fa-caret-down"></i>
+                        <!-- <i class="fa fa-user fa-fw"></i> -->  {{ Confide::user()->username}} <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="{{ URL::to('users/profile/'.Confide::user()->id ) }}"><i class="fa fa-user fa-fw"></i>  Profile</a>
                         </li>
-
-                       
                         <!--<li class="divider"></li>-->
                         <li><a href="{{ URL::to('users/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -163,10 +85,7 @@ onscroll="reset_interval()">
 
 
                 <li>
-
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-
-
                         @if (Session::get('lang') == 'ks')
                             Kiswahili
                         @elseif (Session::get('lang') == 'en')

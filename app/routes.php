@@ -166,6 +166,23 @@ Route::get('expenses/edit/{id}', 'ExpensesController@edit');
 Route::post('expenses/update/{id}', 'ExpensesController@update');
 Route::get('expenses/delete/{id}', 'ExpensesController@destroy');
 
+
+/* PETTY CASH ROUTES */
+Route::resource('petty_cash', 'PettyCashController');
+Route::post('petty_cash/addMoney', 'PettyCashController@addMoney');
+Route::post('petty_cash/addContribution', 'PettyCashController@addContribution');
+Route::post('petty_cash/newTransaction', 'PettyCashController@newTransaction');
+Route::post('petty_cash/commitTransaction', 'PettyCashController@commitTransaction');
+Route::get('petty_cash/transaction/{id}', 'PettyCashController@receiptTransactions');
+
+// Edit and delete petty cash items
+Route::get('petty_cash/newTransaction/remove/{count}', 'PettyCashController@removeTransactionItem');
+
+
+/* EXPENSE CLAIMS ROUTES */
+Route::resource('expense_claims', 'ExpenseClaimController');
+
+
 Route::resource('paymentmethods', 'PaymentmethodsController');
 Route::get('paymentmethods/edit/{id}', 'PaymentmethodsController@edit');
 Route::post('paymentmethods/update/{id}', 'PaymentmethodsController@update');
@@ -175,8 +192,6 @@ Route::resource('payments', 'PaymentsController');
 Route::get('payments/edit/{id}', 'PaymentsController@edit');
 Route::post('payments/update/{id}', 'PaymentsController@update');
 Route::get('payments/delete/{id}', 'PaymentsController@destroy');
-
-
 
 
 
@@ -2461,9 +2476,9 @@ Route::post('orderitems/edit/{count}', function($sesItemID){
  * Deleting an order item session item
  */
 Route::get('orderitems/remove/{count}', function($count){
-  $items = Session::get('orderitems');
-  unset($items[$count]);
-  $newItems = array_values($items);
+  $item = Session::get('orderitems');
+  unset($item[$count]);
+  $newItems = array_values($item);
   Session::put('orderitems', $newItems);
 
 
