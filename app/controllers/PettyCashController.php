@@ -1,8 +1,5 @@
 <?php
 
-use Journal;
-use AccountTransaction;
-
 class PettyCashController extends BaseController{
 
 	/**
