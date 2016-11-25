@@ -111,6 +111,7 @@
 						<span class="sr-only">Close</span>
 					</button>
 					<h4 class="modal-title"><font color="green">Owner's Contribution to Petty Cash</font></h4>
+					<p><font color="red">Please create owner's contribution account first as a liability.</font></p>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">

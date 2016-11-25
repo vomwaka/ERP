@@ -140,7 +140,7 @@ class BankAccountController extends \BaseController {
 
 				      //return $destination;
 				      $fileName = 'bnkStatement';
-				      $fileName = $fileName.'_'.$stmt_month;
+				      $fileName = $fileName.$stmt_month.'_'.$stmt_month;
 				      //$fileName = $fileName.'_'.date('m-Y');
 				      $ext = $csv_file->getClientOriginalExtension();
 				      $file = $fileName.'.'.$ext;
@@ -219,6 +219,7 @@ class BankAccountController extends \BaseController {
 		$ac_stmt_id = Input::get('book_account_id');
 		$rec_month = Input::get('rec_month');
 		$rec_month;
+		$bstmtid = BankStatement::where('bank_account_id', $bnk_stmt_id)->pluck('id');
 
 		$bnkAccount = DB::table('bank_accounts')
 							->join('bank_statements','bank_accounts.id','=','bank_statements.bank_account_id')
@@ -237,7 +238,7 @@ class BankAccountController extends \BaseController {
 							->get();
 
 		$stmt_transactions = DB::table('stmt_transactions')
-									->where('stmt_transactions.bank_statement_id', $bnk_stmt_id)
+									->where('stmt_transactions.bank_statement_id', $bstmtid)
 									->where('stmt_transactions.status', '<>', 'RECONCILED')
 									->select('*')
 									->get();

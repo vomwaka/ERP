@@ -284,7 +284,7 @@ BEGINNING OF PAGE
 						            <label for="username">Statement Month</label>
 						            <div class="right-inner-addon ">
 					               	<i class="glyphicon glyphicon-calendar"></i>
-					               	<input class="form-control input-sm datepicker2"  readonly="readonly" type="text" name="stmt_month" id="date" value="{{date('M-Y')}}">
+					               	<input class="form-control input-sm datepicker2"  readonly="readonly" type="text" name="stmt_month" id="date" value="{{date('m-Y', strtotime('-1 month'))}}">
 						            </div>
 						         </div>
 									<div class="form-group">

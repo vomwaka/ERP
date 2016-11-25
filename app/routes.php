@@ -181,8 +181,20 @@ Route::get('petty_cash/newTransaction/remove/{count}', 'PettyCashController@remo
 
 /* EXPENSE CLAIMS ROUTES */
 Route::resource('expense_claims', 'ExpenseClaimController');
+Route::get('expense_claims/newReceipt', 'ExpenseClaimController@show');
+Route::get('expense_claims/editReceipt/{id}', 'ExpenseClaimController@edit');
+Route::post('expense_claims/newItem', 'ExpenseClaimController@addReceiptItem');
+Route::get('expense_claims/newReceipt/remove/{count}', 'ExpenseClaimController@removeItem');
+Route::post('expense_claims/commitTransaction', 'ExpenseClaimController@commitTransaction');
+Route::post('expense_claims/submitClaim', 'ExpenseClaimController@submitClaim');
+Route::get('expense_claims/approveClaim/{id}', 'ExpenseClaimController@approveClaimView');
+Route::get('expense_claims/approve/{id}', 'ExpenseClaimController@approveClaim');
+Route::get('expense_claims/payClaim/{id}', 'ExpenseClaimController@payClaimView');
+Route::post('expense_claims/payClaim', 'ExpenseClaimController@payClaim');
 
 
+
+/* PAYMENT METHODS */
 Route::resource('paymentmethods', 'PaymentmethodsController');
 Route::get('paymentmethods/edit/{id}', 'PaymentmethodsController@edit');
 Route::post('paymentmethods/update/{id}', 'PaymentmethodsController@update');

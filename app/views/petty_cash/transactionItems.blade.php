@@ -66,12 +66,12 @@
 
 				<div class="form-group">
 					<label>Quantity <span style="color:red">*</span>:</label><br>
-					<input type="text" class="form-control input-sm" name="qty" placeholder="Item Quantity">
+					<input type="text" class="form-control input-sm" name="qty" placeholder="Item Quantity" required>
 				</div>&emsp;&nbsp;
 
 				<div class="form-group">
 					<label>Unit Price <span style="color:red">*</span>:</label><br>
-					<input type="text" class="form-control input-sm" name="unit_price" placeholder="Unit Price">
+					<input type="text" class="form-control input-sm" name="unit_price" placeholder="Unit Price" required>
 				</div>&emsp;&nbsp;
 
 				<div class="form-group">
