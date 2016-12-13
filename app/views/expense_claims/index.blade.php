@@ -72,7 +72,8 @@ $(document).ready(function(){
 			<li class="active"><a data-toggle="tab" href="#claimReceipts">Claim Receipts</a></li>
 			<li><a data-toggle="tab" href="#awaitingAuthorization">Awaiting Authorization ({{count($waitingClaims)}})</a></li>
 			<li><a data-toggle="tab" href="#awaitingPayment">Awaiting Payment ({{count($paymentClaims)}})</a></li>
-			<li><a data-toggle="tab" href="#completedClaims">Completed Claims ({{count($completedClaims)}})</a></li>
+			<li><a data-toggle="tab" href="#completedClaims">Settled Claims ({{count($settledClaims)}})</a></li>
+			<li><a data-toggle="tab" href="#declinedClaims">Declined Claims ({{count($declinedClaims)}})</a></li>
 		</ul>
 
 		<!-- TAB CONTENT -->
@@ -214,21 +215,56 @@ $(document).ready(function(){
 					</thead>
 					<tbody>
 						<?php $count=1 ?>
-						@if(count($completedClaims) > 0)
-						@foreach($completedClaims as $completedClaim)
+						@if(count($settledClaims) > 0)
+						@foreach($settledClaims as $settledClaim)
 						<tr>
 							<td>{{ $count }}</td>
-							<td>{{ $completedClaim->claimer }}</td>
-							<td>{{ date('M d, Y', strtotime($completedClaim->updated_at)) }}</td>
-							<td>{{ ClaimReceipt::getReceipt($completedClaim->id)->receipts }}</td>
-							<td>{{ asMoney(ClaimReceiptItem::getTotals(ClaimReceipt::getId($completedClaim->id))->grand) }}</td>
+							<td>{{ $settledClaim->claimer }}</td>
+							<td>{{ date('M d, Y', strtotime($settledClaim->updated_at)) }}</td>
+							<td>{{ ClaimReceipt::getReceipt($settledClaim->id)->receipts }}</td>
+							<td>{{ asMoney(ClaimReceiptItem::getTotals(ClaimReceipt::getId($settledClaim->id))->grand) }}</td>
 						</tr>
 						<?php $count++ ?>
 						@endforeach
 						@endif
 					</tbody>
 				</table>
-			</div>
+			</div><!-- ./COMPLETED & SETTLED CLAIMS -->
+
+
+			<!-- DECLINED CLAIMS -->
+			<div id="declinedClaims" class="tab-pane fade in">
+				<table class="table table-condensed table-bordered table-responsive table-hover users">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Name (Claimer)</th>
+							<th>Date Submitted</th>
+							<th>Receipts</th>
+							<th>Total</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $count=1 ?>
+						@if(count($declinedClaims) > 0)
+						@foreach($declinedClaims as $declinedClaim)
+						<tr>
+							<td>{{ $count }}</td>
+							<td>{{ $declinedClaim->claimer }}</td>
+							<td>{{ date('M d, Y', strtotime($declinedClaim->date_submitted)) }}</td>
+							<td>{{ ClaimReceipt::getReceipt($declinedClaim->id)->receipts }}</td>
+							<td>{{ asMoney(ClaimReceiptItem::getTotals(ClaimReceipt::getId($declinedClaim->id))->grand) }}</td>
+							<td>
+								<a href="{{ URL::to('expense_claims/approveClaim/'.$declinedClaim->id) }}" class="btn btn-info btn-sm">View Claim</a>
+							</td>
+						</tr>
+						<?php $count++ ?>
+						@endforeach
+						@endif
+					</tbody>
+				</table>
+			</div><!-- ./DECLINED CLAIMS -->
 
 		</div>
 	</div>

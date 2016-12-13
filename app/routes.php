@@ -189,9 +189,13 @@ Route::post('expense_claims/commitTransaction', 'ExpenseClaimController@commitTr
 Route::post('expense_claims/submitClaim', 'ExpenseClaimController@submitClaim');
 Route::get('expense_claims/approveClaim/{id}', 'ExpenseClaimController@approveClaimView');
 Route::get('expense_claims/approve/{id}', 'ExpenseClaimController@approveClaim');
+Route::get('expense_claims/decline/{id}', 'ExpenseClaimController@declineClaim');
 Route::get('expense_claims/payClaim/{id}', 'ExpenseClaimController@payClaimView');
 Route::post('expense_claims/payClaim', 'ExpenseClaimController@payClaim');
 
+
+/* ASSET MANAGEMENT */
+Route::resource('assetManagement', 'AssetMgmtController');
 
 
 /* PAYMENT METHODS */

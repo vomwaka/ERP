@@ -14,11 +14,12 @@ class ExpenseClaimController extends \BaseController {
 
 		$waitingClaims = ExpenseClaim::where('status', 'New')->get();
 		$paymentClaims = ExpenseClaim::where('status', 'Approved')->get();
-		$completedClaims = ExpenseClaim::where('status', 'Payed')->get();
+		$settledClaims = ExpenseClaim::where('status', 'Payed')->get();
+		$declinedClaims = ExpenseClaim::where('status', 'Declined')->get();
 
 		$receipts = ClaimReceipt::where('status', 'New')->get();
 
-		return View::make('expense_claims.index', compact('receipts', 'waitingClaims', 'paymentClaims', 'completedClaims'));
+		return View::make('expense_claims.index', compact('receipts', 'waitingClaims', 'paymentClaims', 'settledClaims', 'declinedClaims'));
 	}
 
 
@@ -227,6 +228,17 @@ class ExpenseClaimController extends \BaseController {
 		ExpenseClaim::where('id', $id)->update(array('status'=>'Approved'));
 
 		return Redirect::action('ExpenseClaimController@index')->with('success', 'Claim successfully Approved, Awaiting payment.');
+	}
+
+
+	/**
+	 * DECLINED CLAIM
+	 */
+	public function declineClaim($id){
+		ClaimReceipt::where('claim_id', $id)->update(array('status'=>'Declined'));
+		ExpenseClaim::where('id', $id)->update(array('status'=>'Declined'));
+
+		return Redirect::action('ExpenseClaimController@index')->with('error', 'Claim Declined!!!');
 	}
 
 
