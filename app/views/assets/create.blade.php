@@ -8,9 +8,7 @@
 @section('content')
 
 <style type="text/css" media="screen">
-	hr{
-		border-color: #fff !important;
-	}	
+	//hr{ border-color: #fff !important; }	
 </style>
 
 <div class="row">
@@ -20,7 +18,7 @@
 </div>
 
 <div class="row">
-	<div class="col-lg-12" style="background: #E1F5FE">
+	<div class="col-lg-12">
 		<form class="form-inline" role="form" action="{{ URL::to('assetManagement') }}" method="POST">
 			<h4 style="color: #0BAEED">Asset Details</h4><hr>
 			<div class="form-group">
@@ -62,12 +60,12 @@
 				<input type="text" class="form-control input-sm" name="serialNumber" placeholder="Serial Number">
 			</div><br><br>
 
-			<div class="form-group">
+			<!-- <div class="form-group">
 				<label>Asset Type</label><br>
 				<select class="form-control input-sm" name="assetType" style="width: 300px">
 					<option value="">-- No Asset type available --</option>
 				</select>
-			</div><br><br>
+			</div><br><br> -->
 			<hr><!-- ===================================== -->
 
 			<h4 style="color: #0BAEED">Book Value</h4><hr>
@@ -80,32 +78,40 @@
 			</div><br><br>
 
 			<div class="form-group">
-				<label>Depreciation Method</label><br>
+				<label>Depreciation Method: </label><br>
 				<select class="form-control input-sm" name="depreciationMethod" style="width: 300px">
 					<option value="">-- No Depreciation --</option>
-					<option value="">Straight-Line Method</option>
-					<option value="">Sum of Years Digits</option>
-					<option value="">-- No Depreciation --</option>
+					<option value="SL">Straight-Line Method</option>
+					<option value="SY">Sum of Years Digits</option>
+					<option value="DB">Declining Balance</option>
 				</select>
 			</div>&emsp;
 
 			<div class="form-group">
-				<label>Averaging Method</label><br>
+				<label>First Year Averaging Method: </label><br>
 				<select class="form-control input-sm" name="averagingMethod" style="width: 300px">
-					<option value=""></option>
+					<option value="FULLMO">Full Month</option>
+					<option value="HALFYR">Half Year</option>
+					<option value="MIDMO">Mid Month</option>
+					<option value="MIDQ">Mid Quarter</option>
 				</select>
+			</div>&emsp;
+
+			<div class="form-group">
+				<label>Salvage Value: </label><br>
+				<input type="text" name="salvage_value" class="form-control input-sm" placeholder="{{ asMoney(0) }}">
 			</div><br><br>
 
 			<div class="form-group">
-				<label>Rate(%): </label><br>
-				<input type="radio" class="form-control input-sm" name="method" checked>
-				<input type="text" class="form-control input-sm" name="rate" placeholder="{{ asMoney(0) }}" style="width: 150px"> 
+				<label>Annual Rate(%): </label><br>
+				<input type="radio" class="form-control input-sm" name="method" id="rateRadio" checked>
+				<input type="text" class="form-control input-sm" name="rate" id="rate" placeholder="{{ asMoney(0) }}" style="width: 150px"> 
 			</div>&emsp;
 
 			<div class="form-group">
-				<label>Effective Life Years: </label><br>
-				<input type="radio" class="form-control input-sm" name="method">
-				<input type="text" class="form-control input-sm" name="lifeYears" placeholder="" style="width: 150px"> 
+				<label>Useful Life (Years): </label><br>
+				<input type="radio" class="form-control input-sm" name="method" id="rateYears">
+				<input type="text" class="form-control input-sm" name="lifeYears" id="lifeYears" placeholder="" style="width: 150px" disabled>   
 			</div><hr>
 			
 			<div class="col-lg-12 form-group text-right">
@@ -116,5 +122,23 @@
 		</form>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#rateRadio').on('click', function(){
+			$('#rateRadio').prop('checked', true);
+			$('#lifeYears').prop('checked', false);
+			$('#rate').prop('disabled', false);
+			$('#lifeYears').prop('disabled', true);
+		});
+
+		$('#rateYears').on('click', function(){
+			$('#rateYears').prop('checked', true);
+			$('#rateRadio').prop('checked', false);
+			$('#lifeYears').prop('disabled', false);
+			$('#rate').prop('disabled', true);
+		});
+	});
+</script>
 
 @stop
