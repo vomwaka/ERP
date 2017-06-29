@@ -53,6 +53,17 @@
                         </select>
         </div>
 
+        <div class="form-group">
+            <label for="username">Stations <span style="color:red">*</span> :</label>
+            <select name="station" class="form-control" required>
+            <option>.............................Select Station 
+            Name........................</option>
+                @foreach($stations as $station)
+                <option value="{{$station->id}}">{{$station->station_name}}</option>
+                @endforeach               
+            </select>
+          </div>
+
          <div class="form-group">
                         <label for="username">Date</label><span style="color:red">*</span> :
                         <div class="right-inner-addon ">

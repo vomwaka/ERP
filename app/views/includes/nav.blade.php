@@ -45,6 +45,24 @@ onscroll="reset_interval()">
                     
                 </li>
 
+                <li class="dropdown" >
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <!-- <i class="fa fa-cogs fa-fw"></i> -->  Modules <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="{{ URL::to('hrdashboard') }}"><i class="fa fa-user fa-fw"></i>  HUMAN RESOURCE</a>
+                             <!--<li class="divider"></li>-->
+                       
+                        <li><a href="{{ URL::to('payrollmgmt') }}"><i class="fa fa-calculator fa-fw"></i> PAYROLL</a></li>
+                        <li>
+                            <a href="{{ URL::to('erpmgmt')}}">
+                                <i class="fa fa-random fa-fw"></i>  ERP
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+
                 
                 <li class="dropdown" >
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">

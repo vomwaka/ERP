@@ -17,6 +17,7 @@ class CreateXCurrenciesTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->string('shortname');
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

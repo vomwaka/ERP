@@ -17,6 +17,7 @@ class CreateXUserRoleTable extends Migration {
 			$table->integer('id')->primary();
 			$table->integer('user_id')->unsigned()->nullable()->index('user_id');
 			$table->integer('role_id')->unsigned()->nullable()->index('x_user_role_fk1');
+			$table->integer('organization_id')->nullable();
 		});
 	}
 

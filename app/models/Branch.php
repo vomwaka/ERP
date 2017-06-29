@@ -16,10 +16,20 @@ class Branch extends \Eloquent {
 		return $this->hasMany('Member');
 	}
 
+	public function employee(){
+
+		return $this->hasMany('Employee');
+	}
+
 
 	public function journals(){
 
 		return $this->hasMany('Journal');
 	}
 
+public static function getName($id){
+
+$branch = Branch::find($id);
+return $branch->name;
+}
 }

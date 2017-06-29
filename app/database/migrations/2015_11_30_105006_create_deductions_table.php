@@ -16,7 +16,7 @@ class CreateDeductionsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('deduction_name');
-			$table->integer('organization_id')->unsigned()->default('0')->index('deductions_organization_id_foreign');
+			$table->integer('organization_id')->unsigned()->default('0')->index('deductions_organization_id_foreign')->nullable();
 			$table->timestamps();
 		});
 

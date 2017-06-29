@@ -44,7 +44,7 @@
                     </li> 
 
                     <li>
-                        <a href="{{ URL::to('erpReports/stocks') }}" target="_blank"><i class="glyphicon glyphicon-file fa-fw"></i> Stock Report</a>
+                        <a href="{{ URL::to('erpReports/selectStockPeriod') }}" target="_blank"><i class="glyphicon glyphicon-file fa-fw"></i> Stock Report</a>
                     </li>  
 
                     <li>
@@ -57,7 +57,12 @@
 
                      <li>
                         <a href="{{ URL::to('financialreports') }}"><i class="glyphicon glyphicon-file fa-fw"></i> Financial Reports</a>
-                    </li>  
+                    </li> 
+
+                     <li>
+                        <a href="{{ URL::to('erpReports/claims') }}"><i class="glyphicon glyphicon-file fa-fw"></i> Claims Reports</a>
+                    </li> 
+
 
                     
                 </ul>

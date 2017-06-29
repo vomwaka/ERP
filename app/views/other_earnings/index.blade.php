@@ -1,3 +1,11 @@
+<?php
+
+function asMoney($value) {
+  return number_format($value, 2);
+}
+
+?>
+
 @extends('layouts.payroll')
 @section('content')
 
@@ -12,6 +20,20 @@
 
 <div class="row">
 	<div class="col-lg-12">
+
+ @if (Session::has('flash_message'))
+
+      <div class="alert alert-success">
+      {{ Session::get('flash_message') }}
+     </div>
+    @endif
+
+     @if (Session::has('delete_message'))
+
+      <div class="alert alert-danger">
+      {{ Session::get('delete_message') }}
+     </div>
+    @endif
 
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -32,6 +54,9 @@
         <th>Action</th>
 
       </thead>
+
+      
+
       <tbody>
 
         <?php $i = 1; ?>
@@ -40,9 +65,13 @@
         <tr>
 
           <td> {{ $i }}</td>
-          <td>{{ $earning->employee->first_name.' '.$earning->employee->last_name }}</td>
-          <td>{{ $earning->earnings_name }}</td>
-          <td>{{ $earning->earnings_amount }}</td>
+          @if($earning->middle_name == null || $earning->middle_name == '')
+          <td>{{ $earning->first_name.' '.$earning->last_name }}</td>
+          @else
+          <td>{{ $earning->first_name.' '.$earning->middle_name.' '.$earning->last_name }}</td>
+          @endif
+          <td>{{ $earning->earning_name }}</td>
+          <td align="right">{{ asMoney((double)$earning->earnings_amount) }}</td>
           <td>
 
                   <div class="btn-group">
@@ -51,9 +80,11 @@
                   </button>
           
                   <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{URL::to('other_earnings/view/'.$earning->id)}}">View</a></li>
+
                     <li><a href="{{URL::to('other_earnings/edit/'.$earning->id)}}">Update</a></li>
                    
-                    <li><a href="{{URL::to('other_earnings/delete/'.$earning->id)}}">Delete</a></li>
+                    <li><a href="{{URL::to('other_earnings/delete/'.$earning->id)}}" onclick="return (confirm('Are you sure you want to delete this employee`s earning?'))">Delete</a></li>
                     
                   </ul>
               </div>

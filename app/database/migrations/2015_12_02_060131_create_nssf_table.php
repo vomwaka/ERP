@@ -20,7 +20,7 @@ class CreateNssfTable extends Migration {
 			$table->double('income_to',15,2)->default('0.00');
 			$table->double('ss_amount_employee',15,2)->default('0.00');
 			$table->double('ss_amount_employer',15,2)->default('0.00');
-			$table->integer('organization_id');
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 

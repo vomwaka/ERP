@@ -18,6 +18,7 @@ class CreatePaymentmethodsTable extends Migration {
 			$table->string('name');
 			$table->integer('account_id')->unsigned();
 			$table->foreign('account_id')->references('id')->on('accounts');
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

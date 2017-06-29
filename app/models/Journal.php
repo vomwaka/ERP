@@ -10,31 +10,24 @@ class Journal extends \Eloquent {
 	// Don't forget to fill this array
 	protected $fillable = [];
 
-
-
 	public function branch(){
-
 		return $this->belongsTo('Branch');
 	}
 
 
 	public function account(){
-
 		return $this->belongsTo('Account');
 	}
-
 
 
 
 	/**
 	* function fo journal entries
 	*/
-
 	public  function journal_entry($data){
 
 
 		$trans_no = $this->getTransactionNumber();
-
 
 		// function for crediting
 

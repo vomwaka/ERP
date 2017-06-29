@@ -27,6 +27,19 @@
    
     <fieldset>
 
+    
+        <div class="form-group">
+            <label for="username">Stations <span style="color:red">*</span> :</label>
+            <select name="location" class="form-control" required>
+            <option> select station ... </option>
+            <option></option>
+            <option value="all">All Stations</option>
+                @foreach($stations as $station)
+                <option value="{{$station->id}}">{{$station->station_name}}</option>
+                @endforeach               
+            </select>
+        </div>
+
         <div class="form-group">
                         <label for="username">From<span style="color:red">*</span></label>
                         <div class="right-inner-addon ">

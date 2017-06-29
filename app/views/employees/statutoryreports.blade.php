@@ -16,15 +16,23 @@
     <ul>
 
        <li>
-            <a href="{{ URL::to('payrollReports/selectNssfPeriod') }}" target="_blank"> NSSF Returns</a>
+            <a href="{{ URL::to('payrollReports/selectNssfPeriod') }}"> NSSF Returns</a>
        </li>
 
        <li>
-          <a href="{{ URL::to('payrollReports/selectNhifPeriod') }}" target="_blank">NHIF Returns</a>
+          <a href="{{ URL::to('payrollReports/selectNhifPeriod') }}">NHIF Returns</a>
        </li>
 
        <li>
-          <a href="{{ URL::to('payrollReports/selectPayePeriod') }}" target="_blank">PAYE Returns</a>
+          <a href="{{ URL::to('payrollReports/selectPayePeriod') }}">PAYE Returns</a>
+       </li>
+
+       <li>
+          <a href="{{ URL::to('payrollReports/selectYear') }}">P9 Form</a>
+       </li>
+
+       <li>
+          <a href="{{ URL::to('itax/download') }}">Download Itax Template</a>
        </li>
 
        <li>

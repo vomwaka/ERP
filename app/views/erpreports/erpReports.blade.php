@@ -88,6 +88,9 @@
       <li>
         <a href="reports/blank" target="_blank">Blank report template</a>
       </li>
+      <li>
+        <a href="reports/blank" target="_blank">Claims Reports</a>
+      </li>
     </ul>
 
   </div>

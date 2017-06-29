@@ -24,6 +24,7 @@ class CreatePaymentsTable extends Migration {
 			$table->string('received_by')->nullable();
 			$table->integer('paymentmethod_id')->unsigned();
 			$table->foreign('paymentmethod_id')->references('id')->on('paymentmethods');
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

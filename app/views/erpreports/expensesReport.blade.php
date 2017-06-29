@@ -117,7 +117,8 @@ body {
 
         <th width='20'><strong># </strong></th>
         <th><strong>Date</strong></th>
-        <th><strong>Name </strong></th>        
+        <th><strong>Name </strong></th> 
+        <th><strong>Station</strong></th>       
         <th><strong>Ref. No</strong></th>
         <th><strong>Amount</strong></th>
         <!-- <th><strong>account </strong></th> -->
@@ -131,7 +132,8 @@ body {
 
        <td td width='20' valign="top">{{$i}}</td>
         <td> {{ $expense->date }}</td>
-        <td> {{ $expense->name }}</td>        
+        <td> {{ $expense->name }}</td>
+        <td> {{ $expense->station->station_name }} </td>        
         <td> {{ $expense->ref_no }}</td>
         <td> {{ asMoney($expense->amount) }}</td>
         <!-- <td> {{ $expense->account->name }}</td> -->        
@@ -146,10 +148,11 @@ body {
     <td >  </td>
     <td >  </td>
     <td >  </td>
+    <td >  </td>
 
     </tr>
     <tr>
-    <td colspan="3"></td>
+    <td colspan="4"></td>
     
     
     

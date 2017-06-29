@@ -45,8 +45,9 @@ class CreateEmployeeTable extends Migration {
 			$table->integer('hospital_insurance_applicable')->default('0');
 			$table->integer('social_security_applicable')->default('0');
             $table->string('mode_of_payment',15)->nullable();
-            $table->integer('bank_id')->unsigned()->default('0')->index('employee_bank_id_foreign');
-            $table->integer('bank_branch_id')->default('0');
+            $table->integer('bank_id')->unsigned()->default('0')->index('employee_bank_id_foreign')->nullable();
+            $table->integer('bank_branch_id')->nullable();
+            $table->integer('citizenship_id')->nullable();
             $table->string('bank_account_number',30)->nullable()->unique();
             $table->string('bank_eft_code',30)->nullable()->unique();
             $table->string('swift_code',30)->nullable()->unique();
@@ -78,6 +79,8 @@ class CreateEmployeeTable extends Migration {
             $table->string('custom_field2',30)->nullable();
             $table->string('custom_field3',30)->nullable();
             $table->string('custom_field4',30)->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             //$table->integer('user_id')->unsigned()->default('0')->index('employee_user_id_foreign');
 			$table->char('in_employment',1)->default('Y');
 			//$table->unique(['personal_file_number','email_personal','email_office','identity_number','passport_number','pin','social_security_number','hospital_insurance_number','telephone_mobile','telephone_office','telephone_extension_office','work_permit_number','bank_eft_code','bank_account_number','swift_code']);

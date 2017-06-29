@@ -16,7 +16,7 @@ class CreateEducationTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('education_name');
-			$table->integer('organization_id')->unsigned()->default('0')->index('education_organization_id_foreign');
+			$table->integer('organization_id')->unsigned()->default('0')->index('education_organization_id_foreign')->nullable();
 			$table->timestamps();
 		});
 

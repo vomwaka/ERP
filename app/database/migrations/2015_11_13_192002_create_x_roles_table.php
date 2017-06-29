@@ -16,6 +16,7 @@ class CreateXRolesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name')->unique('roles_name_unique');
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

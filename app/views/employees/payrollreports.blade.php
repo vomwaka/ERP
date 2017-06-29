@@ -1,4 +1,4 @@
-@extends('layouts.pay_ports')
+@extends('layouts.portspay')
 @section('content')
 
 <div class="row">
@@ -16,28 +16,40 @@
     <ul>
 
        <li>
-            <a href="{{ URL::to('payrollReports/selectPeriod') }}" target="_blank"> Monthly Payslips</a>
+            <a href="{{ URL::to('payrollReports/selectPeriod') }}"> Monthly Payslips</a>
        </li>
 
        <li>
-          <a href="{{ URL::to('payrollReports/selectSummaryPeriod') }}" target="_blank">Payroll Summary</a>
+          <a href="{{ URL::to('payrollReports/selectSummaryPeriod') }}">Payroll Summary</a>
        </li>
 
        <li>
-          <a href="{{ URL::to('payrollReports/selectRemittancePeriod') }}" target="_blank">Pay Remittance</a>
+          <a href="{{ URL::to('payrollReports/selectRemittancePeriod') }}">Pay Remittance</a>
        </li>
+
+       <li>
+          <a href="{{ URL::to('payrollReports/selectEarning') }}"> Earning Report</a>
+       </li> 
+
+       <li>
+          <a href="{{ URL::to('payrollReports/selectOvertime') }}"> Overtime Report</a>
+       </li> 
     
        <li>
-          <a href="{{ URL::to('payrollReports/selectAllowance') }}" target="_blank"> Allowance Report</a>
+          <a href="{{ URL::to('payrollReports/selectAllowance') }}"> Allowance Report</a>
        </li>  
 
        <li>
-         <a href="{{ URL::to('payrollReports/selectDeduction') }}" target="_blank"> Deduction Report</a>     
+          <a href="{{ URL::to('payrollReports/selectnontaxableincome') }}" >Non Taxable Income Report</a>
+       </li> 
+
+       <li>
+          <a href="{{ URL::to('payrollReports/selectRelief') }}"> Relief Report</a>
        </li>  
 
        <li>
-        <a href="reports/blank" target="_blank">Blank report template</a>
-      </li>
+         <a href="{{ URL::to('payrollReports/selectDeduction') }}"> Deduction Report</a>     
+       </li>  
     </ul>
 
   </div>

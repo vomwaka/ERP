@@ -19,7 +19,7 @@ public static $rules = [
 		'employee' => 'required',
 		'deduction' => 'required',
 		'formular' => 'required',
-		'amount' => 'required|regex:/^\d+(\.\d{2})?$/',
+		'amount' => 'required|regex:/^(\$?(?(?=\()(\())\d+(?:,\d+)?(?:\.\d+)?(?(2)\)))$/',
 		'ddate' => 'required',
 	];
 

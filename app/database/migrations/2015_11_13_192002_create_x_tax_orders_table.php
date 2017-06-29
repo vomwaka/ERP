@@ -18,6 +18,7 @@ class CreateXTaxOrdersTable extends Migration {
 			$table->integer('tax_id')->nullable();
 			$table->string('order_number')->nullable();
 			$table->double('amount',15,2)->nullable();
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

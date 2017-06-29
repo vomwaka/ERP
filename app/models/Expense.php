@@ -23,5 +23,11 @@ class Expense extends \Eloquent {
 	public function account(){
 		return $this->belongsTo('Account');
 	}
+	
+	public function station(){
+		return $this->belongsTo('Stations');
+	}
+	
+
 
 }

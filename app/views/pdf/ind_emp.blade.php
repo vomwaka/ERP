@@ -1,4 +1,4 @@
-@extends('layouts.ports')
+@extends('layouts.emp_ports')
 @section('content')
 
 <div class="row">
@@ -23,7 +23,7 @@
         </div>
         @endif
 
-		 <form method="POST" action="{{URL::to('reports/employee')}}" accept-charset="UTF-8">
+		 <form target="_blank" method="POST" action="{{URL::to('reports/employee')}}" accept-charset="UTF-8">
    
     <fieldset>
             <div class="form-group">
@@ -31,7 +31,11 @@
                         <select name="employeeid" class="form-control" required>
                             <option></option>
                             @foreach($employees as $employee)
-                            <option value="{{$employee->id }}"> {{ $employee->personal_file_number.' '.$employee->last_name.' '.$employee->first_name }}</option>
+                            @if($employee->middle_name != null || $employee->middle_name != '')
+                            <option value="{{$employee->id }}"> {{ $employee->personal_file_number.' : '.$employee->first_name.' '.$employee->middle_name.' '.$employee->last_name }}</option>
+                            @else
+                            <option value="{{$employee->id }}"> {{ $employee->personal_file_number.' : '.$employee->first_name.' '.$employee->last_name }}</option>
+                            @endif
                             @endforeach
 
                         </select>

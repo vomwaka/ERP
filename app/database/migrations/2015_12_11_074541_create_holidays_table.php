@@ -18,7 +18,7 @@ class CreateHolidaysTable extends Migration {
 			$table->string('name')->nullable();
 			$table->date('date')->nullable();
 			$table->integer('organization_id')->unsigned();
-			$table->foreign('organization_id')->references('id')->on('organizations');
+			$table->foreign('organization_id')->references('id')->on('organizations')->nullable();
 			$table->timestamps();
 		});
 	}

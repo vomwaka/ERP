@@ -8,7 +8,7 @@
                       
                     <div class="panel-body">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <img src="{{asset('public/uploads/logo/'.$organization->logo)}}" alt="logo" width="50%">
+                        <img src="{{asset('public/uploads/logo/oLtFm10n926Z.png')}}" alt="logo" width="50%">
 
                         <br>
                

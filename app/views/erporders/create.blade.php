@@ -69,6 +69,16 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="credit_ac">Station <span style="color:red">*</span> :</label>
+                    <select name="station" class="form-control" required>
+                        <option value="">--- Select a Station---</option>
+                        @foreach($stations as $station)
+                            <option value="{{ $station->id }}">{{ $station->station_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="debit_ac">Debit Account <span style="color:red">*</span> :</label>
                     <select name="debit_ac" class="form-control" required>
                         <option value="">--- Select a Debit Account ---</option>

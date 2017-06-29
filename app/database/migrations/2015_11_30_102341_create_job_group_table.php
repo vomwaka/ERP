@@ -16,7 +16,7 @@ class CreateJobGroupTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('job_group_name');
-			$table->integer('organization_id')->unsigned()->default('0')->index('job_group_organization_id_foreign');
+			$table->integer('organization_id')->unsigned()->default('0')->index('job_group_organization_id_foreign')->nullable();
 			$table->timestamps();
 		});
 		DB::table('job_group')->insert(array(

@@ -18,7 +18,7 @@ class CreateNhifTable extends Migration {
 			$table->double('income_from',15,2)->default('0.00');
 			$table->double('income_to',15,2)->default('0.00');
 			$table->double('hi_amount',15,2)->default('0.00');
-			$table->integer('organization_id');
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 

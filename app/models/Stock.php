@@ -19,6 +19,10 @@ class Stock extends \Eloquent {
 		return $this->belongsTo('Item');
 	}
 
+	public function station(){
+		return $this->belongsTo('Stations');
+	}
+
 
 	public static function getStockAmount($item){
 
@@ -72,13 +76,14 @@ class Stock extends \Eloquent {
 
 
 
-	public static function addStock($item, $location, $quantity, $date){
+	public static function addStock($item, $location, $quantity, $date, $station){
 
 		$stock = new Stock;
 
 		$stock->date = $date;
 		$stock->item()->associate($item);
 		$stock->location()->associate($location);
+		$stock->station()->associate($station);
 		$stock->quantity_in = $quantity;
 		$stock->save();
 

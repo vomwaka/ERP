@@ -18,7 +18,7 @@ class CreateLeavetypesTable extends Migration {
 			$table->string('name')->nullable();
 			$table->integer('days')->nullable()->default(0);
 			$table->integer('organization_id')->unsigned();
-			$table->foreign('organization_id')->references('id')->on('organizations');
+			$table->foreign('organization_id')->references('id')->on('organizations')->nullable();
 			$table->timestamps();
 		});
 	}

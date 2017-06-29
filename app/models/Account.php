@@ -78,46 +78,39 @@ class Account extends \Eloquent {
 		$debit = DB::table('journals')->where('account_id', '=', $account->id)->where('type', '=', 'debit')->where('date', '<=', $date)->sum('amount');
 
 		if($account->category == 'ASSET'){
-
 			$balance = $debit - $credit;
-
-
 		}
 
 		if($account->category == 'INCOME'){
-
 			$balance = $credit - $debit;
-			
-
 		}
 
 		if($account->category == 'LIABILITY'){
-
 			$balance = $credit - $debit;
-			
-
 		}
 
 		if($account->category == 'EQUITY'){
-
 			$balance = $credit - $debit;
-			
-
 		}
 
 		if($account->category == 'EXPENSE'){
-
 			$balance = $debit - $credit;
-
-
 		}
 
-
 		return $balance;
-
-
 	}
 
+	public static function createAccount($ac_type, $ac_name, $amnt=0){
+		$code = Account::where('category', $ac_type)->select('code')->orderBy('code', 'DESC')->first();
+		
+		$acct = new Account;
+		$acct->category = $ac_type;
+		$acct->code = $code->code+1;
+		$acct->name = $ac_name;
+		$acct->balance = $amnt;
+		$acct->active = 1;
+		$acct->save();
+	}
 
 
 	public static function balanceSheet($date){

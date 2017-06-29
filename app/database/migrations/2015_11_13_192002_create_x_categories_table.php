@@ -17,6 +17,7 @@ class CreateXCategoriesTable extends Migration {
 			$table->increments('id');
 			$table->string('name');
 			$table->text('description', 65535)->nullable();
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

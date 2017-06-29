@@ -13,13 +13,13 @@
 
 App::before(function($request)
 {
-	
+    
 });
 
 
 App::after(function($request, $response)
 {
-	//
+    //
 });
 
 
@@ -34,6 +34,7 @@ Event::listen('audit', function($entity, $action, $description) {
     $audit->user = Confide::user()->username;
     $audit->entity = $entity;
     $audit->action = $action;
+    $audit->organization_id= Confide::user()->organization_id;
     $audit->save();
 });
 
@@ -43,22 +44,22 @@ Event::listen('audit', function($entity, $action, $description) {
 
 Route::filter('limit', function(){
 
-	$organization = Organization::find(1);
+    $organization = Organization::find(Confide::user()->organization_id);
 
 
-	$members = count(Member::all());
+    $members = count(Member::all());
 
-	if($organization->licensed <= $members){
+    if($organization->cbs_licensed <= $members){
 
-		return View::make('members.memberlimit');
-	}
+        return View::make('members.memberlimit');
+    }
 
 });
 
 
 Route::filter('license', function(){
 
-$organization = Organization::find(1);
+$organization = Organization::find(Confide::user()->organization_id);
 
 $string = $organization->name;
 $license_key =$organization->license_key;
@@ -68,10 +69,10 @@ $validate = $organization->license_key_validator($license_key,$license_code,$str
 
 if($validate){
 
-	return View::make('activate', compact('organization'))->withErrors('License activation failed. License Key not valid');
+    return View::make('activate', compact('organization'))->withErrors('License activation failed. License Key not valid');
 
 
-	}
+    }
 
 });
 
@@ -88,23 +89,23 @@ if($validate){
 
 Route::filter('auth', function()
 {
-	if (Auth::guest())
-	{
-		if (Request::ajax())
-		{
-			return Response::make('Unauthorized', 401);
-		}
-		else
-		{
-			return Redirect::guest('login');
-		}
-	}
+    if (Auth::guest())
+    {
+        if (Request::ajax())
+        {
+            return Response::make('Unauthorized', 401);
+        }
+        else
+        {
+            return Redirect::guest('login');
+        }
+    }
 });
 
 
 Route::filter('auth.basic', function()
 {
-	return Auth::basic();
+    return Auth::basic();
 });
 
 /*
@@ -120,7 +121,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('guest', function()
 {
-	if (Auth::check()) return Redirect::to('/');
+    if (Auth::check()) return Redirect::to('/');
 });
 
 /*
@@ -136,10 +137,10 @@ Route::filter('guest', function()
 
 Route::filter('csrf', function()
 {
-	if (Session::token() !== Input::get('_token'))
-	{
-		throw new Illuminate\Session\TokenMismatchException;
-	}
+    if (Session::token() !== Input::get('_token'))
+    {
+        throw new Illuminate\Session\TokenMismatchException;
+    }
 });
 
 
@@ -148,7 +149,14 @@ Route::filter('csrf', function()
 
 Route::filter('process_payroll', function()
 {
-    if (! Entrust::can('process_payroll') ) // Checks the current user
+
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('process_payroll') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -156,7 +164,13 @@ Route::filter('process_payroll', function()
 
 Route::filter('manage_earning', function()
 {
-    if (! Entrust::can('manage_earning') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('manage_earning') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -164,7 +178,13 @@ Route::filter('manage_earning', function()
 
 Route::filter('manage_deduction', function()
 {
-    if (! Entrust::can('manage_deduction') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('manage_deduction') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -172,7 +192,13 @@ Route::filter('manage_deduction', function()
 
 Route::filter('manage_allowance', function()
 {
-    if (! Entrust::can('manage_allowance') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('manage_allowance') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -181,7 +207,13 @@ Route::filter('manage_allowance', function()
 
 Route::filter('view_application', function()
 {
-    if (! Entrust::can('view_applications') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('view_applications') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -190,7 +222,13 @@ Route::filter('view_application', function()
 
 Route::filter('amend_application', function()
 {
-    if (! Entrust::can('amend_application') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('amend_application') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -198,7 +236,13 @@ Route::filter('amend_application', function()
 
 Route::filter('reject_application', function()
 {
-    if (! Entrust::can('reject_application') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('reject_application') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -209,16 +253,39 @@ Route::filter('reject_application', function()
 
 Route::filter('leave_mgmt', function()
 {
-    if (! Entrust::can('view_application') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('view_application') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
 });
 
+Route::filter('manage_login', function()
+{
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }else{
+        return 'mntgodn';
+     }
+});
 
 Route::filter('create_employee', function()
 {
-    if (! Entrust::can('create_employee') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('create_employee') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -228,7 +295,13 @@ Route::filter('create_employee', function()
 
 Route::filter('manage_organization', function()
 {
-    if (! Entrust::can('manage_organization') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('manage_organization') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -236,7 +309,13 @@ Route::filter('manage_organization', function()
 
 Route::filter('manage_branch', function()
 {
-    if (! Entrust::can('manage_branch') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('manage_branch') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -244,7 +323,13 @@ Route::filter('manage_branch', function()
 
 Route::filter('manage_group', function()
 {
-    if (! Entrust::can('manage_group') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('manage_group') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -252,7 +337,13 @@ Route::filter('manage_group', function()
 
 Route::filter('manage_settings', function()
 {
-    if (! Entrust::can('manage_settings') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('manage_settings') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -261,7 +352,13 @@ Route::filter('manage_settings', function()
 
 Route::filter('manage_users', function()
 {
-    if (! Entrust::can('manage_user') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('manage_user') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -269,7 +366,13 @@ Route::filter('manage_users', function()
 
 Route::filter('manage_roles', function()
 {
-    if (! Entrust::can('manage_role') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('manage_role') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -277,7 +380,13 @@ Route::filter('manage_roles', function()
 
 Route::filter('manage_audits', function()
 {
-    if (! Entrust::can('manage_audit') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('manage_audit') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }
@@ -285,7 +394,13 @@ Route::filter('manage_audits', function()
 
 Route::filter('manage_leavetypes', function()
 {
-    if (! Entrust::can('manage_leave') ) // Checks the current user
+    if (!Confide::user())
+    {
+       $sessionTimeout = 1;
+       $organization = Organization::find(1);
+       return View::make('login',compact('organization'));
+     }
+    else if (! Entrust::can('manage_leave') ) // Checks the current user
     {
         return Redirect::to('dashboard')->with('notice', 'you do not have access to this resource. Contact your system admin');
     }

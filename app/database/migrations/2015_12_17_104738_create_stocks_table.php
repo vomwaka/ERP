@@ -22,6 +22,7 @@ class CreateStocksTable extends Migration {
 			$table->integer('quantity_in')->nullable();
 			$table->integer('quantity_out')->nullable();
 			$table->date('date')->nullable();
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

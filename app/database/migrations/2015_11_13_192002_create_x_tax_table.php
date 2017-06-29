@@ -16,7 +16,8 @@ class CreateXTaxTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
-			$table->double('rate',15,2)->default('0.00');;
+			$table->double('rate',15,2)->default('0.00');
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

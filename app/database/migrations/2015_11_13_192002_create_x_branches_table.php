@@ -16,6 +16,7 @@ class CreateXBranchesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

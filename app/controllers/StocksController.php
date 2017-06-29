@@ -29,10 +29,10 @@ class StocksController extends \BaseController {
 	{
 		$items = DB::table('items')
 		       ->where('type','=','product')->get();
-
+        $stations = Stations::all();
 		$locations = Location::all();
 
-		return View::make('stocks.create', compact('items', 'locations'));
+		return View::make('stocks.create', compact('items', 'locations','stations'));
 	}
 
 	/**
@@ -50,15 +50,17 @@ class StocksController extends \BaseController {
 		}
 
 		$item_id = Input::get('item');
+		$station_id = Input::get('station');
 		$location_id = Input::get('location');		
 		$item = Item::findOrFail($item_id);
 		$location = Location::find($location_id);
+		$station = Stations::find($station_id);
 		$quantity = Input::get('quantity');
 		$date = Input::get('date');
 
 		
 
-		Stock::addStock($item, $location, $quantity, $date);
+		Stock::addStock($item, $location, $quantity, $date, $station);
 
 		return Redirect::route('stocks.index')->withFlashMessage('stock has been successfully updated!');
 	}

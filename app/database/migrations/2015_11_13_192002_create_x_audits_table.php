@@ -21,6 +21,7 @@ class CreateXAuditsTable extends Migration {
 			$table->string('entity')->nullable();
 			$table->float('amount', 10, 0)->nullable();
 			$table->string('description')->nullable();
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

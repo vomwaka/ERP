@@ -10,6 +10,12 @@
                     <a href="{{ URL::to('items') }}"><i class="fa fa-barcode fa-fw"></i>Items</a>
                   </li>
                   
+                  <!--
+                  <li>
+                    <a href="http://localhost/rcm/"><i class="fa fa-barcode fa-fw"></i>POS System</a>
+                  </li>
+                  -->
+                  
                   <li>
                       <a href="{{ URL::to('accounts')}}">
                           <i class="fa fa-calculator fa-fw"></i>  {{{ Lang::get('messages.nav.accounting') }}} 
@@ -50,6 +56,10 @@
                   <li>
                     <a href="{{ URL::to('locations') }}"><i class="fa fa-home fa-fw"></i>Stores</a>
                   </li>   
+
+                   <li>
+                    <a href="{{ URL::to('stations') }}"><i class="fa fa-home fa-fw"></i>Stations</a>
+                   </li> 
 
                   <li>
                     <a href="{{ URL::to('taxes') }}"><i class="fa fa-list fa-fw"></i>Taxes</a>

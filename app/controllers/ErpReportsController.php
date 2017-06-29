@@ -41,16 +41,27 @@ class ErpReportsController extends \BaseController {
 
     public function expenses(){
 
+        $location = Input::get("location");
         $from = Input::get("from");
         $to= Input::get("to");
 
-        $expenses = Expense::whereBetween('date', array(Input::get("from"), Input::get("to")))->get();
-
         $organization = Organization::find(1);
 
-        $pdf = PDF::loadView('erpreports.expensesReport', compact('expenses', 'organization','from','to'))->setPaper('a4')->setOrientation('potrait');
+        if($location == 'all'){
+            $expenses = Expense::whereBetween('date', array(Input::get("from"), Input::get("to")))->get();
+
+        $pdf = PDF::loadView('erpreports.expensesReport', compact('expenses', 'organization','from','to','location'))->setPaper('a4')->setOrientation('potrait');
     
         return $pdf->stream('Expense List.pdf');
+    }
+    else{
+        $expenses = Expense::whereBetween('date', array(Input::get("from"), Input::get("to")))->where('station_id',$location)->get();
+
+             $pdf = PDF::loadView('erpreports.expensesingle', compact('expenses', 'organization','from','to','location'))->setPaper('a4')->setOrientation('potrait');
+    
+        return $pdf->stream('Expense List.pdf'); 
+    }
+        
         
     }
 
@@ -171,11 +182,12 @@ class ErpReportsController extends \BaseController {
 
     public function stock(){
 
-        $items = Item::all();      
+        $items = Item::all();
+        $location =  Input::get("location");     
 
         $organization = Organization::find(1);
 
-        $pdf = PDF::loadView('erpreports.stockReport', compact('items', 'organization'))->setPaper('a4')->setOrientation('landscape');
+        $pdf = PDF::loadView('erpreports.stockReport', compact('items', 'organization','location'))->setPaper('a4')->setOrientation('landscape');
     
         return $pdf->stream('Stock Report.pdf');
 
@@ -219,9 +231,9 @@ class ErpReportsController extends \BaseController {
         $pdf = PDF::loadView('erpreports.salesReport', compact('sales', 'organization','from','to'))->setPaper('a4')->setOrientation('potrait');
     
         return $pdf->stream('Sales List.pdf');
-
-  
 }
+
+
 
 public function sales_summary(){        
   
@@ -459,8 +471,9 @@ public function purchases(){
 
     public function selectSalesPeriod()
     {
+        $stations = Stations::all();
        $sales = Erporder::all();
-        return View::make('erpreports.selectSalesPeriod',compact('sales'));
+        return View::make('erpreports.selectSalesPeriod',compact('sales','stations'));
     }
 
     public function selectPurchasesPeriod()
@@ -483,9 +496,10 @@ public function purchases(){
     }
 
     public function selectExpensesPeriod()
-    {
+    { 
+       $stations = Stations::all(); 
        $expenses = Expense::all();
-        return View::make('erpreports.selectExpensesPeriod',compact('expenses'));
+        return View::make('erpreports.selectExpensesPeriod',compact('expenses','stations'));
     }
 
      public function selectPaymentsPeriod()
@@ -496,8 +510,9 @@ public function purchases(){
 
     public function selectStockPeriod()
     {
+        $stations = Stations::all();
        $stocks = Item::all();
-        return View::make('erpreports.selectStocksPeriod',compact('stocks'));
+        return View::make('erpreports.selectStocksPeriod',compact('stocks','stations'));
     }
 
 
@@ -592,4 +607,20 @@ public function purchases(){
             return View::make('erpreports.bankReconciliationReport', compact('recMonth','organization','bnkStmtBal','bkTotal','add','less'));
         //}
     }
+
+        public function claims(){ 
+
+
+        $claims = ClaimReceipt::all();
+        $amount = ClaimReceiptItem::all();
+        $organization = Organization::find(1);
+
+        $pdf = PDF::loadView('erpreports.claimsreport', compact('claims', 'organization','amount'))->setPaper('a4')->setOrientation('potrait');
+    
+        return $pdf->stream('Payment Method List.pdf');
+        
+    }
+
+
+
 }

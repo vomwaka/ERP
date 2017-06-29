@@ -28,6 +28,7 @@ class CreateErpordersTable extends Migration {
 			$table->string('inv_number')->nullable();
 			$table->date('due_date')->nullable();
 			$table->string('ordered_by')->nullable();
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

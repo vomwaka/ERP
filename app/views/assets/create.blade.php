@@ -23,12 +23,12 @@
 			<h4 style="color: #0BAEED">Asset Details</h4><hr>
 			<div class="form-group">
 				<label>Asset Name: </label><br>
-				<input type="text" class="form-control input-sm" name="assetName" placeholder="Asset Name" style="width: 300px">
+				<input type="text" class="form-control input-sm" name="assetName" placeholder="Asset Name" style="width: 300px" required>
 			</div>&emsp;
 
 			<div class="form-group">
 				<label>Asset Number: </label><br>
-				<input type="text" class="form-control input-sm" name="assetNumber" value="" style="width: 250px">
+				<input type="text" class="form-control input-sm" name="assetNumber" value="{{ $assetNum }}" style="width: 250px" required>
 			</div><br><br>
 
 			<div class="form-group">
@@ -43,7 +43,7 @@
 				<label>Purchase Price: </label><br>
 				<div class="input-group" style="width: 150px">
 					<span class="input-group-addon">KES</span>
-					<input type="text" class="form-control input-sm" name="purchasePrice" placeholder="{{ asMoney(0) }}" style="width: 200px">
+					<input type="text" class="form-control input-sm" name="purchasePrice" placeholder="{{ asMoney(0) }}" style="width: 200px" required>
 				</div>
 			</div>&emsp;
 
@@ -59,13 +59,6 @@
 				<label>Serial Number: </label><br>
 				<input type="text" class="form-control input-sm" name="serialNumber" placeholder="Serial Number">
 			</div><br><br>
-
-			<!-- <div class="form-group">
-				<label>Asset Type</label><br>
-				<select class="form-control input-sm" name="assetType" style="width: 300px">
-					<option value="">-- No Asset type available --</option>
-				</select>
-			</div><br><br> -->
 			<hr><!-- ===================================== -->
 
 			<h4 style="color: #0BAEED">Book Value</h4><hr>
@@ -73,33 +66,33 @@
 				<label>Depreciation Start Date: </label><br>
 				<div class="right-inner-addon ">
 					<i class="fa fa-calendar"></i>
-					<input type="text" class="form-control datepicker21 input-sm" readonly="readonly" name="depreciationStartDate" value="{{date('Y-m-d')}}" style="width: 200px">
+					<input type="text" class="form-control datepicker21 input-sm" readonly="readonly" name="depreciationStartDate" value="{{date('Y-m-d')}}" style="width: 200px" required>
 				</div>
 			</div><br><br>
 
 			<div class="form-group">
 				<label>Depreciation Method: </label><br>
-				<select class="form-control input-sm" name="depreciationMethod" style="width: 300px">
+				<select class="form-control input-sm" name="depreciationMethod" style="width: 300px" required>
 					<option value="">-- No Depreciation --</option>
 					<option value="SL">Straight-Line Method</option>
 					<option value="SY">Sum of Years Digits</option>
-					<option value="DB">Declining Balance</option>
+					<option value="DB">Declining Balance(1.5)</option>
 				</select>
 			</div>&emsp;
 
 			<div class="form-group">
 				<label>First Year Averaging Method: </label><br>
-				<select class="form-control input-sm" name="averagingMethod" style="width: 300px">
+				<select class="form-control input-sm" name="averagingMethod" style="width: 300px" required>
 					<option value="FULLMO">Full Month</option>
 					<option value="HALFYR">Half Year</option>
-					<option value="MIDMO">Mid Month</option>
-					<option value="MIDQ">Mid Quarter</option>
+					<!-- <option value="MIDMO">Mid Month</option>
+					<option value="MIDQ">Mid Quarter</option> -->
 				</select>
 			</div>&emsp;
 
 			<div class="form-group">
 				<label>Salvage Value: </label><br>
-				<input type="text" name="salvage_value" class="form-control input-sm" placeholder="{{ asMoney(0) }}">
+				<input type="text" name="salvageValue" class="form-control input-sm" placeholder="{{ asMoney(0) }}">
 			</div><br><br>
 
 			<div class="form-group">
@@ -115,7 +108,7 @@
 			</div><hr>
 			
 			<div class="col-lg-12 form-group text-right">
-				<a href="{{ URL::to('assetManagement') }}" class="btn btn-danger btn-sm">Cancel</a>&emsp;&emsp;
+				<a href="{{ URL::to('assetManagement') }}" class="btn btn-danger btn-sm">Cancel</a>&emsp;
 				<input type="submit" class="btn btn-primary btn-sm" name="btnSubmit" value="Register">
 			</div><br><hr>
 

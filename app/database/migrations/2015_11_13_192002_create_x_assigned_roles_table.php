@@ -17,6 +17,7 @@ class CreateXAssignedRolesTable extends Migration {
 			$table->increments('id');
 			$table->integer('user_id')->unsigned()->index('assigned_roles_user_id_foreign');
 			$table->integer('role_id')->unsigned()->index('assigned_roles_role_id_foreign');
+			$table->integer('organization_id')->nullable();
 		});
 	}
 

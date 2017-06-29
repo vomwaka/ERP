@@ -73,6 +73,8 @@
 
     {{ HTML::script('js/velocity/velocity.ui.js') }}
 
+    {{HTML::script('js/price_format.js') }}
+
     
   <script type="text/javascript">
 
@@ -117,13 +119,20 @@ $('.datepicker1').datepicker({
     endDate: '-18y',
     autoclose: true
 });
+
+$('.expiry').datepicker({
+    format: 'yyyy-mm-dd',
+    startDate: '0y',
+    autoclose: true
+});
+
 });
 </script>
 
 <script type="text/javascript">
 $(function(){
 $('.datepicker2').datepicker({
-    format: "mm-yyyy",
+    format: "m-yyyy",
     startView: "months", 
     minViewMode: "months",
     autoclose: true
@@ -131,13 +140,33 @@ $('.datepicker2').datepicker({
 });
 </script>
 
-
+<script type="text/javascript">
+$(function(){
+$('.datepicker42').datepicker({
+    format: " yyyy",
+    startView: "years", 
+    minViewMode: "years",
+    autoclose: true
+});
+});
+</script>
 
 <script type="text/javascript">
 $(function(){
 $('.datepicker21').datepicker({
     format: "yyyy-mm-dd",
    
+    autoclose: true
+});
+});
+</script>
+
+<script type="text/javascript">
+$(function(){
+$('.datepicker28').datepicker({
+    format: "m-yyyy",
+    startView: "months", 
+    minViewMode: "months",
     autoclose: true
 });
 });

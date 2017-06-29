@@ -28,6 +28,12 @@ h1,h2,h3,h4,h5,h6,a{
     background-color: #fff;
 }
 
+#page-dash {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #fff;
+}
+
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;

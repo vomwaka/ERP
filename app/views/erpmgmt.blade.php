@@ -48,7 +48,7 @@
       <div class="col-md-2 quicklink">
         <a class="btn btn-default btn-icon input-block-level" href="{{URL::to('checks/create')}}" style="background: #9B59B6">
           <i class="fa fa-random fa-2x"></i>
-          <div>New Checkout</div>
+          <div>New Station</div>
           
         </a>
       </div>
@@ -56,7 +56,7 @@
       <div class="col-md-2 quicklink">
         <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('bookings/create')}}" style="background: #F39C12">
           <i class="fa fa-th fa-2x"></i>
-          <div>New Booking</div>
+          <div>New Store</div>
           
         </a>
       </div>
@@ -66,7 +66,7 @@
       <div class="col-md-2 quicklink">
         <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('maintenances/create')}}" style="background: #34495E">
           <i class="fa fa-th-large fa-2x"></i>
-          <div>New Maintenance</div>
+          <div>Receive Stock</div>
           
         </a>
       </div>

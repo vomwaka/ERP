@@ -20,9 +20,10 @@ class ExpensesController extends \BaseController {
 	 * @return Response
 	 */
 	public function create()
-	{
+	{    
+		$stations = Stations::all();
 		$accounts = Account::all();
-		return View::make('expenses.create',compact('accounts'));
+		return View::make('expenses.create',compact('accounts','stations'));
 	}
 
 	/**
@@ -50,6 +51,7 @@ class ExpensesController extends \BaseController {
 		$expense->amount = Input::get('amount');		
 		$expense->date = date("Y-m-d",strtotime(Input::get('date')));
 		$expense->account_id = Input::get('account');
+		$expense->station_id = Input::get('station');
 		$expense->ref_no = $ref_no;
 		$expense->save();
 
@@ -111,11 +113,12 @@ class ExpensesController extends \BaseController {
 		$prefix = 'EXP';
 		$ref_no = $prefix.$zero_filled;*/
 
-    $expense->name = Input::get('name');
+        $expense->name = Input::get('name');
 		$expense->type = Input::get('type');
 		$expense->amount = Input::get('amount');
 		$expense->date = date("Y-m-d",strtotime(Input::get('date')));
 		$expense->account_id = Input::get('account');
+		
 		//$expense->ref_no = $ref_no;
 
 		$expense->update();

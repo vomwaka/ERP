@@ -18,6 +18,11 @@ class Order extends \Eloquent {
 		return $this->belongsTo('Product');
 	}
 
+	public function stations(){
+
+		return $this->belongsTo('Stations');
+	}
+
 
 
 	public static function submitOrder($product, $member){

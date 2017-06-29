@@ -1,17 +1,40 @@
+<?php
+
+
+function asMoney($value) {
+  return number_format($value, 2);
+}
+
+?>
+
 @extends('layouts.payroll')
 @section('content')
 
 <div class="row">
-	<div class="col-lg-12">
+  <div class="col-lg-12">
   <h3>Employee Allowance</h3>
 
 <hr>
-</div>	
+</div>  
 </div>
 
 
 <div class="row">
-	<div class="col-lg-12">
+  <div class="col-lg-12">
+
+    @if (Session::has('flash_message'))
+
+      <div class="alert alert-success">
+      {{ Session::get('flash_message') }}
+     </div>
+    @endif
+
+     @if (Session::has('delete_message'))
+
+      <div class="alert alert-danger">
+      {{ Session::get('delete_message') }}
+     </div>
+    @endif
 
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -32,6 +55,9 @@
         <th>Action</th>
 
       </thead>
+
+      
+
       <tbody>
 
         <?php $i = 1; ?>
@@ -40,9 +66,13 @@
         <tr>
 
           <td> {{ $i }}</td>
-          <td>{{ $eallw->employee->first_name.' '.$eallw->employee->last_name }}</td>
-          <td>{{ $eallw->allowance->allowance_name }}</td>
-          <td>{{ $eallw->allowance_amount }}</td>
+           @if($eallw->middle_name == null || $eallw->middle_name == '')
+          <td>{{ $eallw->first_name.' '.$eallw->last_name }}</td>
+          @else
+          <td>{{ $eallw->first_name.' '.$eallw->middle_name.' '.$eallw->last_name }}</td>
+          @endif
+          <td>{{ $eallw->allowance_name }}</td>
+          <td align="right">{{ asMoney((double)$eallw->allowance_amount) }}</td>
           <td>
 
                   <div class="btn-group">
@@ -51,9 +81,11 @@
                   </button>
           
                   <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{URL::to('employee_allowances/view/'.$eallw->id)}}">View</a></li>
+                    
                     <li><a href="{{URL::to('employee_allowances/edit/'.$eallw->id)}}">Update</a></li>
                    
-                    <li><a href="{{URL::to('employee_allowances/delete/'.$eallw->id)}}">Delete</a></li>
+                    <li><a href="{{URL::to('employee_allowances/delete/'.$eallw->id)}}" onclick="return (confirm('Are you sure you want to delete this employee`s allowance?'))">Delete</a></li>
                     
                   </ul>
               </div>

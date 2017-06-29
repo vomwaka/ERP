@@ -9,7 +9,9 @@ class DepartmentsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$departments = Department::all();
+		$departments = Department::whereNull('organization_id')->orWhere('organization_id',Confide::user()->organization_id)->get();
+
+		Audit::logaudit('Departments', 'view', 'viewed departments');
 
 		return View::make('departments.index', compact('departments'));
 	}
@@ -40,13 +42,17 @@ class DepartmentsController extends \BaseController {
 
 		$department = new Department;
 
+		$department->codes = Input::get('code');
+
 		$department->department_name = Input::get('name');
 
-        $department->organization_id = '1';
+        $department->organization_id = Confide::user()->organization_id;
 
 		$department->save();
+       
+        Audit::logaudit('Department', 'create', 'created: '.$department->department_name);
 
-		return Redirect::route('departments.index');
+		return Redirect::route('departments.index')->withFlashMessage('Department successfully updated!');
 	}
 
 	/**
@@ -92,10 +98,14 @@ class DepartmentsController extends \BaseController {
 			return Redirect::back()->withErrors($validator)->withInput();
 		}
 
+		$department->codes = Input::get('code');
+
 		$department->department_name = Input::get('name');
 		$department->update();
 
-		return Redirect::route('departments.index');
+		 Audit::logaudit('Department', 'update', 'updated: '.$department->department_name);
+
+		return Redirect::route('departments.index')->withFlashMessage('Department successfully updated!');
 	}
 
 	/**
@@ -106,9 +116,17 @@ class DepartmentsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
+		$department = Department::findOrFail($id);
+        $dept  = DB::table('employee')->where('department_id',$id)->count();
+		if($dept>0){
+			return Redirect::route('departments.index')->withDeleteMessage('Cannot delete this departments because its assigned to an employee(s)!');
+		}else{
 		Department::destroy($id);
 
-		return Redirect::route('departments.index');
+        Audit::logaudit('Department', 'delete', 'deleted: '.$department->department_name);
+		return Redirect::route('departments.index')->withDeleteMessage('Deduction successfully deleted!');
 	}
+
+}
 
 }

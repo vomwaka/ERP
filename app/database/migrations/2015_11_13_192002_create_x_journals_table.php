@@ -24,6 +24,7 @@ class CreateXJournalsTable extends Migration {
 			$table->string('description');
 			$table->timestamps();
 			$table->boolean('void')->nullable()->default(0);
+			$table->integer('organization_id')->nullable();
 		});
 	}
 

@@ -25,7 +25,7 @@ th {
 }
 .table {
   width: 100%;
-  margin-bottom: 2px;
+  margin-bottom: 50px;
 }
 hr {
   margin-top: 1px;
@@ -74,7 +74,7 @@ body {
 
 
  @page { margin: 170px 30px; }
- .header { position: fixed; left: 0px; top: -150px; right: 0px; height: 150px;  text-align: center; }
+ .header { position: top; left: 0px; top: -150px; right: 0px; height: 150px;  text-align: center; }
  .content {margin-top: -100px; margin-bottom: -150px}
  .footer { position: fixed; left: 0px; bottom: -180px; right: 0px; height: 50px;  }
  .footer .page:after { content: counter(page, upper-roman); }
@@ -87,7 +87,7 @@ body {
 
 <body>
 
-  <div class="header">
+  <div class="header" style='margin-top:-150px;'>
      <table >
 
       <tr>
@@ -96,16 +96,17 @@ body {
        
         <td style="width:150px">
 
-            <img src="{{ '../images/logo.png' }}" alt="{{ $organization->logo }}" width="150px"/>
+           <img src="{{public_path().'/uploads/logo/'.$organization->logo}}" alt="logo" width="80%">
+
     
         </td>
 
         <td>
         <strong>
-          {{ strtoupper($organization->name)}}<br>
-          </strong>
-          {{ $organization->phone}} |
-          {{ $organization->email}} |
+          {{ strtoupper($organization->name)}}
+          </strong><br>
+          {{ $organization->phone}}<br>
+          {{ $organization->email}}<br>
           {{ $organization->website}}<br>
           {{ $organization->address}}
        
@@ -133,25 +134,25 @@ body {
    </div>
 
 
-	<div class="content" style='margin-top:0px;'>
+	<div class="content" style='margin-top:-50px;'>
     <table>
-    <?php if(!empty($selBranch) && !empty($selDept)){?>
+    <?php if($selBranch == 'All' && $selDept == 'All'){?>
      <tr><td width='50'><strong>Branch:</strong></td><td>All</td></tr>
      <tr><td width='50'><strong>Department:</strong></td><td>All</td></tr>
-    <?php }else if(!empty($selBranch)){?>
+    <?php }else if($selBranch == 'All'){?>
      <tr><td width='50'><strong>Branch:</strong></td><td>All</td></tr>
      <tr><td width='50'><strong>Department:</strong></td><td>{{$sels->department_name}}</td></tr>
-    <?php }else if(!empty($selDept)){?>
+    <?php }else if($selDept == 'All'){?>
      <tr><td width='50'><strong>Branch:</strong></td><td>{{$sels->name}}</td></tr>
      <tr><td width='50'><strong>Department:</strong></td><td>All</td></tr>
-     <?php }else if(empty($selDept) && empty($selBranch)){?>
+     <?php }else if($selDept != 'Áll' && $selBranch !='All'){?>
      <tr><td width='50'><strong>Branch:</strong></td><td>{{$selBr->name}}</td></tr>
      <tr><td width='50'><strong>Department:</strong></td><td>{{$selDt->department_name}}</td></tr>
     <?php } ?> 
     <tr><td width='50'>
      <strong>Currency:</strong></td>
       @foreach($currencies as $currency)
-     <td>{{$currency->shortname}}
+     <td>{{$currency->shortname}}</td>
       @endforeach   
       </tr>
       <tr><td width='50'><strong>Period:</strong></td><td>{{$period}}</td></tr>
@@ -182,7 +183,11 @@ body {
 
        <td td width='20'>{{$i}}</td>
         <td> {{ $sum->personal_file_number }}</td>
-        <td> {{ $sum->last_name.' '.$sum->first_name }}</td>
+        @if($sum->middle_name != null || $sum->middle_name != '')
+        <td> {{$sum->first_name.' '.$sum->middle_name.' '.$sum->last_name}}</td>
+        @else
+        <td> {{$sum->first_name.' '.$sum->last_name}}</td>
+        @endif
         <td align="right"> {{ asMoney($sum->basic_pay) }}</td>
         <td align="right"> {{ asMoney($sum->earning_amount) }}</td>
         <td align="right"> {{ asMoney($sum->taxable_income) }}</td>
@@ -210,7 +215,7 @@ body {
     <td align="right" width="68">{{ asMoney($total_net ) }}</td></tr>
 
      
-    <td align="right" colspan='11'><strong>Total net:</strong></td><td align="right" width="68">{{ asMoney($total_net ) }}</td></tr>
+   <tr> <td align="right" colspan='11'><strong>Total net:</strong></td><td align="right" width="68">{{ asMoney($total_net ) }}</td></tr>
 
     </table>
 

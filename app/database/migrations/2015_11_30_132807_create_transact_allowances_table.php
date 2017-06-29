@@ -16,6 +16,8 @@ class CreateTransactAllowancesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('employee_id')->unsigned()->default('0')->index('transact_allowances_employee_id_foreign');
+			$table->integer('employee_allowance_id')->unsigned()->default('0')->index('transact_allowances_employee_allowance_id_foreign');
+			$table->integer('organization_id')->unsigned()->default('0')->index('transact_allowances_organization_id_foreign');
 			$table->integer('allowance_id')->unsigned()->default('0')->index('transact_allowances_allowance_id_foreign');
 			$table->string('allowance_name');
 			$table->string('allowance_amount')->default('0.00');

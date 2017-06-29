@@ -1,156 +1,72 @@
-@extends('layouts.main')
+@extends('layouts.dash')
 @section('content')
 
+<br><br>
 
-@if (Session::get('notice'))
-            <div class="alert alert-info">{{ Session::get('notice') }}</div>
-        @endif
+
+<!-- <div class="row" style="padding-right: 8.33%;">
+  <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-xs-offset-2 quicklink">
+    <a href="{{ URL::to('items/create')}}"><img border="0" src="{{asset('images/Add-icon.png')}}" alt="New Item" width="75">
+      
+      <div>New Item</div>
+      
+    </a>
+  </div>
+
+  <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-xs-offset-2 quicklink">
+    <a href="{{ URL::to('clients/create')}}"><img border="0" src="{{asset('images/addclients.png')}}" alt="New Client" width="75">
+     
+      <div>New Client</div>
+      
+    </a>
+  </div>
+
+  <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-xs-offset-2 quicklink">
+    <a href="{{URL::to('salesorders/create')}}"><img border="0" src="{{asset('images/addsale.jpg')}}" alt="New Sale" width="75">
     
-                    <div class="row">
-                      <div class="col-md-2">
-                        <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('employees')}}">
-                          <i class="fa fa-users fa-2x"></i>
-                          <div>Manage Employess</div>
-                          
-                        </a>
-                      </div>
+      <div>New Sale</div>
+     
+    </a>
+  </div>
 
-                      <div class="col-md-2">
-                        <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('payrollmgmt')}}">
-                          <i class="glyphicon glyphicon-credit-card fa-2x"></i>
-                          <div>Manage Payroll</div>
-                          
-                        </a>
-                      </div>
+  <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-xs-offset-2 quicklink">
+    <a  href="{{ URL::to('purchaseorders/create')}}"><img border="0" src="{{asset('images/cart-add-icon.png')}}" alt="New Purchase" width="75">
+      
+      <div>New Purchase</div>
+      
+    </a>
+  </div>
+  
+  <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-xs-offset-2 quicklink">
+    <a href="{{ URL::to('payments/create')}}"><img border="0" src="{{asset('images/payments.png')}}" alt="New Payment" width="75">
+      
+      <div>New Payment</div>
+      
+    </a>
+  </div>
 
+  <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-xs-offset-2 quicklink">
+    <a href="{{ URL::to('stocks/create')}}"><img border="0" src="{{asset('images/receivestock.jpg')}}" alt="New Payment" width="75">
+      
+      <div>Receive Stock</div>
+      
+    </a>
+  </div>
 
-                      <div class="col-md-2">
-                        <a class="btn btn-default btn-icon input-block-level" href="{{URL::to('leavemgmt')}}">
-                          <i class="glyphicon glyphicon-tasks fa-2x"></i>
-                          <div>Manage Leaves</div>
-                          
-                        </a>
-                      </div>
-
-                      <div class="col-md-2">
-                        <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('accounts')}}">
-                          <i class="glyphicon glyphicon-list fa-2x"></i>
-                          <div>Manage Accounting</div>
-                          
-                        </a>
-                      </div>
-                      
-                      <div class="col-md-2">
-                        <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('payrollReports')}}">
-                          <i class="glyphicon glyphicon-file fa-2x"></i>
-                          <div>Manage Reports</div>
-                          
-                        </a>
-                      </div>
-
-                      
-                    </div>
-                  
+</div> -->
 
 
+
+<br><br>
 
 <div class="row">
-  
-  <div class="col-lg-12">
-    <hr>
-
+              						
+<div class="col-lg-12">
+	<div class="" style="margin-top: 100px !important">
+		<center><img class="img-responsive" src="{{asset('images/ourlogo.png')}}" width="auto"></center>
+    
+	</div>
   </div>
 </div>
 
-
-<div class="row">
-  
-
-
-  <div class="col-lg-12">
-
-
-   <div class="panel panel-default">
-      <div class="panel-heading">
-          <a class="btn btn-info btn-sm" href="{{ URL::to('employees/create')}}">new employee</a>
-        </div>
-        <div class="panel-body">
-
-      <table id="users" class="table table-condensed table-bordered table-responsive table-hover">
-
-
-      <thead>
-
-        <th>#</th>
-        <th>Personal File Number</th>
-        <th>Employee Name</th>
-        <th>Employee Branch</th>
-        <th>Employee Department</th>
-
-        <th>Action</th>
-
-      </thead>
-      <tbody>
-
-        <?php $i = 1; ?>
-        @foreach($employees as $employee)
-
-        <tr>
-
-          <td> {{ $i }}</td>
-          <td>{{ $employee->personal_file_number }}</td>
-          <td>{{ $employee->first_name.' '.$employee->last_name}}</td>
-          <?php if( $employee->branch_id!='0'){ ?>
-          <td>{{ $employee->branch->name }}</td>
-          <?php }else{?>
-          <td></td>
-          <?php } ?>
-           <?php if( $employee->branch_id!='0'){ ?>
-          <td>{{ $employee->department->department_name }}</td>
-          <?php }else{?>
-          <td></td>
-          <?php } ?>
-                   <td>
-
-                  <div class="btn-group">
-                  <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    Action <span class="caret"></span>
-                  </button>
-          
-                  <ul class="dropdown-menu" role="menu">
-
-                    <li><a href="{{URL::to('employees/edit/'.$employee->id)}}">Update</a></li>
-                   
-                    <li><a href="{{URL::to('employees/delete/'.$employee->id)}}">Delete</a></li>
-                    
-                  </ul>
-              </div>
-
-                    </td>
-        </tr>
-
-        <?php $i++; ?>
-        @endforeach
-
-
-      </tbody>
-
-
-    </table>
-</div>
-</div>
-
-  </div>  
-
-
-<div class="row">
-
-  <div class="col-lg-12">
-    <hr>
-  </div>  
-
-  
-
-  
-</div>
 @stop

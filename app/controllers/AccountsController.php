@@ -60,6 +60,7 @@ class AccountsController extends \BaseController {
 		$account->name = Input::get('name');
 		$account->code = Input::get('code');
 		$account->balance = Input::get('balance');
+		$account->organization_id = Confide::user()->organization_id;
 		if(Input::get('active')){
 			$account->active = TRUE;
 		}
@@ -142,6 +143,8 @@ class AccountsController extends \BaseController {
 		$account->name = Input::get('name');
 		$account->code = Input::get('code');
 		$account->balance = Input::get('balance');
+		
+		$account->organization_id = Confide::user()->organization_id;
 		if(Input::get('active')){
 			$account->active = TRUE;
 		}
@@ -160,6 +163,8 @@ class AccountsController extends \BaseController {
 		$account->code = Input::get('code');
 		$account->balance = Input::get('balance');
 		$account->active = Input::get('active');
+
+		$account->organization_id = Confide::user()->organization_id;
 		$account->update();
 
 		}

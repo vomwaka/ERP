@@ -16,9 +16,14 @@ class CreateEarningsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('employee_id')->unsigned()->default('0')->index('earnings_employee_id_foreign');
-            $table->string('earnings_name');
+            $table->integer('earning_id');
             $table->string('narrative');
+            $table->string('formular');
+            $table->integer('instalments');
 			$table->string('earnings_amount')->default('0.00');
+			$table->date('earning_date');
+			$table->date('first_day_month');
+			$table->date('last_day_month');
 			$table->timestamps();
 		});
 	}

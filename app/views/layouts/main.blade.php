@@ -1,7 +1,6 @@
 @include('includes.head')
 @include('includes.nav')
 @include('includes.nav_main')
-@include('includes.footer')
 
 <div id="page-wrapper">
             <div class="row">

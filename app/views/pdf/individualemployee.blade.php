@@ -8,6 +8,8 @@ function asMoney($value) {
 ?>
 <html >
 
+
+
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -22,7 +24,11 @@ th {
   text-align: left;
 }
 .table {
-  width: 100%;
+  width: 70%;
+  margin-bottom: 50px;
+}
+.t {
+  width: 30%;
   margin-bottom: 2px;
 }
 hr {
@@ -40,10 +46,18 @@ body {
   background-color: #fff;
 }
 
+.emp {
+    display: inline-block;
+    width:700px;
+}
+.pic {
+    display: inline-block;
+    width:200px;
+}
 
 
  @page { margin: 170px 30px; }
- .header { position: fixed; left: 0px; top: -150px; right: 0px; height: 150px;  text-align: center; }
+ .header { position: top; left: 0px; top: -150px; right: 0px; height: 150px;  text-align: center; }
  .content {margin-top: -100px; margin-bottom: -150px}
  .footer { position: fixed; left: 0px; bottom: -180px; right: 0px; height: 50px;  }
  .footer .page:after { content: counter(page, upper-roman); }
@@ -56,7 +70,7 @@ body {
 
 <body>
 
-  <div class="header">
+  <div class="header" style="margin-top:-150px">
      <table >
 
       <tr>
@@ -65,16 +79,17 @@ body {
        
         <td style="width:150px">
 
-            <img src="{{ '../images/logo.png' }}" alt="{{ $organization->logo }}" width="150px"/>
+            <img src="{{public_path().'/uploads/logo/'.$organization->logo}}" alt="logo" width="80%">
+
     
         </td>
 
         <td>
         <strong>
-          {{ strtoupper($organization->name)}}<br>
-          </strong>
-          {{ $organization->phone}} |
-          {{ $organization->email}} |
+          {{ strtoupper($organization->name)}}
+          </strong><br>
+          {{ $organization->phone}}<br>
+          {{ $organization->email}}<br>
           {{ $organization->website}}<br>
           {{ $organization->address}}
        
@@ -95,19 +110,40 @@ body {
     </table>
    </div>
 
-
-
 <div class="footer">
      <p class="page">Page <?php $PAGE_NUM ?></p>
    </div>
 
+   <div style='width:1000px;'>
 
-	<div class="content" style='margin-top:0px;'>
+<div class="pic">
+<table class="t">
+<tr>
+    @if($employee->photo != null || $employee->photo != '')
+    <td><img src="{{ asset('/public/uploads/employees/photo/'.$employee->photo) }}" alt="Photo" width="150px"/></td>
+    @else
+    <td></td>
+    @endif
+</tr>
+<tr>
+    @if($employee->signature != null || $employee->signature != '')
+    <td><img src="{{asset('/public/uploads/employees/signature/'.$employee->signature) }}" alt="Signature" width="100px"/></td>
+    @else
+    <td></td>
+    @endif
+</tr>
+</table>
+</div>
+
+
+
+
+	<div class="emp">
 
 
     <table class="table table-bordered" border='1' cellspacing='0' cellpadding='0'>
       <tr><td><strong>Payroll Number: </strong></td><td>{{$employee->personal_file_number}}</td></tr>
-      @if($employee->middle_name != null)
+      @if($employee->middle_name != null || $employee->middle_name != ' ')
       <tr><td><strong>Employee Name: </strong></td><td> {{$employee->last_name.' '.$employee->first_name.' '.$employee->middle_name}}</td>
       @else
       <td><strong>Employee Name: </strong></td><td> {{$employee->last_name.' '.$employee->first_name}}</td>
@@ -175,6 +211,18 @@ body {
         <td></td>
         @endif
         </tr>
+        <tr><td colspan='2' style='height:20px;'></td></tr>
+        @if(count($benefits) > 0)
+        <tr><td colspan='2' ><strong>Job group benefits: </strong></td></tr>
+        <tr><td><strong>Name: </strong></td><td><strong>Amount</strong></td></tr>
+      @foreach($benefits as $benefit)
+      <tr><td>{{Benefitsetting::getBenefit($benefit->benefit_id)}}</td>
+      <td>{{asMoney($benefit->amount)}}</td></tr>
+      @endforeach
+      <tr><td colspan='2' style='height:20px;'></td></tr>
+        @else
+        @endif
+
         <tr><td><strong>Employee Type: </strong></td>
         @if($employee->type_id != 0)
         <td>
@@ -209,8 +257,8 @@ body {
         @endif
         </tr>
         <tr><td><strong>Citizenship:</strong></td>
-        @if($employee->citizenship != null)
-        <td>{{$employee->citizenship}}</td>
+        @if($employee->citizenship_id != null || $employee->citizenship_id != '')
+        <td>{{$employee->citizenship->name}}</td>
         @else
         <td></td>
         @endif
@@ -241,6 +289,13 @@ body {
         <td></td>
         @endif
         </tr>
+        <tr><td><strong>Mode of Payment: </strong></td>
+        @if($employee->mode_of_payment == 'Others')
+        <td>{{$employee->custom_field1}}</td>
+        @else
+        <td>{{$employee->mode_of_payment}}</td>
+        @endif
+        </tr>
         <tr><td><strong>Bank Account Number:</strong></td>
         @if($employee->bank_account_number != null)
         <td>{{$employee->bank_account_number}}</td>
@@ -248,7 +303,7 @@ body {
         <td></td>
         @endif
         </tr>
-        <tr><td><strong>Bank EFT Code:</strong></td>
+        <tr><td><strong>Sort Code:</strong></td>
         @if($employee->bank_eft_code != null)
         <td>{{$employee->bank_eft_code}}</td>
         @else
@@ -315,7 +370,7 @@ body {
 
 <br><br>
 
-   
+   <div>
 </div>
 
 

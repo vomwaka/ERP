@@ -28,6 +28,7 @@ class CreateErporderitemsTable extends Migration {
 			$table->integer('erporder_id')->unsigned();
 			$table->foreign('erporder_id')->references('id')->on('erporders');
 			$table->double('price')->nullable();
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

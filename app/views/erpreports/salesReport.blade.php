@@ -115,6 +115,7 @@ function asMoney($value) {
 
         <th width='20'><strong># </strong></th>
         <th><strong>Order Number </strong></th>
+        <th><strong>Station</strong></th>
         <th><strong>Customer Name </strong></th>
         <th><strong>Item Name </strong></th>
         <th align="center"><strong>Quantity </strong></th>
@@ -137,8 +138,9 @@ function asMoney($value) {
 
        <td td width='20'>{{$i}}</td>
         <td> {{ $sales->order_number }}</td>
-        <td> {{ $sales->client }}</td>
-        <td> {{ $sales->item }}</td>
+        <td>  {{ $sales->station_id }} </td>
+        <td> {{ $sales->client->name }}</td>
+        <td> {{ $sales->item->name }}</td>
         <td align = "center"> {{ $sales->quantity }}</td>
         <td align = "right"> {{asMoney($sales->price)}}</td>
         <td align = "right"> {{ asMoney($sales->price * $sales->quantity)}}</td>
@@ -153,6 +155,7 @@ function asMoney($value) {
 
 
     <tr>
+           <td></td>
            <td></td>
             <td></td>
             <td></td>

@@ -1,6 +1,7 @@
 @extends('layouts.ports')
 @section('content')
 
+
 <div class="row">
     <div class="col-lg-12">
   <h3>HR Reports</h3>
@@ -17,15 +18,31 @@
 
         <li>
 
-        <a href="{{ URL::to('employee/select') }}" target="_blank"> Individual Employee report</a>
+        <a href="{{ URL::to('employee/select') }}"> Individual Employee report</a>
 
       </li>
 
       <li>
 
-        <a href="{{ URL::to('reports/employeelist') }}" target="_blank"> Employee List report</a>
+        <a href="{{ URL::to('reports/selectEmployeeStatus') }}"> Employee List report</a>
 
       </li>
+
+      <li>
+            <a href="{{ URL::to('reports/nextofkin/selectEmployee') }}" >Next of Kin Report</a>
+        </li>
+
+       <li>
+            <a href="{{ URL::to('reports/selectEmployeeOccurence') }}" >Employee Occurence report </a>
+        </li>
+
+        <li>
+            <a href="{{ URL::to('reports/CompanyProperty/selectPeriod') }}" >Company Property report </a>
+        </li>
+
+         <li>
+            <a href="{{ URL::to('reports/Appraisals/selectPeriod') }}" >Appraisal report </a>
+        </li>
 
 
       <li>

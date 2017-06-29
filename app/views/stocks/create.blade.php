@@ -58,6 +58,16 @@
             </select>
         </div>
 
+         <div class="form-group">
+            <label for="username">Stations <span style="color:red">*</span> :</label>
+            <select name="station" class="form-control" required>
+            <option> select station ... </option>
+                @foreach($stations as $station)
+                <option value="{{$station->id}}">{{$station->station_name}}</option>
+                @endforeach               
+            </select>
+          </div>
+
         <div class="form-group">
             <label for="username">Quantity <span style="color:red">*</span> :</label>
             <input type="text" name="quantity" class="form-control" required>

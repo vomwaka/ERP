@@ -30,4 +30,15 @@ class ClaimReceiptItem extends Eloquent{
 			return $totals;
 		}
 	}
+
+    public static function getAmount($id){
+        $amount = ClaimReceiptItem::where('claimReceiptID',$id)
+        ->selectRaw('unit_price')
+        ->first();
+
+    return $amount->unit_price;    
+    }		
+   
+   		
+	
 }

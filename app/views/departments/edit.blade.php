@@ -27,8 +27,14 @@
    
     <fieldset>
         <div class="form-group">
+            <label for="username">Department Code <span style="color:red">*</span> </label>
+            <input class="form-control" placeholder="" type="text" name="code" id="code" value="{{ $department->codes }}">
+        </div>
+
+
+        <div class="form-group">
             <label for="username">Department Name <span style="color:red">*</span></label>
-            <input class="form-control" placeholder="" type="text" name="name" id="name" value="{{ $department->department_name}}">
+            <input class="form-control" placeholder="" type="text" name="name" id="name" value="{{ $department->department_name }}">
         </div>
 
         

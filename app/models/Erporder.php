@@ -32,6 +32,11 @@ class Erporder extends \Eloquent {
 		return $this->hasMany('Payment');
 	}
 
+	public function items(){
+
+		return $this->belongsToMany('Item');
+	}
+
 	public function tax(){
 
 		return $this->belongsTo('TaxOrder');

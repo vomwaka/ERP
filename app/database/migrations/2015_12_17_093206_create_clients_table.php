@@ -24,6 +24,7 @@ class CreateClientsTable extends Migration {
 			$table->string('contact_person_phone')->nullable();
 			$table->string('contact_person_email')->nullable();
 			$table->string('type');
+			$table->integer('organization_id')->nullable();
 			$table->timestamps();
 		});
 	}

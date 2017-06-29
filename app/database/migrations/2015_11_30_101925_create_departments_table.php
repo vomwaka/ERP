@@ -16,7 +16,7 @@ class CreateDepartmentsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('department_name');
-			$table->integer('organization_id')->unsigned()->default('0')->index('departments_organization_id_foreign');
+			$table->integer('organization_id')->unsigned()->default('0')->index('departments_organization_id_foreign')->nullable();
 			$table->timestamps();
 		});
 

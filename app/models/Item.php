@@ -30,4 +30,9 @@ class Item extends \Eloquent {
 		return $this->hasMany('Stock');
 	}
 
+	public function erporders(){
+
+		return $this->hasMany('Erporder');
+	}
+
 }

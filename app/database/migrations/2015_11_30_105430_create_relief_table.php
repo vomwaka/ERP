@@ -16,7 +16,7 @@ class CreateReliefTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('relief_name');
-			$table->integer('organization_id')->unsigned()->default('0')->index('relief_organization_id_foreign');
+			$table->integer('organization_id')->unsigned()->default('0')->index('relief_organization_id_foreign')->nullable();
 			$table->timestamps();
 		});
 
