@@ -200,9 +200,9 @@ $(document).ready(function(){
             <span class="glyphicon glyphicon-file"></span>&nbsp; View Quotation
         </a>&emsp;
 
-        <a href="{{URL::to('erpReports/invoice/'.$order->id)}}" class="lnk btn btn-primary btn-sm" target="_blank">
+      <!--  <a href="{{URL::to('erpReports/invoice/'.$order->id)}}" class="lnk btn btn-primary btn-sm" target="_blank">
             <span class="glyphicon glyphicon-file"></span>&nbsp; Generate Invoice
-        </a>&emsp;|&emsp; 
+        </a>&emsp;|&emsp; -->
 
 
      @if (Entrust::can('approve_quotation'))

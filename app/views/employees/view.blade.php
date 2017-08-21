@@ -219,9 +219,17 @@ function asMoney($value) {
         @endif
         </tr>
 
+        @if(Entrust::can('manager_payroll'))
         <tr><td><strong>Basic Salary: </strong></td>
         <td align="right">{{asMoney((double)$employee->basic_pay)}}</td>
         </tr>
+        @else
+        @if($employee->job_group_id != 2)
+        <tr><td><strong>Basic Salary: </strong></td>
+        <td align="right">{{asMoney((double)$employee->basic_pay)}}</td>
+        </tr>
+        @endif
+        @endif
         
         <tr><td><strong>Date Joined:</strong></td>
         @if($employee->date_joined != null)

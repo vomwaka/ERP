@@ -63,13 +63,13 @@ body {
         </td>
 
         <td>
-        <strong>
+       <div align="center"> <strong>
           {{ strtoupper($organization->name)}}
-          </strong><br><p>
-          {{ $organization->phone}}<br><p> 
-          {{ $organization->email}}<br><p> 
-          {{ $organization->website}}<br><p>
-          {{ $organization->address}}
+          </strong><br><p> </div>
+         <div align="center"> {{ $organization->phone}}<br><p> </div>
+         <div align="center"> {{ $organization->email}}<br><p> </div>
+         <div align="center"> {{ $organization->website}}<br><p> </div>
+         <div align="center"> {{ $organization->address}} </div>
        
 
         </td>

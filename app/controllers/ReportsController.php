@@ -11618,35 +11618,35 @@ public function members(){
     
     $report = Input::get('report_type');
     $date = Input::get('date');
-    $accounts = Account::where('active',true)
-    ->where('organization_id',Confide::user()->organization_id)
-    ->get();
-    $organization = Organization::find(Confide::user()->organization_id);
+    $from = Input::get('from');
+    $to = Input::get('to');
+    $period = Input::get('period');
+
+    $accounts = Account::all();
+    $organization = Organization::find(1);
 
     if($report == 'balancesheet'){
-      $pdf = PDF::loadView('pdf.financials.balancesheet', compact('accounts', 'date', 'organization'))->setPaper('a4')->setOrientation('potrait');
-  
+      $pdf = PDF::loadView('pdf.financials.balancesheet', compact('accounts', 'date', 'organization','from','to','period'))->setPaper('a4')->setOrientation('potrait');
       return $pdf->stream('Balance Sheet.pdf');
-
     }
 
 
     if($report == 'income'){
-
-      $pdf = PDF::loadView('pdf.financials.incomestatement', compact('accounts', 'date', 'organization'))->setPaper('a4')->setOrientation('potrait');
-  
+      $pdf = PDF::loadView('pdf.financials.incomestatement', compact('accounts', 'date', 'organization','from','to','period'))->setPaper('a4')->setOrientation('potrait'); 
       return $pdf->stream('Income Statement.pdf');
-
     }
 
 
     if($report == 'trialbalance'){
-
-      $pdf = PDF::loadView('pdf.financials.trialbalance', compact('accounts', 'date', 'organization'))->setPaper('a4')->setOrientation('potrait');
-  
+      $pdf = PDF::loadView('pdf.financials.trialbalance', compact('accounts', 'date', 'organization','from','to','period'))->setPaper('a4')->setOrientation('potrait');  
       return $pdf->stream('Trial Balance.pdf');
-
     }
+
+
+
+
+
+    
 
     if($report == 'cashflowstatement'){
       $expenses = Expense::where('employee.organization_id',Confide::user()->organization_id)->where('void',0)->get();

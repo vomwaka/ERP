@@ -1659,6 +1659,7 @@ $(document).ready(function() {
                         <input class="form-control" placeholder="" type="text" name="jtitle" id="jtitle" value="{{{ $employee->job_title }}}">
                     </div>
                     
+                    @if(Entrust::can('manager_payroll'))
                      <div class="form-group">
             
                         <label for="username">Basic Salary <span style="color:red">*</span></label>
@@ -1672,6 +1673,23 @@ $(document).ready(function() {
                        });
                        </script>
                     </div>
+                    @else
+                    @if($employee->job_group_id != 2)
+                    <div class="form-group">
+            
+                        <label for="username">Basic Salary <span style="color:red">*</span></label>
+                        <div class="input-group">
+                        <span class="input-group-addon">{{$currency->shortname}}</span>
+                        <input class="form-control" placeholder="" type="text" name="pay" id="pay" value="{{{ $employee->basic_pay*100 }}}">
+                        </div>
+                        <script type="text/javascript">
+                       $(document).ready(function() {
+                       $('#pay').priceFormat();
+                       });
+                       </script>
+                    </div>
+                    @endif
+                    @endif
                      <div class="form-group">
                         <label for="username">Date joined <span style="color:red">*</span></label>
                         <div class="right-inner-addon ">

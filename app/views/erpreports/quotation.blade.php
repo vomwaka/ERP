@@ -103,6 +103,10 @@ function asMoney($value) {
             
             <td colspan="2" >
                   <strong>Estimate</strong>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
                 <table class="demo" style="width:100%">
                   
                   <tr >

@@ -15,7 +15,7 @@ class ErpReportsController extends \BaseController {
 
 		$organization = Organization::find(1);
 
-		$pdf = PDF::loadView('erpreports.clientsReport', compact('clients', 'organization','from','to'))->setPaper('a4')->setOrientation('landscape');
+		$pdf = PDF::loadView('erpreports.clientsReport', compact('clients', 'organization','from','to'))->setPaper('a4')->setOrientation('potrait');
  	
 		return $pdf->stream('Client List.pdf');
 		
@@ -182,16 +182,16 @@ class ErpReportsController extends \BaseController {
 
     public function stock(){
 
-        $items = Item::all();
+       /* $items = Item::all();
         $location =  Input::get("location");     
 
         $organization = Organization::find(1);
 
         $pdf = PDF::loadView('erpreports.stockReport', compact('items', 'organization','location'))->setPaper('a4')->setOrientation('landscape');
     
-        return $pdf->stream('Stock Report.pdf');
+        return $pdf->stream('Stock Report.pdf'); */
 
-       /* $items = Item::all();
+       $items = Item::all();
 
         $from = Input::get("from");
         $to= Input::get("to");
@@ -204,12 +204,13 @@ class ErpReportsController extends \BaseController {
 
         $pdf = PDF::loadView('erpreports.stockReport', compact('items', 'organization','from','to'))->setPaper('a4')->setOrientation('landscape');
     
-        return $pdf->stream('Stock Report.pdf');*/
+        return $pdf->stream('Stock Report.pdf');
         
     }
 
     public function sales(){
 
+    
     $from = Input::get("from");
     $to= Input::get("to");
 
@@ -217,18 +218,20 @@ class ErpReportsController extends \BaseController {
                 ->join('erporderitems', 'erporders.id', '=', 'erporderitems.erporder_id')
                 ->join('items', 'erporderitems.item_id', '=', 'items.id')
                 ->join('clients', 'erporders.client_id', '=', 'clients.id')
+                ->join('stations', 'erporders.station_id', '=', 'stations.id')
                 ->where('erporders.type','=','sales')
                 ->whereBetween('erporders.date', array(Input::get("from"), Input::get("to")))
                 ->orderBy('erporders.order_number', 'Desc')
                 ->select('clients.name as client','items.name as item','quantity','clients.address as address',
                   'clients.phone as phone','clients.email as email','erporders.id as id','erporders.status',
-                  'discount_amount','erporders.date','erporders.order_number as order_number','price','description','erporders.type')
+                  'discount_amount','erporders.date','erporders.order_number as order_number','price','erporders.type','stations.station_name as station_name')
                 ->get();
   $items = Item::all();
+  $stations = Stations::get();
   $locations = Location::all();
   $organization = Organization::find(1);
 
-        $pdf = PDF::loadView('erpreports.salesReport', compact('sales', 'organization','from','to'))->setPaper('a4')->setOrientation('potrait');
+        $pdf = PDF::loadView('erpreports.salesReport', compact('sales', 'organization','from','to','stations'))->setPaper('a4')->setOrientation('potrait');
     
         return $pdf->stream('Sales List.pdf');
 }
@@ -471,7 +474,7 @@ public function purchases(){
 
     public function selectSalesPeriod()
     {
-        $stations = Stations::all();
+       $stations = Stations::all();
        $sales = Erporder::all();
         return View::make('erpreports.selectSalesPeriod',compact('sales','stations'));
     }

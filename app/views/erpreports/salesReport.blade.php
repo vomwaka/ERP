@@ -71,13 +71,13 @@ function asMoney($value) {
         </td>
 
         <td>
-        <strong>
+       <div align="center"> <strong>
           {{ strtoupper($organization->name)}}
-          </strong><br><p>
-          {{ $organization->phone}}<br><p> 
-          {{ $organization->email}}<br><p> 
-          {{ $organization->website}}<br><p>
-          {{ $organization->address}}
+          </strong><p> </div>
+         <div align="center"> {{ $organization->phone}}<p> </div>
+         <div align="center"> {{ $organization->email}}<p> </div>
+         <div align="center"> {{ $organization->website}}<p> </div>
+         <div align="center"> {{ $organization->address}} </div>
        
 
         </td>
@@ -103,7 +103,7 @@ function asMoney($value) {
    </div>
 
 
-	<div class="content" style='margin-top:0px;'>
+  <div class="content" style='margin-top:70px;'>
    <!-- <div align="center"><strong>Sales Report as at {{date('d-M-Y')}}</strong></div><br> -->
    <div align="center"><strong>Sales Report as from:  {{$from}} To:  {{$to}}</strong></div><br>
 
@@ -138,9 +138,9 @@ function asMoney($value) {
 
        <td td width='20'>{{$i}}</td>
         <td> {{ $sales->order_number }}</td>
-        <td>  {{ $sales->station_id }} </td>
-        <td> {{ $sales->client->name }}</td>
-        <td> {{ $sales->item->name }}</td>
+        <td> {{ $sales->station_name }}  </td>
+        <td> {{ $sales->client }}</td>
+        <td> {{ $sales->item }}</td>
         <td align = "center"> {{ $sales->quantity }}</td>
         <td align = "right"> {{asMoney($sales->price)}}</td>
         <td align = "right"> {{ asMoney($sales->price * $sales->quantity)}}</td>
@@ -156,7 +156,7 @@ function asMoney($value) {
 
     <tr>
            <td></td>
-           <td></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>

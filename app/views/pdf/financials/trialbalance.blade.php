@@ -12,7 +12,7 @@
 <?php
 
 
-function asMoney($value) {
+function asMoney($value){
   return number_format($value, 2);
 }
 
@@ -20,12 +20,8 @@ function asMoney($value) {
 
     
    <div class="header">
-     <table >
-
-      <tr>
-
-
-       
+     <table>
+      <tr>       
         <td style="width:150px">
 
             <img src="{{ '../images/logo.png' }}" alt="{{ $organization->logo }}" width="90px"/>
@@ -44,8 +40,20 @@ function asMoney($value) {
 
         </td>
 
+        <?php 
+        $range = '';
+        if($period == 'As at date'){
+        $newDate = date("d-M-Y", strtotime($date));
+        $range = 'As at '.$newDate;
+        }else if($period == 'custom'){
+        $newFrom = date("d-M-Y", strtotime($from));
+        $newTo = date("d-M-Y", strtotime($to));
+        $range = $newFrom.' to '.$newTo;
+        }
+        ?>
+
         <td>
-          <strong><h3>TRIAL BALANCE AS AT {{$date}} </h3></strong>
+          <strong><h3>TRIAL BALANCE <br> {{$range}} </h3></strong>
 
         </td>
         
@@ -91,16 +99,16 @@ function asMoney($value) {
           <td style="border-bottom:0.5px solid gray;">{{ $account->name}}</td>
 
           @if($account->category == 'ASSET' || $account->category == 'EXPENSE' )
-          <td style="border-bottom:0.5px solid gray;">{{asMoney(Account::getAccountBalanceAtDate($account, $date))}}</td>
+          <td style="border-bottom:0.5px solid gray;">{{asMoney(Account::getAccountBalanceAtDate($account, $from, $to, $date, $period))}}</td>
           <td style="border-bottom:0.5px solid gray;">{{asMoney(0)}}</td>
 
-          <?php $total_debit = $total_debit + Account::getAccountBalanceAtDate($account, $date); ?>
+          <?php $total_debit = $total_debit + Account::getAccountBalanceAtDate($account, $from, $to, $date, $period); ?>
           @endif
 
           @if($account->category == 'LIABILITY' || $account->category == 'INCOME' || $account->category == 'EQUITY')
           <td style="border-bottom:0.5px solid gray;">{{asMoney(0)}}</td>
-          <td style="border-bottom:0.5px solid gray;">{{asMoney(Account::getAccountBalanceAtDate($account, $date))}}</td>
-         <?php $total_credit= $total_credit + Account::getAccountBalanceAtDate($account, $date); ?>
+          <td style="border-bottom:0.5px solid gray;">{{asMoney(Account::getAccountBalanceAtDate($account, $from, $to, $date, $period))}}</td>
+         <?php $total_credit= $total_credit + Account::getAccountBalanceAtDate($account, $from, $to, $date, $period); ?>
           @endif
         
           

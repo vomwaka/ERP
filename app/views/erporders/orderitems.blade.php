@@ -65,23 +65,16 @@ $(document).ready(function() {
             <option> </option>
             <option> ..... select sale item....</option>
                 @foreach($items as $item)
-                
-                    <option value="{{$item->id}}">{{$item->name}}</option>
-                    
+                    <option value="{{$item->id}}">{{$item->name}}</option> 
                 @endforeach
             </select>
         </div>
-
 
         <div class="form-group ">
             <label>Quantity</label><span style="color:red">*</span> :
             <input type="text" name="quantity" id="quantity" class="form-control" required>
         </div>
-
-
-        
-
-
+       
 
         <div class="form-group">
             <label>Store</label><span style="color:red">*</span> :                   

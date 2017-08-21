@@ -44,8 +44,20 @@ function asMoney($value) {
 
         </td>
 
+        <?php 
+        $range = '';
+        if($period == 'As at date'){
+        $newDate = date("d-M-Y", strtotime($date));
+        $range = 'As at '.$newDate;
+        }else if($period == 'custom'){
+        $newFrom = date("d-M-Y", strtotime($from));
+        $newTo = date("d-M-Y", strtotime($to));
+        $range = $newFrom.' to '.$newTo;
+        }
+        ?>
+
         <td>
-          <strong><h3>BALANCE SHEET AS AT {{$date}} </h3></strong>
+          <strong><h3>BALANCE SHEET <br> {{$range}} </h3></strong>
 
         </td>
         
@@ -96,9 +108,9 @@ function asMoney($value) {
         <tr>
 
           <td style="border-bottom:0.5px solid gray;">{{ $account->name}}</td>
-          <td style="border-bottom:0.5px solid gray;">{{asMoney(Account::getAccountBalanceAtDate($account, $date))}}</td>
+          <td style="border-bottom:0.5px solid gray;">{{asMoney(Account::getAccountBalanceAtDate($account, $from, $to, $date, $period))}}</td>
         
-          <?php $total_assets = $total_assets + Account::getAccountBalanceAtDate($account, $date); ?>
+          <?php $total_assets = $total_assets + Account::getAccountBalanceAtDate($account, $from, $to, $date, $period); ?>
         </tr>
         @endif
         @endforeach
@@ -129,9 +141,9 @@ function asMoney($value) {
         <tr>
 
           <td style="border-bottom:0.5px solid gray;">{{ $account->name}}</td>
-          <td style="border-bottom:0.5px solid gray;">{{asMoney(Account::getAccountBalanceAtDate($account, $date))}}</td>
+          <td style="border-bottom:0.5px solid gray;">{{asMoney(Account::getAccountBalanceAtDate($account, $from, $to, $date, $period))}}</td>
         
-          <?php $total_liabilities = $total_liabilities + Account::getAccountBalanceAtDate($account, $date); ?>
+          <?php $total_liabilities = $total_liabilities + Account::getAccountBalanceAtDate($account, $from, $to, $date, $period); ?>
         </tr>
         @endif
         @endforeach
@@ -155,61 +167,24 @@ function asMoney($value) {
 
          <tr>
           <td style="border-bottom:1px solid black;"><strong>EQUITIES</strong></td>
-          <td style="border-bottom:1px solid black;"></td>
-          
+          <td style="border-bottom:1px solid black;"></td>          
             <?php $total_equity =0; ?>
-
         </tr>
-
-
         @foreach($accounts as $account)
         @if($account->category == 'EQUITY')
         <tr>
-
           <td style="border-bottom:0.5px solid gray;">{{ $account->name}}</td>
-          <td style="border-bottom:0.5px solid gray;">{{asMoney(Account::getAccountBalanceAtDate($account, $date))}}</td>
+          <td style="border-bottom:0.5px solid gray;">{{asMoney(Account::getAccountBalanceAtDate($account, $from, $to, $date, $period))}}</td>
         
-          <?php $total_equity = $total_equity + Account::getAccountBalanceAtDate($account, $date); ?>
+          <?php $total_equity = $total_equity + Account::getAccountBalanceAtDate($account, $from, $to, $date, $period); ?>
         </tr>
         @endif
         @endforeach
         <tr>
           <td style="border-top:1px solid black; border-bottom:1px solid black;"><strong>TOTAL EQUITIES</strong></td>
           <td style="border-top:1px solid black; border-bottom:1px solid black;"><strong>{{asMoney($total_equity)}}</strong></td>
-          
-          
-
         </tr>
-
-
-       
-
-
-      </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+      </table>  
    </div>
-
-
-
-
-
-
-
-
  </body>
  </html>

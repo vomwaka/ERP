@@ -51,7 +51,7 @@ $(document).ready(function(){
     @if($order->payment_type === "credit")
         <a href="{{URL::to('erpReports/receipt/'.$order->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="glyphicon glyphicon-file fa-fw"></i> Delivery Note/Invoice</a>
     @else
-        <a href="{{URL::to('erpReports/receipt/'.$order->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="glyphicon glyphicon-file fa-fw"></i> Delivery Note/Receipt</a>
+        <a href="{{URL::to('erpReports/receipt/'.$order->id)}}" class="btn btn-primary btn-sm" target="_blank"><i class="glyphicon glyphicon-file fa-fw"></i> Invoice</a>
     @endif
     </div>
 </div>

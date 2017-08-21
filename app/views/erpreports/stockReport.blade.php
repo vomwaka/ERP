@@ -68,17 +68,17 @@ body {
         <table align="center">
         <tr>
         <td>
-        <strong>
+       <div align="center"> <strong>
           {{ strtoupper($organization->name)}}
-          </strong><br>
-          {{ $organization->phone}}<br> 
-          {{ $organization->email}}<br>
-          {{ $organization->website}}<br>
-          {{ $organization->address}}       
-
+          </strong><br> </div>
+         <div align="center"> {{ $organization->phone}}<br> </div>
+         <div align="center"> {{ $organization->email}}<br> </div>
+         <div align="center"> {{ $organization->website}}<br> </div>
+         <div align="center"> {{ $organization->address}}  </div>     
         </td>
         </tr>     
-       </table>      
+       </table> 
+
 
       </tr>
       <tr>
@@ -92,10 +92,11 @@ body {
      <p class="page">Page <?php $PAGE_NUM ?></p>
    </div>
 
-
+ <br><br><br>  <br><br><br> 
   <div class="content" style='margin-top:0px;'>   
 
    <div align="center"><strong>Stock Movement Schedule as at {{date('d-M-Y')}}</strong></div><br>
+   
 
     <table class="table table-bordered" border='1' cellspacing='0' cellpadding='0'>
 

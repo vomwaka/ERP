@@ -1402,6 +1402,9 @@ Route::post('deleterow', 'PayrollController@del_exist');
 Route::post('payroll/preview', 'PayrollController@create');
 
 
+Route::post('payroll/edit{id}', 'PayrollController@edit');
+
+
 /*
 * employees routes
 */

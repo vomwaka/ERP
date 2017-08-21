@@ -104,7 +104,11 @@ function asMoney($value) {
             <td>&nbsp;</td>
             
             <td colspan="2" >
-                  <strong>Receipt</strong>
+                  <strong>Invoice</strong>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
                 <table class="demo" style="width:100%">
                   
                   <tr >

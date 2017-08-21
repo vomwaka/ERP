@@ -2,21 +2,35 @@
 
 /* ------------------------------- */
 
- body {
+body {
     background-color: #f8f8f8;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 300 !important;
+}
+
+h1,h2,h3,h4,h5,h6,a{
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: normal !important;
 }
 
 /* Wrappers */
 
 /* ------------------------------- */
 
- #wrapper {
+#wrapper {
     width: 100%;
 }
 
 #page-wrapper {
     padding: 0 15px;
-    min-height: 568px;
+    padding-top: 20px !important;
+    min-height: 100vh;
+    background-color: #fff;
+}
+
+#page-dash {
+    width: 100%;
+    min-height: 100vh;
     background-color: #fff;
 }
 
@@ -25,13 +39,14 @@
         position: inherit;
         margin: 0 0 0 250px;
         padding: 0 30px;
-        min-height: 1300px;
+        min-height: 100vh;
         border-left: 1px solid #e7e7e7;
     }
 }
 
 .navbar-static-side ul li {
     border-bottom: 1px solid #e7e7e7;
+    //font-size: 96% !important;
 }
 
 /* Navigation */
@@ -39,8 +54,13 @@
 /* ------------------------------- */
 
 /* Top Right Navigation Dropdown Styles */
+.navbar-static-top{
+    border: none;
+    background: #3367D6;
+    //box-shadow: 0px 1px 3px rgba(0,0,0,0.2) !important;
+}
 
- .navbar-top-links li {
+.navbar-top-links li {
     display: inline-block;
 }
 
@@ -49,12 +69,45 @@
 }
 
 .navbar-top-links li a {
-    padding: 15px;
-    min-height: 50px;
+    padding: 10px;
+    margin: 5px 0;
+    //margin-bottom: 0 !important;
+    min-height: 40px;
+    color: #fff !important;
+    transition: all linear 0.2s;
+
+    text-transform: uppercase !important;
+    font-family: 'Open Sans' !important;
+    font-weight: bold !important;
+    font-size: 96% !important;
+}
+
+.navbar-top-links li a .sub-link{
+    color: #ddd;
+    font-family: Arial !important;
+    font-weight: lighter !important;
+    font-size: 70% !important;
+    margin-bottom: 0;
+}
+
+.navbar-top-links li a:hover, .navbar-top-links li a:hover .sub-link,
+.navbar-top-links li a:focus, .navbar-top-links li a:focus .sub-link,
+.navbar-top-links li a:active, .navbar-top-links li a:active .sub-link{
+    //background: #fff;
+    color: #3367D6 !important;
+    transition: all linear 0.2s;
+}
+
+.dropdown-menu{
+    min-width: 130px;
+    border-radius: 1px;
+    border: none !important;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
 }
 
 .navbar-top-links .dropdown-menu li {
     display: block;
+    padding: 0 !important;
 }
 
 .navbar-top-links .dropdown-menu li:last-child {
@@ -62,8 +115,10 @@
 }
 
 .navbar-top-links .dropdown-menu li a {
-    padding: 3px 20px;
+    padding: 5px 20px;
+    margin: 0 !important;
     min-height: 0;
+    color: #34425A !important;
 }
 
 .navbar-top-links .dropdown-menu li a div {
@@ -96,7 +151,7 @@
 
 /* Sidebar Menu Styles */
 
- .sidebar-search {
+.sidebar-search {
     padding: 15px;
 }
 
@@ -143,7 +198,7 @@
 
 /* ------------------------------- */
 
- .btn-outline {
+.btn-outline {
     color: inherit;
     background-color: transparent;
     transition: all .5s;
@@ -183,7 +238,7 @@
 
 /* Dashboard Chat */
 
- .chat {
+.chat {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -220,13 +275,13 @@
 
 /* Login Page */
 
- .login-panel {
+.login-panel {
     margin-top: 25%;
 }
 
 /* Flot Chart Containers */
 
- .flot-chart {
+.flot-chart {
     display: block;
     height: 400px;
 }
@@ -238,7 +293,7 @@
 
 /* DataTables Overrides */
 
- table.dataTable thead .sorting,
+table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc:after,
 table.dataTable thead .sorting_desc,
 table.dataTable thead .sorting_asc_disabled,
@@ -267,11 +322,11 @@ table.dataTable thead .sorting:after {
 
 /* Circle Buttons */
 
- .btn-circle {
+.btn-circle {
     width: 30px;
     height: 30px;
     padding: 6px 0;
-    border-radius: 15px;
+    border-radius: 15px !important;
     text-align: center;
     font-size: 12px;
     line-height: 1.428571429;
@@ -281,7 +336,7 @@ table.dataTable thead .sorting:after {
     width: 50px;
     height: 50px;
     padding: 10px 16px;
-    border-radius: 25px;
+    border-radius: 25px !important;
     font-size: 18px;
     line-height: 1.33;
 }
@@ -290,7 +345,7 @@ table.dataTable thead .sorting:after {
     width: 70px;
     height: 70px;
     padding: 10px 16px;
-    border-radius: 35px;
+    border-radius: 35px !important;
     font-size: 24px;
     line-height: 1.33;
 }
@@ -305,3 +360,144 @@ table.dataTable thead .sorting:after {
 .show-grid {
     margin: 15px 0;
 }
+
+
+/**
+ * MODIFICATIONS
+ */
+#wrap{
+    padding-top: 50px !important;
+    position: fixed;
+    overflow-y: auto;
+    top: 0;
+    z-index: 100;
+    height: 100vh;
+    border-right: none;
+    //background: #34425A;
+}
+
+#wrap ul li > a{
+    //color: #444;
+    transition: all linear 0.2s;
+}
+
+#wrap ul li a:hover,
+#wrap ul li a:focus,
+#wrap ul li a:active{
+    //font-weight: bold;
+    //color: #3367D6;
+    color: #444;
+    //padding-left: 20px;
+    cursor: pointer;
+    transition: all linear 0.2s;
+}
+
+.navbar-static-side{
+    border: none;
+}
+
+*{
+    border-radius: 0px !important;
+}
+
+/*#page-wrapper{
+    background: #E3F2FD;
+}*/
+
+.btn{
+    border-radius: 1px !important;
+    border: none;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2) !important; 
+}
+
+.btn-default{
+    background: #F7F7F7;
+    box-shadow: none;
+}
+
+/* TABLE PANEL STYLING */
+/*.*panel-default{
+    border: none;
+    box-shadow: 0px 1px 6px rgba(0,0,0,0.2);
+}*/
+
+.panel, .panel-body, .panel-heading{
+    box-shadow: none;
+}
+
+.panel-heading{
+    //background-color: #E1F5FE !important;
+}
+
+input, select, textarea{
+    box-shadow: none !important;
+}
+
+table{
+    //font-size: 96% !important;
+}
+
+/* TABLES STYLING */
+table.table-condensed{
+    border: none !important;
+    margin: 10px 0;
+    //box-shadow: 0px 1px 4px rgba(0,0,0,0.2);
+}
+
+.table-condensed tbody > tr:nth-child(even){
+    background-color: #E3F2FD !important;
+}
+
+th, tr, td{
+    border: none !important;
+}
+
+.table-condensed thead{
+    background: #ddd;
+    color: #FFF;
+}
+
+
+/* SIDE MENU */
+#side-menu li ul li a{
+    padding-left: 50px;
+}
+
+#side-menu li a i{
+    margin-right: 5px;
+}
+
+
+/* DATA TABLES STYLING */
+.dataTables_length{
+    padding: 9px 3px 0px;
+    margin: 10px 5px 10px 0 !important;
+}
+
+.dataTables_paginate{
+    margin: 10px 0 !important;
+    padding-top: 0;
+}
+
+.dataTables_filter{
+    padding: 8px 3px 0px;
+    margin: 10px 0 10px 20px !important;
+}
+
+.dataTables_filter input{
+    width: 230px;
+    padding: 3px;
+    background: #FFF;
+    border: 1px solid #c5c5c5;
+}
+
+.dataTables_filter input:focus{
+    border: 1px solid #5BC0DE;
+    box-shadow: 0px 0px 2px #5BC0DE;
+}
+
+
+/* DATEPICKER */
+/*.datepicker, .datepicker1, .datepicker2, .datepicker21{
+    z-index: 120 !important;
+}*/
