@@ -29,7 +29,7 @@ onscroll="reset_interval()">
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand"  href="{{ URL::to('/')}}" > <font color='white'><b>{{Organization::getOrganizationName()}}</b></font></a>
+                <a class="navbar-brand"  href="<?php echo URL::to('/'); ?>" > <font color='white'><b><?php echo Organization::getOrganizationName(); ?></b></font></a>
             </div>
             <!-- /.navbar-header -->
 
@@ -38,8 +38,8 @@ onscroll="reset_interval()">
             <ul class="nav navbar-top-links navbar-right">
 
                 <li>
-                    <a  href="{{ URL::to('erpmgmt')}}">
-                        <!-- <i class="fa fa-home fa-fw"></i> -->  {{{ Lang::get('messages.nav.home') }}}<br>
+                    <a  href="<?php echo URL::to('erpmgmt'); ?>">
+                        <!-- <i class="fa fa-home fa-fw"></i> -->  <?php echo e(Lang::get('messages.nav.home')); ?><br>
                         <!-- <span class="sub-link">WELCOME</span> -->
                     </a>
                     
@@ -50,23 +50,13 @@ onscroll="reset_interval()">
                         <!-- <i class="fa fa-cogs fa-fw"></i> -->  Modules <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="{{ URL::to('hrdashboard') }}"><i class="fa fa-user fa-fw"></i>  HUMAN RESOURCE</a>
+                        <li><a href="<?php echo URL::to('hrdashboard'); ?>"><i class="fa fa-user fa-fw"></i>  HUMAN RESOURCE</a>
                              <!--<li class="divider"></li>-->
                        
-                        <li><a href="{{ URL::to('payrollmgmt') }}"><i class="fa fa-calculator fa-fw"></i> PAYROLL</a></li>
+                        <li><a href="<?php echo URL::to('payrollmgmt'); ?>"><i class="fa fa-calculator fa-fw"></i> PAYROLL</a></li>
                         <li>
-                            <a href="{{ URL::to('erpmgmt')}}">
+                            <a href="<?php echo URL::to('erpmgmt'); ?>">
                                 <i class="fa fa-random fa-fw"></i>  ERP
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ URL::to('schoolmgmt')}}">
-                                <i class="fa fa-random fa-school"></i>  SCHOOL MANAGEMENT
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ URL::to('cbsmgmt')}}">
-                                <i class="fa fa-random fa-bank"></i>  CORE BANKING SYSTEM
                             </a>
                         </li>
                     </ul>
@@ -76,16 +66,16 @@ onscroll="reset_interval()">
                 
                 <li class="dropdown" >
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <!-- <i class="fa fa-cogs fa-fw"></i> -->  {{{ Lang::get('messages.nav.administration') }}} <i class="fa fa-caret-down"></i>
+                        <!-- <i class="fa fa-cogs fa-fw"></i> -->  <?php echo e(Lang::get('messages.nav.administration')); ?> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="{{ URL::to('organizations') }}"><i class="fa fa-home fa-fw"></i>  Organization</a>
+                        <li><a href="<?php echo URL::to('organizations'); ?>"><i class="fa fa-home fa-fw"></i>  Organization</a>
                              <!--<li class="divider"></li>-->
                        
-                        <li><a href="{{ URL::to('system') }}"><i class="fa fa-sign-out fa-fw"></i> System</a></li>
+                        <li><a href="<?php echo URL::to('system'); ?>"><i class="fa fa-sign-out fa-fw"></i> System</a></li>
                         <li>
-                            <a href="{{ URL::to('accounts')}}">
-                                <i class="fa fa-calculator fa-fw"></i>  {{{ Lang::get('messages.nav.accounting') }}} 
+                            <a href="<?php echo URL::to('accounts'); ?>">
+                                <i class="fa fa-calculator fa-fw"></i>  <?php echo e(Lang::get('messages.nav.accounting')); ?> 
                             </a>
                         </li>
                     </ul>
@@ -97,13 +87,13 @@ onscroll="reset_interval()">
                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <!-- <i class="fa fa-user fa-fw"></i> -->  {{ Confide::user()->username}} <i class="fa fa-caret-down"></i>
+                        <!-- <i class="fa fa-user fa-fw"></i> -->  <?php echo Confide::user()->username; ?> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="{{ URL::to('users/profile/'.Confide::user()->id ) }}"><i class="fa fa-user fa-fw"></i>  Profile</a>
+                        <li><a href="<?php echo URL::to('users/profile/'.Confide::user()->id ); ?>"><i class="fa fa-user fa-fw"></i>  Profile</a>
                         </li>
                         <!--<li class="divider"></li>-->
-                        <li><a href="{{ URL::to('users/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="<?php echo URL::to('users/logout'); ?>"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                         
                     </ul>
@@ -115,13 +105,13 @@ onscroll="reset_interval()">
 
                 <li>
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        @if (Session::get('lang') == 'ks')
+                        <?php if(Session::get('lang') == 'ks'): ?>
                             Kiswahili
-                        @elseif (Session::get('lang') == 'en')
+                        <?php elseif(Session::get('lang') == 'en'): ?>
                             English
-                        @else
+                        <?php else: ?>
                            Language
-                        @endif 
+                        <?php endif; ?> 
 
 
                          <i class="fa fa-caret-down"></i>
@@ -129,7 +119,8 @@ onscroll="reset_interval()">
                     <ul class="dropdown-menu dropdown-user">
                         <li>
 
-                            {{link_to_route('language.select', 'English', array('en'))}}
+                            <?php echo link_to_route('language.select', 'English', array('en')); ?>
+
 
                         </li>
 
@@ -138,7 +129,8 @@ onscroll="reset_interval()">
 
                          <li>
 
-                            {{link_to_route('language.select', 'Kiswahili', array('ks'))}}
+                            <?php echo link_to_route('language.select', 'Kiswahili', array('ks')); ?>
+
 
                         </li>
 

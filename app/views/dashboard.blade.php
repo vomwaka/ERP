@@ -63,7 +63,7 @@
               						
 <div class="col-lg-12">
 	<div class="" style="margin-top: 100px !important">
-		<center><img class="img-responsive" src="{{asset('images/ourlogo.png')}}" width="auto"></center>
+		<center><img class="img-responsive" src="{{asset('images/OMWAKS.png')}}" width="auto"></center>
     
 	</div>
   </div>

@@ -11,32 +11,39 @@
     <title>OMWAKS FINANCIAL ERP </title>
     <link rel="shortcut icon" href="images/OMWAKS.png" />
 
-    <!-- <img src="{{asset('images/ourlogo.png')}}"> -->
+    <!-- <img src="<?php echo asset('images/ourlogo.png'); ?>"> -->
 
     <!-- Core CSS - Include with every page -->
 
-    {{ HTML::style('jquery-ui-1.11.4.custom/jquery-ui.css') }}
+    <?php echo HTML::style('jquery-ui-1.11.4.custom/jquery-ui.css'); ?>
 
-    {{ HTML::style('css/bootstrap.min.css') }}
+
+    <?php echo HTML::style('css/bootstrap.min.css'); ?>
+
     
    
-   {{ HTML::style('font-awesome/css/font-awesome.css') }}
+   <?php echo HTML::style('font-awesome/css/font-awesome.css'); ?>
+
   
 
     <!-- Page-Level Plugin CSS - Blank -->
 
     <!-- SB Admin CSS - Include with every page -->
    
-    {{ HTML::style('css/sb-admin.css') }}
+    <?php echo HTML::style('css/sb-admin.css'); ?>
+
     
 
     <!-- datatables css -->
 
-    {{ HTML::style('media/css/jquery.dataTables.min.css') }}
+    <?php echo HTML::style('media/css/jquery.dataTables.min.css'); ?>
 
-    {{ HTML::style('datepicker/css/bootstrap-datepicker.css') }}
 
-    {{ HTML::style("https://fonts.googleapis.com/css?family=Roboto:300,400") }}
+    <?php echo HTML::style('datepicker/css/bootstrap-datepicker.css'); ?>
+
+
+    <?php echo HTML::style("https://fonts.googleapis.com/css?family=Roboto:300,400"); ?>
+
 
     <style type="text/css">
 
@@ -63,17 +70,23 @@
     <!-- jquery scripts with datatable scripts -->
 
     
-    {{ HTML::script('media/js/jquery.js') }}
+    <?php echo HTML::script('media/js/jquery.js'); ?>
 
-    {{ HTML::script('media/js/jquery.dataTables.js') }}
 
-    {{ HTML::script('datepicker/js/bootstrap-datepicker.js') }}
+    <?php echo HTML::script('media/js/jquery.dataTables.js'); ?>
 
-    {{ HTML::script('js/velocity/velocity.js') }}
 
-    {{ HTML::script('js/velocity/velocity.ui.js') }}
+    <?php echo HTML::script('datepicker/js/bootstrap-datepicker.js'); ?>
 
-    {{HTML::script('js/price_format.js') }}
+
+    <?php echo HTML::script('js/velocity/velocity.js'); ?>
+
+
+    <?php echo HTML::script('js/velocity/velocity.ui.js'); ?>
+
+
+    <?php echo HTML::script('js/price_format.js'); ?>
+
 
     
   <script type="text/javascript">
@@ -200,7 +213,7 @@ function reset_interval() {
 
 function auto_logout() {
   // this function will redirect the user to the logout script
-  window.location = "{{ URL::to('users/logout') }}";
+  window.location = "<?php echo URL::to('users/logout'); ?>";
 }
 </script>
 

@@ -23,40 +23,41 @@
   
 </style>
 
-@extends('layouts.erp')
+
+@extends('layouts.school')
 @section('content')
 
 <br><br>
 <div class="row">
       <div class="col-md-2 col-md-offset-1 quicklink">
-        <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('items/create')}}" style="background: #e74c3c">
-          <i class="fa fa-barcode fa-2x"></i>
-          <div>New Item</div>
+        <a class="btn btn-default btn-icon input-block-level" href="#" style="background: #e74c3c">
+          <i class="fa fa-graduation-cap fa-2x"></i>
+          <div>Manage Student</div>
           
         </a>
       </div>
 
       <div class="col-md-2 quicklink">
-        <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('clients/create')}}" style="background: #2ECC71">
+        <a class="btn btn-default btn-icon input-block-level" href="#" style="background: #2ECC71">
           <i class="fa fa-user fa-2x"></i>
-          <div>New Client</div>
+          <div>Manage Staff</div>
           
         </a>
       </div>
 
 
       <div class="col-md-2 quicklink">
-        <a class="btn btn-default btn-icon input-block-level" href="{{URL::to('checks/create')}}" style="background: #9B59B6">
+        <a class="btn btn-default btn-icon input-block-level" href="#" style="background: #9B59B6">
           <i class="fa fa-random fa-2x"></i>
-          <div>New Station</div>
+          <div>Manage Laboratories</div>
           
         </a>
       </div>
 
       <div class="col-md-2 quicklink">
-        <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('bookings/create')}}" style="background: #F39C12">
+        <a class="btn btn-default btn-icon input-block-level" href="#" style="background: #F39C12">
           <i class="fa fa-th fa-2x"></i>
-          <div>New Store</div>
+          <div>Manage Examination</div>
           
         </a>
       </div>
@@ -64,9 +65,9 @@
       
 
       <div class="col-md-2 quicklink">
-        <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('maintenances/create')}}" style="background: #34495E">
+        <a class="btn btn-default btn-icon input-block-level" href="#" style="background: #34495E">
           <i class="fa fa-th-large fa-2x"></i>
-          <div>Receive Stock</div>
+          <div>Manage Department</div>
           
         </a>
       </div>
@@ -129,12 +130,12 @@
 <br><br>
 <hr>
 <div class="row">
-              						
+                          
 <div class="col-lg-2"></div>
-	<div class="">
-		<img class="img-responsive" src="{{asset('images/OMWAKS.png')}}" width="auto">
+  <div class="">
+    <img class="img-responsive" src="{{asset('images/OMWAKS.png')}}" width="auto">
     
-	</div>
+  </div>
 </div>
 
 @stop

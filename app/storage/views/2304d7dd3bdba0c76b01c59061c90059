@@ -23,13 +23,13 @@
   
 </style>
 
-@extends('layouts.erp')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 <br><br>
 <div class="row">
       <div class="col-md-2 col-md-offset-1 quicklink">
-        <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('items/create')}}" style="background: #e74c3c">
+        <a class="btn btn-default btn-icon input-block-level" href="<?php echo URL::to('items/create'); ?>" style="background: #e74c3c">
           <i class="fa fa-barcode fa-2x"></i>
           <div>New Item</div>
           
@@ -37,7 +37,7 @@
       </div>
 
       <div class="col-md-2 quicklink">
-        <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('clients/create')}}" style="background: #2ECC71">
+        <a class="btn btn-default btn-icon input-block-level" href="<?php echo URL::to('clients/create'); ?>" style="background: #2ECC71">
           <i class="fa fa-user fa-2x"></i>
           <div>New Client</div>
           
@@ -46,7 +46,7 @@
 
 
       <div class="col-md-2 quicklink">
-        <a class="btn btn-default btn-icon input-block-level" href="{{URL::to('checks/create')}}" style="background: #9B59B6">
+        <a class="btn btn-default btn-icon input-block-level" href="<?php echo URL::to('checks/create'); ?>" style="background: #9B59B6">
           <i class="fa fa-random fa-2x"></i>
           <div>New Station</div>
           
@@ -54,7 +54,7 @@
       </div>
 
       <div class="col-md-2 quicklink">
-        <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('bookings/create')}}" style="background: #F39C12">
+        <a class="btn btn-default btn-icon input-block-level" href="<?php echo URL::to('bookings/create'); ?>" style="background: #F39C12">
           <i class="fa fa-th fa-2x"></i>
           <div>New Store</div>
           
@@ -64,7 +64,7 @@
       
 
       <div class="col-md-2 quicklink">
-        <a class="btn btn-default btn-icon input-block-level" href="{{ URL::to('maintenances/create')}}" style="background: #34495E">
+        <a class="btn btn-default btn-icon input-block-level" href="<?php echo URL::to('maintenances/create'); ?>" style="background: #34495E">
           <i class="fa fa-th-large fa-2x"></i>
           <div>Receive Stock</div>
           
@@ -75,7 +75,7 @@
 
 <!-- <div class="row" style="padding-right: 8.33%;">
   <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-xs-offset-2 quicklink">
-    <a href="{{ URL::to('items/create')}}"><img border="0" src="{{asset('images/Add-icon.png')}}" alt="New Item" width="75">
+    <a href="<?php echo URL::to('items/create'); ?>"><img border="0" src="<?php echo asset('images/Add-icon.png'); ?>" alt="New Item" width="75">
       
       <div>New Item</div>
       
@@ -83,7 +83,7 @@
   </div>
 
   <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-xs-offset-2 quicklink">
-    <a href="{{ URL::to('clients/create')}}"><img border="0" src="{{asset('images/addclients.png')}}" alt="New Client" width="75">
+    <a href="<?php echo URL::to('clients/create'); ?>"><img border="0" src="<?php echo asset('images/addclients.png'); ?>" alt="New Client" width="75">
      
       <div>New Client</div>
       
@@ -91,7 +91,7 @@
   </div>
 
   <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-xs-offset-2 quicklink">
-    <a href="{{URL::to('salesorders/create')}}"><img border="0" src="{{asset('images/addsale.jpg')}}" alt="New Sale" width="75">
+    <a href="<?php echo URL::to('salesorders/create'); ?>"><img border="0" src="<?php echo asset('images/addsale.jpg'); ?>" alt="New Sale" width="75">
     
       <div>New Sale</div>
      
@@ -99,7 +99,7 @@
   </div>
 
   <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-xs-offset-2 quicklink">
-    <a  href="{{ URL::to('purchaseorders/create')}}"><img border="0" src="{{asset('images/cart-add-icon.png')}}" alt="New Purchase" width="75">
+    <a  href="<?php echo URL::to('purchaseorders/create'); ?>"><img border="0" src="<?php echo asset('images/cart-add-icon.png'); ?>" alt="New Purchase" width="75">
       
       <div>New Purchase</div>
       
@@ -107,7 +107,7 @@
   </div>
   
   <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-xs-offset-2 quicklink">
-    <a href="{{ URL::to('payments/create')}}"><img border="0" src="{{asset('images/payments.png')}}" alt="New Payment" width="75">
+    <a href="<?php echo URL::to('payments/create'); ?>"><img border="0" src="<?php echo asset('images/payments.png'); ?>" alt="New Payment" width="75">
       
       <div>New Payment</div>
       
@@ -115,7 +115,7 @@
   </div>
 
   <div class="col-md-3 col-sm-3 col-xs-3 col-md-offset-1 col-xs-offset-2 quicklink">
-    <a href="{{ URL::to('stocks/create')}}"><img border="0" src="{{asset('images/receivestock.jpg')}}" alt="New Payment" width="75">
+    <a href="<?php echo URL::to('stocks/create'); ?>"><img border="0" src="<?php echo asset('images/receivestock.jpg'); ?>" alt="New Payment" width="75">
       
       <div>Receive Stock</div>
       
@@ -132,9 +132,10 @@
               						
 <div class="col-lg-2"></div>
 	<div class="">
-		<img class="img-responsive" src="{{asset('images/OMWAKS.png')}}" width="auto">
+		<img class="img-responsive" src="<?php echo asset('images/OMWAKS.png'); ?>" width="auto">
     
 	</div>
 </div>
 
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.erp', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

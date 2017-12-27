@@ -44,7 +44,7 @@ Route::get('/dashboard', function()
 
              
           //$employees = Employee::all();
-           return View::make('dashboard');
+           return View::make('erpmgmt');
 
 //return Redirect::to('erpmgmt');
 
@@ -1577,6 +1577,15 @@ Route::get('leavemgmt', function(){
 Route::get('erpmgmt', function(){
 
   return View::make('erpmgmt');
+
+});
+
+
+// SCHOOL MANAGEMENT
+
+Route::get('schoolmgmt', function(){
+
+  return View::make('schoolmgmt');
 
 });
 

@@ -1,5 +1,4 @@
-@extends('layouts.system')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <br/><br/><br/><br/>
 
 <div class="row">
@@ -11,7 +10,8 @@
 
 <div class="col-lg-3">
 
-{{ HTML::image("images/OMWAKS.png", "Logo") }}
+<?php echo HTML::image("images/OMWAKS.png", "Logo"); ?>
+
 
 
 </div>	
@@ -32,7 +32,7 @@
 
 																<tr>
 
-																	<td>Licensed To</td><td>{{Organization::getOrganizationName()}}</td>
+																	<td>Licensed To</td><td><?php echo Organization::getOrganizationName(); ?></td>
 																</tr>
 																
 
@@ -50,4 +50,5 @@
 </div>
 
 
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.system', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
