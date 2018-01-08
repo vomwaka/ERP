@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2017 at 02:13 PM
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- Generation Time: Jan 06, 2018 at 04:40 AM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `xara1`
+-- Database: `erp`
 --
 
 -- --------------------------------------------------------
@@ -356,7 +358,8 @@ INSERT INTO `audits` (`id`, `date`, `user`, `action`, `entity`, `amount`, `descr
 (77, '2017-06-29', 'eyJpdiI6IitkV1NUNEVLVmlPbW5aXC9VM09Jc0lnPT0iLCJ2YWx1ZSI6IlwvM3ZZd3l1bnp1dkZ4TnR3ME1hSm5YZ2cxazhSZFJmTG1jSHpkWVBMYmcwPSIsIm1hYyI6IjM2YzMxZGMyMDc0ZTk5MTU0YjBhNjhhMDg3NTZiY2RiMDYwNDRhNjFkN2IwODFhYjE3Yjg5YTI2ZjM3MDViYzQifQ==', 'eyJpdiI6ImJ1MzF0ck9Ja3lZWTg2UkNFXC9iaGZBPT0iLCJ2YWx1ZSI6ImhkZ2hUSldjR1hYUlRPcUhLTFwvdURBPT0iLCJtYWMiOiJhZmYxNmQwODdjMDk5OGY5YjkxY2YwNTZhNjgyNWQ0MzcyNmU3MWY1YThmMzIyMGQ2MDgyZDE1NWNkOGU1OWI0In0=', 'eyJpdiI6ImtYM25YSXFlOFI5cFhIcXdtbFQ1cEE9PSIsInZhbHVlIjoicm5ZRGNvOUVoY1NKSzVvUmFPNTh0Zz09IiwibWFjIjoiNjQ5Yzc2ZGY0ODY5MGJhZDBhY2RlOGUxNDM1MTU4OGNjNGNjYTQ4ODRlOGQ3Nzg0ZGVmYjVjNmQ4MjlkMWQ4MCJ9', NULL, 'eyJpdiI6ImNDS3pkRzh2RlZzaFNWVFg0Z0dINGc9PSIsInZhbHVlIjoiQWxMdkVNS2Y1Q2phaFk2bHhSYUt2VEJvRFYxU1NRMmF0OVduQ3RKaFErbz0iLCJtYWMiOiIwM2FlNmUxMGY3ODNhZDIxMGZmYjE3YTI3MmZiZTQ2OGMwYjUyNDEzNGJiNzczN2NjMmU4YWQ0ODUzNzcyNWE0In0=', NULL, '2017-06-29 12:06:34', '2017-06-29 12:06:34'),
 (78, '2017-06-29', 'eyJpdiI6Ijd1bUdVUlFlWFdDb29yUWgxb3dweFE9PSIsInZhbHVlIjoiOERmUGVaclZLMlF1VVNQQldGdnIwZldSUW5XQ0JIN015OVphWFJramdRUT0iLCJtYWMiOiIyMTU0MjlhMTljNjkwMzQzNmJkMjc0YmRlMWU1ZTkxNTYzZTIwMjczYWQ1YzZjYzZkNjY3Y2YzNWJkZmYwOGJjIn0=', 'eyJpdiI6IlEzS3ZacmpRRTFiU0RTOEp3T2VvMkE9PSIsInZhbHVlIjoicFo4b3JkWjFieGJkQ2VKU1B1M1BsQT09IiwibWFjIjoiNjZmMzM4MTU3NDRmMTEzNjA4MGFjZTc5ZTExMmQ0MGYwM2M3YzgyZmM2MzRkNTI4YWFkMDRlN2U2NmUzZDBjOSJ9', 'eyJpdiI6ImxqcGxJYVNhNG1QMmlLXC84S3QrcjNBPT0iLCJ2YWx1ZSI6IlUzOVBHWkROOHFOSVNlT25WWjVGUFE9PSIsIm1hYyI6IjliYjZmMjkzZGMzZDQ2ZTc1NGYzZmM4NTEzNWM4OWZjZWY0YzQ4OWJjMTgwNGRkYzRmOWY2NDk2NjAzNTIxZjYifQ==', NULL, 'eyJpdiI6ImxZSHhMQ1gxZnQrNDcxN3VudFwvQUVBPT0iLCJ2YWx1ZSI6IndLbEJia2JKWlFBRlNYOFFhWE1PczN6VGNkaHdQU1FvUkhhNitBeHRuSkk9IiwibWFjIjoiZGJiMjJhZDU2MTJiNmQzZDgyODE1MGM5YTA3ZTJlMWFkY2U2ZDM0YjgzYzRiZjkxYTMyNjEzYmE5NGQ0ZjI5YyJ9', NULL, '2017-06-29 12:08:03', '2017-06-29 12:08:03'),
 (79, '2017-06-29', 'eyJpdiI6Im5zVW5UaFNsYmZEZkR3NVNsbm1VTmc9PSIsInZhbHVlIjoiUFhIXC9abWdYNTlodExWZWFQUWtkM21KQ1VNQVRRWFZjZ2wwM3p4M2M4bTA9IiwibWFjIjoiZWY4N2I1MzUwOWU4MGZmZDliZTYzZmFhODcyM2ZjOTRmZDkxZjdmNzE3MmIwNGRiOTlhOGQyYjY0YjkwMGI2OSJ9', 'eyJpdiI6IlRxVE5zalZxbW5HUzJLTDExVzBvd0E9PSIsInZhbHVlIjoiWjlZdHlGblRrRjV2cTdUbSt3Q3Nrdz09IiwibWFjIjoiMGFhMzNmODA2YWI5YzQ4NDFiZDkwNjc3Mzg0OTM3Mzc5NWZjMzhiMTBlM2FkZmE4MTc5NzFkNzg2Nzg5MmRjNSJ9', 'eyJpdiI6IjJrdUFzbmozTVp4dnhSWlRWQWp0QWc9PSIsInZhbHVlIjoiXC9VMTZyTGZ2bTJJNVh3NWRRWEEzSkE9PSIsIm1hYyI6IjllZjAzNjAxMjQ1Y2U1NzllZDNlM2IyMDk1ZDRjMWMyNzhiMjQ2ZGJhMzFlZWZiNzc3ZTkwNzViYWY4N2E5ZTIifQ==', NULL, 'eyJpdiI6IkQyTXNwY0F3QkdQbmQ2SjljVDhpOUE9PSIsInZhbHVlIjoiNUtBTUo1WXZWTmRJRFBNc3F3QU1aQXVUUGFlNHZwU08xbnIxaExtUkxcL3M9IiwibWFjIjoiYmQ3ODNkYTk5ODA2Yzg3ZGZmMzgzZGZlNzliNDhjNmYzMGE4MWZmYWEwN2E1ZmQzM2YzNDk3ODdjYWU0NjhmNCJ9', NULL, '2017-06-29 12:09:30', '2017-06-29 12:09:30'),
-(80, '2017-06-29', 'eyJpdiI6IjYzaHg2OW5KNVZ4NWx0eXJGUW9DNnc9PSIsInZhbHVlIjoiYlhreHZSSUJmbXhBYlpFVFhMRmd0Z0pKdHVwSytiVGpQKzU5YjgxYkpnUT0iLCJtYWMiOiJmZmU0M2M4MTMyYzRjMWQyZTgxMTgzYTYxYTNjMDhmYWIxOGFhNWU4MWYzZTNiYTM4MTkwYzRlOTI5MjRlNGU0In0=', 'eyJpdiI6IkRUXC84a0xBVWd5ZVhYOWUwRjRJNTJnPT0iLCJ2YWx1ZSI6IjJoV2huMmZpR3g4aHA1aitseVhsM1E9PSIsIm1hYyI6IjU0OTY1NDBlMjVhYzM3MTdlOWFjNjZkZTMyN2UxZDAxMTliOGQ2ZDczMjVjODE3NjU0MDg3OTBiNjFiNjk2MDAifQ==', 'eyJpdiI6IjJDd0JMSTRTdmZjcVJcL2k3ZWNrM3NRPT0iLCJ2YWx1ZSI6IktxemllZFVPTUcrV3hSbkp3dWNZamc9PSIsIm1hYyI6IjNkNGIwOGQyN2ViNTRhMWY2ZDA2N2U3MDY0M2Y0MWE5NjlhN2FmNTA3NmEyZjJkODljZDdiOTVlNjUxN2U1MDcifQ==', NULL, 'eyJpdiI6Ik9waHZ4Vkg5YVF4aXpNb0M4Q044TXc9PSIsInZhbHVlIjoiSjZvdVlWMFBsNjJ0WmhcL2JIdXNLVTVRMWFnMlZKbzlva21PaklOMkFNaUlQd3Vya2pQYWgwU3FlbGMrU2k0Wk0iLCJtYWMiOiI4MzQyMTM4NGNlNzI4YWJkYzRlNzg5N2RmNjAyZTUwYTQ0MzZkODU5ZDc1MmE1OGI2NmMzOTAxNTViMmUyODJmIn0=', NULL, '2017-06-29 12:09:56', '2017-06-29 12:09:56');
+(80, '2017-06-29', 'eyJpdiI6IjYzaHg2OW5KNVZ4NWx0eXJGUW9DNnc9PSIsInZhbHVlIjoiYlhreHZSSUJmbXhBYlpFVFhMRmd0Z0pKdHVwSytiVGpQKzU5YjgxYkpnUT0iLCJtYWMiOiJmZmU0M2M4MTMyYzRjMWQyZTgxMTgzYTYxYTNjMDhmYWIxOGFhNWU4MWYzZTNiYTM4MTkwYzRlOTI5MjRlNGU0In0=', 'eyJpdiI6IkRUXC84a0xBVWd5ZVhYOWUwRjRJNTJnPT0iLCJ2YWx1ZSI6IjJoV2huMmZpR3g4aHA1aitseVhsM1E9PSIsIm1hYyI6IjU0OTY1NDBlMjVhYzM3MTdlOWFjNjZkZTMyN2UxZDAxMTliOGQ2ZDczMjVjODE3NjU0MDg3OTBiNjFiNjk2MDAifQ==', 'eyJpdiI6IjJDd0JMSTRTdmZjcVJcL2k3ZWNrM3NRPT0iLCJ2YWx1ZSI6IktxemllZFVPTUcrV3hSbkp3dWNZamc9PSIsIm1hYyI6IjNkNGIwOGQyN2ViNTRhMWY2ZDA2N2U3MDY0M2Y0MWE5NjlhN2FmNTA3NmEyZjJkODljZDdiOTVlNjUxN2U1MDcifQ==', NULL, 'eyJpdiI6Ik9waHZ4Vkg5YVF4aXpNb0M4Q044TXc9PSIsInZhbHVlIjoiSjZvdVlWMFBsNjJ0WmhcL2JIdXNLVTVRMWFnMlZKbzlva21PaklOMkFNaUlQd3Vya2pQYWgwU3FlbGMrU2k0Wk0iLCJtYWMiOiI4MzQyMTM4NGNlNzI4YWJkYzRlNzg5N2RmNjAyZTUwYTQ0MzZkODU5ZDc1MmE1OGI2NmMzOTAxNTViMmUyODJmIn0=', NULL, '2017-06-29 12:09:56', '2017-06-29 12:09:56'),
+(81, '2017-12-24', 'eyJpdiI6IlFsNG1XR2FTTTFWOEJrRm9INjZQSXc9PSIsInZhbHVlIjoibHBLeTlpOCtYblJVbjFybnpIMENHbzI0azUyT3F6bnlobGNiaDBDXC81TDA9IiwibWFjIjoiZTdhNWU1YzE3YzU5MDFhYjRjN2ZhODY3MDllMmI4YTM2YTIzNGRkYzk1YjY2YTI2ZTZmMTE2ODc1YTA4Y2ZkYiJ9', 'eyJpdiI6IkJqTWc0SHBvdHlPSmg2R2grN1NQclE9PSIsInZhbHVlIjoiVVVJKzUyVERvRmdiMnRBZnFKMlFadz09IiwibWFjIjoiYzRkZjQzNDA1OTEyM2NlOTVlMmU1ZTUwMzA4ZDQxMmRiMDkzOWNiNDdjZjliODAyZThjYTFkOWI3ZmYyYzZkNyJ9', 'eyJpdiI6IkMzeE9vMkZcL2UwVjBEcUFidFBsXC9sZz09IiwidmFsdWUiOiJXXC9ZYnBidXdiT2p3MWVtQmhaZzB4dz09IiwibWFjIjoiZjcwYTI4NmQwNDczNTkwMGFjZDFlNDIzM2E0ZjliYTg5YjNiOGMxOTQzNjVkZjM5YjJjY2FmMzNhZDc2Njk3NiJ9', NULL, 'eyJpdiI6IityWXJmYkpJbWFmZjlhSUUxMEp3M3c9PSIsInZhbHVlIjoiU3U2ZXhVdm5nYnpkM2NsK0N2QUdGRUo1endcL3Z5VEFBSFEraDhxNlgwMVU9IiwibWFjIjoiYjc5ODVlY2IyNzAzMGM4NmVjYTk2NmZlOWFiMDY2ZmZhODM2MGY2MWJlYmVmZTU3MzczODU5YmM0ZGQ5MTJkZSJ9', NULL, '2017-12-24 21:57:11', '2017-12-24 21:57:11');
 
 -- --------------------------------------------------------
 
@@ -3235,6 +3238,13 @@ CREATE TABLE `holidays` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `holidays`
+--
+
+INSERT INTO `holidays` (`id`, `name`, `date`, `organization_id`, `created_at`, `updated_at`) VALUES
+(1, 'Christmass', '2018-01-25', 1, '2018-01-05 18:54:28', '2018-01-05 18:54:28');
+
 -- --------------------------------------------------------
 
 --
@@ -3526,8 +3536,8 @@ CREATE TABLE `leaveapplications` (
 --
 
 INSERT INTO `leaveapplications` (`id`, `employee_id`, `application_date`, `applied_start_date`, `applied_end_date`, `leavetype_id`, `status`, `date_approved`, `date_rejected`, `date_amended`, `date_cancelled`, `approved_start_date`, `approved_end_date`, `actual_start_date`, `actual_end_date`, `organization_id`, `created_at`, `updated_at`) VALUES
-(1, 1, '2017-03-20', '2017-04-03', '2017-04-19', 1, 'applied', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2017-03-20 20:42:27', '2017-03-20 20:42:27'),
-(2, 1, '2017-03-20', '2017-03-21', '2017-03-21', 2, 'applied', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2017-03-20 20:43:39', '2017-03-20 20:43:39'),
+(1, 1, '2017-03-20', '2017-04-03', '2017-04-19', 1, 'approved', '2018-01-05', NULL, NULL, NULL, '2017-04-03', '2017-04-19', NULL, NULL, 1, '2017-03-20 20:42:27', '2018-01-05 18:53:01'),
+(2, 1, '2017-03-20', '2017-03-21', '2017-03-21', 2, 'amended', NULL, NULL, '2018-01-05', NULL, NULL, NULL, NULL, NULL, 1, '2017-03-20 20:43:39', '2018-01-05 18:52:49'),
 (3, 1, '2017-05-25', '2017-05-25', '2017-06-05', 1, 'approved', '2017-05-25', NULL, NULL, NULL, '2017-05-25', '2017-06-05', NULL, NULL, 1, '2017-05-25 14:13:24', '2017-05-25 14:14:11');
 
 -- --------------------------------------------------------
@@ -4051,7 +4061,7 @@ CREATE TABLE `organizations` (
 --
 
 INSERT INTO `organizations` (`id`, `name`, `logo`, `email`, `website`, `address`, `phone`, `kra_pin`, `nssf_no`, `nhif_no`, `bank_id`, `bank_branch_id`, `bank_account_number`, `swift_code`, `payroll_license_type`, `erp_license_type`, `cbs_license_type`, `license_code`, `payroll_license_key`, `erp_license_key`, `cbs_license_key`, `erp_client_licensed`, `erp_item_licensed`, `payroll_licensed`, `cbs_licensed`, `payroll_code`, `erp_code`, `cbs_code`, `payroll_support_period`, `erp_support_period`, `cbs_support_period`, `is_payroll_active`, `is_erp_active`, `is_cbs_active`, `created_at`, `updated_at`) VALUES
-(1, 'NEDAM SERVICES LTD', 'zpojMMA2QRCd.png', 'info@nedamservices.co.ke', 'www.nedamservices.co.ke', 'Nandi Road,Karen Shopping Centre\r\nP.O.BOX 3088-00506\r\nNairobi Kenya', '0722310178', 'P051202596D', '02106345', '51537', 0, 0, '', '', 'evaluation', 'evaluation', 'evaluation', NULL, 0, 0, 0, 10, 5, 10, 100, 'P3110', 'E3110', 'C3110', NULL, NULL, NULL, 0, 0, 0, '2017-03-18 08:09:24', '2017-04-13 16:50:37');
+(1, 'OMWAKS FINANCIAL ERP', '9Z84STVYtJXo.png', 'info@omwaks.co.ke', 'www.omwaks.co.ke', 'Nandi Road,Karen Shopping Centre\r\nP.O.BOX 3088-00506\r\nNairobi Kenya', '0726630811', 'P051202596D', '02106345', '51537', 0, 0, '', '', 'evaluation', 'evaluation', 'evaluation', NULL, 0, 0, 0, 10, 5, 10, 100, 'P3110', 'E3110', 'C3110', NULL, NULL, NULL, 0, 0, 0, '2017-03-18 08:09:24', '2017-12-24 21:10:18');
 
 -- --------------------------------------------------------
 
@@ -4890,7 +4900,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `confirmation_code`, `remember_token`, `confirmed`, `user_type`, `is_active`, `branch_id`, `organization_id`, `created_at`, `updated_at`) VALUES
-(1, 'superadmin', 'superadmin@lixnet.net', '$2y$10$MkAeCTBw3V7KrucqtKwksOKW6iJpQlFRhjY5tjdjniirlv5E5/ery', 'ec11812db74334c0b07c5118430e9b6a', 'yEZ8qRNgKux6sU9ChYXQIA2DDaTSC8INVoT8elQ9kClBoSNXysmQkh6Ef3Qa', 1, 'admin', NULL, NULL, 1, '2017-03-18 08:09:26', '2017-06-29 11:46:41'),
+(1, 'superadmin', 'superadmin@lixnet.net', '$2y$10$MkAeCTBw3V7KrucqtKwksOKW6iJpQlFRhjY5tjdjniirlv5E5/ery', 'ec11812db74334c0b07c5118430e9b6a', 'lYtJIzwWfivBKrRWLrKFL9V9gwmuMNfLRoXQQAtbA4zDKD76GFYRzoovVbsZ', 1, 'admin', NULL, NULL, 1, '2017-03-18 08:09:26', '2018-01-05 19:42:01'),
 (2, 'Admin', 'admin@nedamservices.com', '$2y$10$0z9ypCCzSKiBu.ybVroE3.jC7ky3cLEwKo9kPFRZKvpV44HX5nB3a', 'e4c4b8527a64a213afc3a118efb9e03f', NULL, 1, 'admin', NULL, NULL, 1, '2017-03-20 19:44:20', '2017-03-20 19:44:20'),
 (3, 'omwaks', 'vomwaka12@gmail.com', '$2y$10$Z5wAKC8EbmCTp2GrJ.H8X.YRKxHRRdSaqkwBaZUng9cNrPqVXy292', '3ba0034ab2a272a650154b5b4d836233', 'A9pPgRrwRed7ivaetkVZVBneF251AJDvNOqYuWjvLJS9glFjPNZGA6Iks4se', 1, 'admin', NULL, NULL, 1, '2017-06-29 06:57:19', '2017-06-29 07:09:11');
 
@@ -5742,546 +5752,655 @@ ALTER TABLE `vendors`
 --
 ALTER TABLE `account`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `account_transactions`
 --
 ALTER TABLE `account_transactions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
 --
 -- AUTO_INCREMENT for table `allowances`
 --
 ALTER TABLE `allowances`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `appraisalcategories`
 --
 ALTER TABLE `appraisalcategories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `appraisalquestions`
 --
 ALTER TABLE `appraisalquestions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `appraisals`
 --
 ALTER TABLE `appraisals`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `assigned_roles`
 --
 ALTER TABLE `assigned_roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `audits`
 --
 ALTER TABLE `audits`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+
 --
 -- AUTO_INCREMENT for table `autoprocesses`
 --
 ALTER TABLE `autoprocesses`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `banking`
 --
 ALTER TABLE `banking`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `banks`
 --
 ALTER TABLE `banks`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
 --
 -- AUTO_INCREMENT for table `bank_accounts`
 --
 ALTER TABLE `bank_accounts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `bank_branches`
 --
 ALTER TABLE `bank_branches`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1786;
+
 --
 -- AUTO_INCREMENT for table `bank_statements`
 --
 ALTER TABLE `bank_statements`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `benefitsettings`
 --
 ALTER TABLE `benefitsettings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `branches`
 --
 ALTER TABLE `branches`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `budgets`
 --
 ALTER TABLE `budgets`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `charges`
 --
 ALTER TABLE `charges`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `charge_loanproduct`
 --
 ALTER TABLE `charge_loanproduct`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `charge_savingproduct`
 --
 ALTER TABLE `charge_savingproduct`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `citizenships`
 --
 ALTER TABLE `citizenships`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `claim_receipts`
 --
 ALTER TABLE `claim_receipts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `claim_receipt_items`
 --
 ALTER TABLE `claim_receipt_items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
 --
 -- AUTO_INCREMENT for table `company_property`
 --
 ALTER TABLE `company_property`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `currencies`
 --
 ALTER TABLE `currencies`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `deductions`
 --
 ALTER TABLE `deductions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `earnings`
 --
 ALTER TABLE `earnings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `earningsettings`
 --
 ALTER TABLE `earningsettings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `emergencycontacts`
 --
 ALTER TABLE `emergencycontacts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `employeebenefits`
 --
 ALTER TABLE `employeebenefits`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `employeenontaxables`
 --
 ALTER TABLE `employeenontaxables`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `employee_allowances`
 --
 ALTER TABLE `employee_allowances`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `employee_deductions`
 --
 ALTER TABLE `employee_deductions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `employee_relief`
 --
 ALTER TABLE `employee_relief`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `employee_type`
 --
 ALTER TABLE `employee_type`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `erporderitems`
 --
 ALTER TABLE `erporderitems`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
 --
 -- AUTO_INCREMENT for table `erporders`
 --
 ALTER TABLE `erporders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
 --
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `expensesettings`
 --
 ALTER TABLE `expensesettings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `expense_claims`
 --
 ALTER TABLE `expense_claims`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `holidays`
 --
 ALTER TABLE `holidays`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `hospital_insurance`
 --
 ALTER TABLE `hospital_insurance`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
 --
 -- AUTO_INCREMENT for table `job_group`
 --
 ALTER TABLE `job_group`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `journals`
 --
 ALTER TABLE `journals`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+
 --
 -- AUTO_INCREMENT for table `kins`
 --
 ALTER TABLE `kins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `leaveapplications`
 --
 ALTER TABLE `leaveapplications`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `leavetypes`
 --
 ALTER TABLE `leavetypes`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `loanaccounts`
 --
 ALTER TABLE `loanaccounts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `loanguarantors`
 --
 ALTER TABLE `loanguarantors`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `loanpostings`
 --
 ALTER TABLE `loanpostings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `loanproducts`
 --
 ALTER TABLE `loanproducts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `loanrepayments`
 --
 ALTER TABLE `loanrepayments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `loantransactions`
 --
 ALTER TABLE `loantransactions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `mails`
 --
 ALTER TABLE `mails`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `nextofkins`
 --
 ALTER TABLE `nextofkins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `next_of_kin`
 --
 ALTER TABLE `next_of_kin`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `nontaxables`
 --
 ALTER TABLE `nontaxables`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `occurences`
 --
 ALTER TABLE `occurences`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `occurencesettings`
 --
 ALTER TABLE `occurencesettings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `organizations`
 --
 ALTER TABLE `organizations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `overtimes`
 --
 ALTER TABLE `overtimes`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `paymentmethods`
 --
 ALTER TABLE `paymentmethods`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
 --
 -- AUTO_INCREMENT for table `permission_role`
 --
 ALTER TABLE `permission_role`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
 --
 -- AUTO_INCREMENT for table `pettycash_items`
 --
 ALTER TABLE `pettycash_items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `properties`
 --
 ALTER TABLE `properties`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `relief`
 --
 ALTER TABLE `relief`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `savingaccounts`
 --
 ALTER TABLE `savingaccounts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `savingpostings`
 --
 ALTER TABLE `savingpostings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `savingproducts`
 --
 ALTER TABLE `savingproducts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `savingtransactions`
 --
 ALTER TABLE `savingtransactions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `shareaccounts`
 --
 ALTER TABLE `shareaccounts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `shares`
 --
 ALTER TABLE `shares`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `sharetransactions`
 --
 ALTER TABLE `sharetransactions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `social_security`
 --
 ALTER TABLE `social_security`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `stations`
 --
 ALTER TABLE `stations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `stmt_transactions`
 --
 ALTER TABLE `stmt_transactions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- AUTO_INCREMENT for table `supervisors`
 --
 ALTER TABLE `supervisors`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `taxes`
 --
 ALTER TABLE `taxes`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `tax_orders`
 --
 ALTER TABLE `tax_orders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `tests`
 --
 ALTER TABLE `tests`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `transact`
 --
 ALTER TABLE `transact`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `transact_advances`
 --
 ALTER TABLE `transact_advances`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `transact_allowances`
 --
 ALTER TABLE `transact_allowances`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `transact_deductions`
 --
 ALTER TABLE `transact_deductions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `transact_earnings`
 --
 ALTER TABLE `transact_earnings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `transact_nontaxables`
 --
 ALTER TABLE `transact_nontaxables`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `transact_overtimes`
 --
 ALTER TABLE `transact_overtimes`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `transact_reliefs`
 --
 ALTER TABLE `transact_reliefs`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `vendors`
 --
 ALTER TABLE `vendors`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- Constraints for dumped tables
 --
@@ -6639,6 +6758,7 @@ ALTER TABLE `users`
 ALTER TABLE `user_role`
   ADD CONSTRAINT `user_role_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_role_fk1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
